@@ -2,9 +2,9 @@ export class Alert {
   id: string = "";
   type: AlertType = AlertType.Error;
   message: string = "";
-  autoClose: boolean = true;
+  autoClose: boolean = false;
   keepAfterRouteChange?: boolean;
-  fade: boolean = true;
+  fade: boolean = false;
 
   constructor(init?: Partial<Alert>) {
     Object.assign(this, init);
