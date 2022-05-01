@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LayoutComponent } from '../Schueler/layout.component';
+import { LayoutComponent } from './/layout.component';
 import {SchuelerComponent} from "./schueler.component";
 
 const routes: Routes = [
