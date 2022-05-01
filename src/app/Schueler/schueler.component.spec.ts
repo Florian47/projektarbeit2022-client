@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HtmlComponent } from './html.component';
+import { SchuelerComponent } from './schueler.component';
 
 describe('HtmlComponent', () => {
-  let component: HtmlComponent;
-  let fixture: ComponentFixture<HtmlComponent>;
+  let component: SchuelerComponent;
+  let fixture: ComponentFixture<SchuelerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HtmlComponent ]
+      declarations: [ SchuelerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HtmlComponent);
+    fixture = TestBed.createComponent(SchuelerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
