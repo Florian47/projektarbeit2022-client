@@ -1,37 +1,38 @@
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
 <header>
 
   <h1 *ngIf="isAddMode">Aufgabe erstellen</h1>
   <h1 *ngIf="!isAddMode">Aufgabe &Auml;ndern</h1>
 
+<div *ngIf="isAddMode">
 
   <label>Aufgabenname</label> <input type="text" min="1" max="50">
   <br>
-  <select>
-    <option name="schwieriugkeit" value="einfach">einfach</option>
-    <option name="schwieriugkeit" value="mittel">mittel</option>
-    <option name="schwieriugkeit" value="schwer">schwer</option>
+  <select name="schwieriugkeit">
+    <option  value="einfach">einfach</option>
+    <option value="mittel">mittel</option>
+    <option  value="schwer">schwer</option>
   </select>
 
 
-  <select>
-    <option name="trainingtype" value="grammatik">Grammatik</option>
-    <option name="trainingtype" value="lueckentext">l&uuml;ckentext</option>
-    <option name="trainingtype" value="zeichensetzung">Zeichensetzung</option>
-    <option name="trainingtype" value="groß/kleinschreibung">groß/klein Schreibung</option>
+  <select name="trainingtype">
+    <option  value="grammatik">Grammatik</option>
+    <option  value="lueckentext">l&uuml;ckentext</option>
+    <option  value="zeichensetzung">Zeichensetzung</option>
+    <option  value="groß/kleinschreibung">groß/klein Schreibung</option>
   </select>
   <br>
-
+</div>
 </header>
 
-<div class="left">
+<div style="width: 40%;display: flex" class="left">
   <textarea name="textarea" rows="15" cols="30">
 
   </textarea>
 
 </div>
-  <div class="rechts">
+  <div style="width: 60%" class="rechts">
 <div *ngFor="let loesung of loesungen; let indexOfelement=index;">
 
     <div *ngFor="let antwort of loesung; let indexOfelement2=index;">

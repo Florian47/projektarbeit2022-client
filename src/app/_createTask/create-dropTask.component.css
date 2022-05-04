@@ -1,0 +1,12 @@
+.container{
+  width: 100%;
+}
+
+  .left{
+    width: 40%;
+    display: flex;
+    color: red;
+  }
+  .rechts{
+    width: 60%;
+  }

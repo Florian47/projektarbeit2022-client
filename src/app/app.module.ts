@@ -12,6 +12,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
+import { TaskTableComponent } from './_task-table/task-table.component';
 
 
 
@@ -27,6 +28,7 @@ import { HomeComponent } from './home';
     AppComponent,
     AlertComponent,
     HomeComponent,
+
 
   ],
   providers: [

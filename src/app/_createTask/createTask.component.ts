@@ -10,7 +10,7 @@ import {TaskService} from "../_services/task.service";
 @Component({
 
   templateUrl: './create-dropTask.component.html',
-  styleUrls: ['./createTask.component.css']
+  styleUrls: ['./create-dropTask.component.css']
 })
 export class CreateTaskComponent implements OnInit {
   form: FormGroup;

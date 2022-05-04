@@ -1,0 +1,31 @@
+<h1>Task List</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th style="width: 30%">Aufgabenname</th>
+    <th style="width: 30%">ID</th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+
+    <div *ngFor="let task of tasks; let indexOfelement=index;">
+
+      <tr>
+
+
+          <td style="width: 30%">{{task[0]}}</td>
+          <td style="width: 30%">{{task[1]}}</td>
+          <td style="white-space: nowrap">
+            <a routerLink="edit/{{task[1]}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+            <button (click)="deleteTask(indexOfelement)" class="btn btn-sm btn-danger btn-delete-user" >delete</button>
+          </td>
+        </tr>
+
+    </div >
+
+
+  </tbody>
+</table>
