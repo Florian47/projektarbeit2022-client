@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasktable.component.css']
 })
 export class TaskTableComponent implements OnInit {
+  isAddMode: boolean | undefined;
+  isCreateMode: boolean | undefined;
   tasks:any;
 
   constructor() {
