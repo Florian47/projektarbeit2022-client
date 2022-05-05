@@ -27,12 +27,18 @@
   <input type="number" min="1" max="10" step="1" value="1">
 
 </div>
+
+<button>Start</button>
 <div class="individualTraining">
   <p>Individuelle Aufgaben/Training von der Lehrkraft </p>
-  <button>Individuelle Aufgaben</button>
 
-</div>
 
-<div class="startBtn">
-  <button>Start</button>
+    <select name="individualTraining"  >
+
+      <option *ngFor="let training of trainingsliste">{{training}}</option>
+
+    </select>
+
+
+
 </div>

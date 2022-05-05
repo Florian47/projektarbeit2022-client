@@ -13,6 +13,7 @@ export class TaskComponent implements OnInit {
   benutzer:any;
   benutzerliste: string[];
 
+
   constructor() {
     this.benutzer = new FormControl();
     this.benutzerliste= ['Chris', 'Linus', 'Arne', 'Flow', 'Jonas', 'Tobi'];

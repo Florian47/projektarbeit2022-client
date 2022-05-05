@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       { path: '', component: TrainingComponent },
       { path: 'add', component: CreateTrainingComponent },
-
+      { path: 'edit/:id', component: CreateTrainingComponent},
     ]
   }
 ];

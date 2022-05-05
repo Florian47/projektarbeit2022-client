@@ -1,50 +1,82 @@
-
-<form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
-<header>
-  <div>
-
-  <label>Trainingsname</label> <input type="text" min="1" max="50">
-  <br>
-  <select name="schwierigkeit">
-    <option  value="einfach">einfach</option>
-    <option value="mittel">mittel</option>
-    <option  value="schwer">schwer</option>
-  </select>
-
-
-  <select name="trainingtype">
-    <option  value="grammatik">Grammatik</option>
-    <option  value="lueckentext">l&uuml;ckentext</option>
-    <option  value="zeichensetzung">Zeichensetzung</option>
-    <option  value="groß/kleinschreibung">groß/klein Schreibung</option>
-  </select>
-  <br>
-</div>
-</header>
-
-<div style="width: 40%;display: flex" class="left">
-  <textarea name="textarea" rows="15" cols="30">
-
-  </textarea>
-
-</div>
-  <div style="width: 60%" class="rechts">
-<div *ngFor="let loesung of loesungen; let indexOfelement=index;">
-
-    <div *ngFor="let antwort of loesung; let indexOfelement2=index;">
-      <input type="checkbox"[checked]="antwort[0]"><input type="text" [value]="antwort[1]">
-      <button (click)="optiondrop(indexOfelement,indexOfelement2)">X</button>
-    </div>
-  <button (click)="optionadd(indexOfelement)">option hinzufuegen</button>
-  <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button>
-
-</div>
-<button (click)="lueckeadd(loesungen.length)">Luecke hinzufuegen</button>
-
+<form>
+  <div *ngIf="isAddMode">
+    <h1 >Training erstellen</h1>
+    <h2>In dieser &Uuml;bersicht k&ouml;nnen sie trainings Hinzufuegen </h2>
   </div>
 
+  <h1 *ngIf="!isAddMode">Training &Auml;ndern</h1>
 
+
+
+
+  <h2>Hier können sie die Benutzer auswählen die das Training später absolvieren dürfen</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Benutzer</mat-label>
+    <mat-select [formControl]="benutzer" multiple>
+      <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h2>Bitte geben sie den Trainingsnamen ein</h2>
+  <label>Trainingsname:&nbsp;</label>
+  <input type="text" min="1" max="50">
+
+  <div class="trainingsauswahl">
+    <p>Trainingsauswahl! Bitte w&auml;hlen sie ihre Gew&uuml;nschte Kategorie aus  </p>
+    <input type="radio" name="trainingType" value="1"> Grammatik <br>
+    <input type="radio" name="trainingType" value="2"> L&uuml;ckentext <br>
+    <input type="radio" name="trainingType" value="3"> Zeichensetzung <br>
+    <input type="radio" name="trainingType" value="4"> groß/klein Schreibung <br>
+    <br>
+  </div>
+
+  <div class="Schwierigkeitskategorie">
+    <p>Bitte W&auml;hlen sie die gew&uuml;nschte Schwierigkeit aus</p>
+    <input type="radio" name="schwierigkeit" value="1"> einfach <br>
+    <input type="radio" name="schwierigkeit" value="2"> mittel <br>
+    <input type="radio" name="schwierigkeit" value="3"> schwer <br>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th style="width: 30%">Aufgabenname</th>
+      <th style="width: 30%">Schwierigkeitsgrad</th>
+      <th style="width: 30%">Auswahl</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <div *ngFor="let task of tasks; let indexOfelement=index;">
+
+      <tr>
+
+        <td style="width: 30%">{{task[0]}}</td>
+        <td style="width: 30%">{{task[1]}}</td>
+        <td style="white-space: nowrap">
+         <input type="checkbox">
+
+
+        </td>
+      </tr>
+
+    </div >
+
+
+    </tbody>
+  </table>
+
+
+<footer>
+
+  <button>Abbrechen</button>
+  <button>Speichern</button>
+</footer>
 
 </form>
+
 
 

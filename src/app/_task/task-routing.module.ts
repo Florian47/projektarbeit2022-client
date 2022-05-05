@@ -14,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: '', component: TaskComponent },
       { path: 'add', component: CreateTaskComponent },
+      { path: 'edit/:id', component: CreateTaskComponent},
 
 
     ]
