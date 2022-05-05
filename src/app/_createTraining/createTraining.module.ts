@@ -1,23 +1,21 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-
-
-import {CreateTaskRoutingModule} from "../_createTask/createTask-routing.module";
-import {CreateTaskComponent} from "../_createTask/createTask.component";
-
 import {ReactiveFormsModule} from "@angular/forms";
+import {CreateTrainingComponent} from "./createTraining.component";
+
 import {LayoutComponent} from "./layout.component";
+import {CreateTrainingRoutingModule} from "../_createTraining/createTraining-routing.module";
 
 
 @NgModule({
   imports: [
     CommonModule,
-    CreateTaskRoutingModule,
+    CreateTrainingRoutingModule,
     ReactiveFormsModule
   ],
   declarations: [
     LayoutComponent,
-    CreateTaskComponent
+    CreateTrainingComponent
   ]
 })
-export class CreateTaskModule { }
+export class CreateTrainingModule { }

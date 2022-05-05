@@ -1,0 +1,60 @@
+<form>
+
+  <h1>Aufgaben &Uuml;bersicht</h1>
+
+    <h2>In dieser &Uuml;bersicht k&ouml;nnen sie alle Trainings einsehen </h2>
+  <h3>Mit Hilfe des ADD Buttons k&ouml;nnen sie ein neues training hinzufuegen </h3>
+
+  <button><a routerLink="add">ADD</a></button>
+  <hr>
+    <h4>Bitte geben sie einen Namen ein der Für das Training verwendet wird</h4>
+    <label>Trainingsname</label>
+    <input type="text">
+
+
+
+
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th style="width: 30%">Aufgabenname</th>
+      <th style="width: 30%">Schwierigkeitsgrad</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <h2>Benutzerauswahl</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Benutzer</mat-label>
+      <mat-select [formControl]="benutzer" multiple>
+        <mat-option *ngFor="let singleBenutzer of benutzerliste" [value]="singleBenutzer">{{singleBenutzer}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div *ngFor="let task of tasks; let indexOfelement=index;">
+
+      <tr>
+
+
+        <td style="width: 30%">{{task[0]}}</td>
+        <td style="width: 30%">{{task[1]}}</td>
+        <td style="white-space: nowrap">
+          <a  routerLink="edit/{{task[1]}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+          <button  (click)="deleteTask(indexOfelement)" class="btn btn-sm btn-danger btn-delete-user" >delete</button>
+          <input  type="checkbox" >
+<!--          *ngIf="isCreateMode"-->
+        </td>
+      </tr>
+
+    </div >
+
+
+    </tbody>
+  </table>
+
+
+
+</form>
+

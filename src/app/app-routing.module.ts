@@ -9,7 +9,9 @@ const usersModule = () => import('./users/users.module').then(x => x.UsersModule
 const schuelerModule = () => import('./_schuelerHomeScreen/schueler.module').then(x => x.SchuelerModule);
 const dozentModule = () => import('./_dozentHomeScreen/dozent.module').then(x => x.DozentModule);
 const createTaskModule = () => import('./_createTask/createTask.module').then(x => x.CreateTaskModule);
-const tasktableModule = () => import('./_task-table/taskTable.module').then(x => x.TaskTableModule);
+const taskModule = () => import('./_task/task.module').then(x => x.TaskModule);
+const trainingModule = () => import('./_training/training.module').then(x => x.TrainingModule);
+const createTrainingModule = () => import('./_createTraining/createTraining.module').then(x => x.CreateTrainingModule);
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -17,7 +19,10 @@ const routes: Routes = [
   { path: 'schueler', loadChildren: schuelerModule, canActivate: [AuthGuard] },
   { path: 'dozent', loadChildren: dozentModule, canActivate: [AuthGuard] },
   { path: 'task', loadChildren: createTaskModule, canActivate: [AuthGuard] },
-  { path: 'tasktable', loadChildren: tasktableModule, canActivate: [AuthGuard] },
+  { path: 'taskView', loadChildren: taskModule, canActivate: [AuthGuard] },
+  { path: 'training', loadChildren: createTrainingModule, canActivate: [AuthGuard] },
+  { path: 'trainingView', loadChildren: trainingModule, canActivate: [AuthGuard] },
+
   { path: 'account', loadChildren: accountModule },
 
   // otherwise redirect to home
