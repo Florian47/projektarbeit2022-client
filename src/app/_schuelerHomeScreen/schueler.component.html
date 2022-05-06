@@ -1,18 +1,24 @@
 
 <div class="trainingsauswahl">
   <p>Trainingsauswahl! Bitte w&auml;hlen sie ihre Gew&uuml;nschte Kategorie aus  </p><br>
-  <button>Grammatik</button>
-  <button>L&uuml;ckentext</button>
-  <button>Zeichensetzung</button>
-  <button>gro&szlig;/klein Schreibung</button>
+
+
+    <input type="radio" name="trainingType" value="1"> Grammatik <br>
+    <input type="radio" name="trainingType" value="2"> L&uuml;ckentext <br>
+    <input type="radio" name="trainingType" value="3"> Zeichensetzung <br>
+    <input type="radio" name="trainingType" value="4"> groß/klein Schreibung <br>
+
+
 
 </div>
 
 <div class="Schwierigkeitskategorie">
   <p>Bitte W&auml;hlen sie die gew&uuml;nschte Schwierigkeit aus</p><br>
-  <button>einfach </button>
-  <button>mittel</button>
-  <button>schwer</button>
+
+    <input type="radio" name="schwierigkeit" value="1"> einfach <br>
+    <input type="radio" name="schwierigkeit" value="2"> mittel <br>
+    <input type="radio" name="schwierigkeit" value="3"> schwer <br>
+
 
 </div>
 
@@ -21,12 +27,31 @@
   <input type="number" min="1" max="10" step="1" value="1">
 
 </div>
+
+<button><a routerLink="/doTraining">Start</a></button>
 <div class="individualTraining">
   <p>Individuelle Aufgaben/Training von der Lehrkraft </p>
-  <button>Individuelle Aufgaben</button>
 
-</div>
+  <tbody>
+  <tr>Trainingsname</tr>
 
-<div class="startBtn">
-  <button>Start</button>
+
+  <tr style="width: 50%" *ngFor="let training of trainingsliste">
+    <td>
+      {{training}}
+
+    </td>
+    <td>
+      <button><a routerLink="/doTraining">Start</a></button>
+
+    </td>
+
+
+
+
+  </tr>
+
+  </tbody>
+
+
 </div>

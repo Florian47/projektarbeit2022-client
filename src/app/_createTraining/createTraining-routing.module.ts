@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { ListComponent } from './list.component';
-import { AddEditComponent } from './add-edit.component';
+import {CreateTrainingComponent} from "./createTraining.component";
 import {LayoutComponent} from "../_components/layout.component";
+
+
+
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', component: ListComponent },
-      { path: 'add', component: AddEditComponent },
-      { path: 'edit/:id', component: AddEditComponent }
+      { path: 'create', component: CreateTrainingComponent },
+
+      { path: 'edit/:id', component: CreateTrainingComponent }
     ]
   }
 ];
@@ -20,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class CreateTrainingRoutingModule { }

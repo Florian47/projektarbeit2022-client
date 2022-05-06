@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th style="width: 80%">Trainingsname</th>
+    <th style="width: 20%"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let training of trainings">
+    <td>{{training.name}}</td>
+    <td style="white-space: nowrap">
+      <a routerLink="training/{{training.id}}" class="btn btn-sm btn-primary mr-1">Auswerten</a>
+    </td>
+  </tr>
+  <tr *ngIf="!trainings">
+    <td colspan="4" class="text-center">
+      <span class="spinner-border spinner-border-lg align-center"></span>
+    </td>
+  </tr>
+  </tbody>
+</table>

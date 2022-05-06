@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schueler.component.css']
 })
 export class SchuelerComponent implements OnInit {
+  trainingsliste: string[];
 
-  constructor() { }
+  constructor() {
+    this.trainingsliste=['Training Brinkhoff Grammatik','Training Brinkhoff groß/klein Schreibung']
+  }
 
   ngOnInit(): void {
   }
