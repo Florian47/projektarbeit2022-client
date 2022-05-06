@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 
 
@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule,
     MatSelectModule,
+    NgxChartsModule,
 
   ],
   declarations: [
