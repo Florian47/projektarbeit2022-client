@@ -1,13 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-
 import {NgModule} from "@angular/core";
-import {LayoutComponent} from "./layout.component";
-
-
-
-import {CreateTaskComponent} from "../_createTask/createTask.component";
 import {TrainingComponent} from "./training.component";
 import {CreateTrainingComponent} from "../_createTraining/createTraining.component";
+import {LayoutComponent} from "../_components/layout.component";
 
 const routes: Routes = [
   {

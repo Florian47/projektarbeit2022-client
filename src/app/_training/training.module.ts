@@ -5,7 +5,6 @@ import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TrainingRoutingModule} from "./training-routing.module";
 import {TrainingComponent} from "./training.component";
-import {LayoutComponent} from "./layout.component";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 
@@ -23,7 +22,6 @@ import {MatSelectModule} from "@angular/material/select";
     MatSelectModule
   ],
   declarations: [
-    LayoutComponent,
     TrainingComponent
   ]
 })

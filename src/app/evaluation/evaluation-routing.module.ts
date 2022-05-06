@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {EvaluationTrainingComponent} from "./evaluation-training.component";
+import {EvaluationTrainingListComponent} from "./evaluation-training-list.component";
+import {LayoutComponent} from "../_components/layout.component";
 
 
 const routes: Routes = [
   {
-    path: '', component: EvaluationTrainingComponent,
+    path: '', component: LayoutComponent,
     children: [
+      { path: '', component: EvaluationTrainingListComponent },
       { path: 'training/:id', component: EvaluationTrainingComponent }
+
     ]
   }
 ];
@@ -16,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EvaluationTrainingListModule { }
+export class EvaluationRoutingModule { }
