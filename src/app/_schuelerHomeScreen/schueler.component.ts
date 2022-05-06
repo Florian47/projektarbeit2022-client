@@ -9,7 +9,7 @@ export class SchuelerComponent implements OnInit {
   trainingsliste: string[];
 
   constructor() {
-    this.trainingsliste=['Training Brikhoff Grammatik','Training Brinkhoff groß/klein Schreibung']
+    this.trainingsliste=['Training Brinkhoff Grammatik','Training Brinkhoff groß/klein Schreibung']
   }
 
   ngOnInit(): void {
