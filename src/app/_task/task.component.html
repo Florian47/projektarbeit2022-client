@@ -5,7 +5,7 @@
     <h2>In dieser &Uuml;bersicht k&ouml;nnen sie alle Aufgaben einsehen </h2>
   <h3>Mit Hilfe des ADD Buttons k&ouml;nnen sie eine neue Aufgabe hinzufuegen </h3>
 
-  <button ><a routerLink="add">ADD</a></button>
+  <a routerLink="add" class="btn btn-sm btn-success mb-2">ADD</a>
   <p></p>
 
 
@@ -20,10 +20,10 @@
     </tr>
     </thead>
     <tbody>
-
-
-
-      <tr *ngFor="let task of tasks; let indexOfelement=index; " hidden >
+<!--
+use hidden keyword
+ -->
+      <tr *ngFor="let task of tasks; let indexOfelement=index; ">
         <td style="width: 30%">{{task[0]}}</td>
         <td style="width: 30%">{{task[1]}}</td>
         <td style="white-space: nowrap">
