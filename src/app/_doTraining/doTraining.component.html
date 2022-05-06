@@ -1,0 +1,43 @@
+
+<form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
+<header>
+<h1>Training </h1>
+
+
+</header>
+
+  <cdk-accordion class="example-accordion">
+    <cdk-accordion-item
+      *ngFor="let aufgabe of aufgaben; let index = index;"
+      #accordionItem="cdkAccordionItem"
+      class="example-accordion-item"
+      role="button"
+      tabindex="0"
+      [attr.id]="'accordion-header-' + index"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + index">
+      <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+        {{ aufgabe.name }}
+        <span class="example-accordion-item-description">
+        Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+      </span>
+      </div>
+      <div
+
+        class="example-accordion-item-body"
+        role="region"
+        [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index"
+        [attr.aria-labelledby]="'accordion-header-' + index">
+        {{aufgabe.taskText}}
+        <div *ngFor="let luecke of aufgabe.loesungen; let indexOfelement1=index;">
+          <input type="checkbox" [checked]="luecke[0]">
+          <label>{{luecke[1]}}</label>
+        </div>
+      </div>
+    </cdk-accordion-item>
+  </cdk-accordion>
+
+</form>
+
+

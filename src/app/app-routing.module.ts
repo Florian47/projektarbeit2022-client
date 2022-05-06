@@ -14,7 +14,7 @@ const taskModule = () => import('./_task/task.module').then(x => x.TaskModule);
 const trainingModule = () => import('./_training/training.module').then(x => x.TrainingModule);
 const createTrainingModule = () => import('./_createTraining/createTraining.module').then(x => x.CreateTrainingModule);
 const evaluationModule = () => import('./evaluation/evaluation.module').then(x => x.EvaluationModule);
-
+const doTrainingModule = () => import('./_doTraining/doTraining.module').then(x => x.DoTrainingModule);
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'training', loadChildren: createTrainingModule, canActivate: [AuthGuard] },
   { path: 'trainingView', loadChildren: trainingModule, canActivate: [AuthGuard] },
   { path: 'evaluation', loadChildren: evaluationModule, canActivate: [AuthGuard] },
+  { path: 'doTraining', loadChildren: doTrainingModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 
   // otherwise redirect to home

@@ -28,25 +28,29 @@
 
 </div>
 
-<button>Start</button>
+<button><a routerLink="/doTraining">Start</a></button>
 <div class="individualTraining">
   <p>Individuelle Aufgaben/Training von der Lehrkraft </p>
 
-
-    <select name="individualTraining"  >
-
-      <option *ngFor="let training of trainingsliste">{{training}}</option>
-
-    </select>
   <tbody>
-  <tr *ngFor="let training of trainingsliste">
+  <tr>Trainingsname</tr>
+
+
+  <tr style="width: 50%" *ngFor="let training of trainingsliste">
     <td>
+      {{training}}
+
+    </td>
+    <td>
+      <button><a routerLink="/doTraining">Start</a></button>
 
     </td>
 
 
+
+
   </tr>
-  <
+
   </tbody>
 
 
