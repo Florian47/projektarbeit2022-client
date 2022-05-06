@@ -37,6 +37,8 @@ export class CreateTrainingComponent implements OnInit {
 
   ngOnInit(): void {
     this.tasks= [['Training1','mittel'],['Training2','leicht'],['Training3','schwer'],['Training4','leicht']];
+    this.id = this.route.snapshot.params['id'];
+    this.isAddMode = !this.id;
 
   }
 

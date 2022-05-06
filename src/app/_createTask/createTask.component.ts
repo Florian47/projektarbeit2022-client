@@ -45,7 +45,12 @@ export class CreateTaskComponent implements OnInit {
   }
   optiondrop(zeile:number,option:number){
      {
-      this.loesungen[zeile].splice(option,1);
+       if(option==0){
+         this.lueckedrop(zeile);
+       }else {
+         this.loesungen[zeile].splice(option,1);
+       }
+
     }
 
     delete  this.loesungen[zeile][option];
