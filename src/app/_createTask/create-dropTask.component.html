@@ -27,10 +27,23 @@
 
 </header>
 
-<div style="width: 40%;display: flex" class="left">
+<div >
   <textarea name="textarea" rows="15" cols="30">
 
   </textarea>
+  <ng-container *ngIf="isImageSaved;">
+    <img [src]="cardImageBase64" style="width: 150px;" />
+  </ng-container>
+  <fieldset class="form-group">
+    <label>Bild hochladen</label>
+    <div class="custom-file fileInputProfileWrap">
+      <div class="row col-md-12">
+        <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
+      </div>
+
+    </div>
+  </fieldset>
+
 
 </div>
   <div style="width: 60%" class="rechts">

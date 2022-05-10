@@ -19,6 +19,9 @@ export class CreateTaskComponent implements OnInit {
   loesungen: any;
   loading = false;
   submitted = false;
+  isImageSaved: boolean = false;
+  cardImageBase64: string = '';
+
   constructor( private formBuilder: FormBuilder,
                private route: ActivatedRoute,
                private router: Router,
@@ -26,6 +29,22 @@ export class CreateTaskComponent implements OnInit {
                private alertService: AlertService) {
     this.form = this.formBuilder.group({} );
 
+  }
+  CreateBase64String(fileInput: any) {
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+          const imgBase64Path = e.target.result;
+          this.cardImageBase64 = imgBase64Path;
+          this.isImageSaved = true;
+          console.log(imgBase64Path);
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
   }
 
 
