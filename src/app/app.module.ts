@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {MatSelect, matSelectAnimations, MatSelectModule} from "@angular/material/select";
+import {MatSelectModule} from "@angular/material/select";
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -15,7 +15,8 @@ import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {fas} from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -30,7 +31,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     BrowserAnimationsModule,
     MatSelectModule,
     NgxChartsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   declarations: [
     AppComponent,
@@ -48,4 +49,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { };
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas)
+  }
+};
