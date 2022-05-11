@@ -1,14 +1,16 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><fa-icon [icon]="homeIcon" class="fa-lg"></fa-icon></a>
     <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
     <a class="nav-item nav-link" routerLink="/schueler" routerLinkActive="active">Schüler</a>
     <a class="nav-item nav-link" routerLink="/dozent" routerLinkActive="active">Dozent</a>
     <a class="nav-item nav-link" routerLink="/taskView" routerLinkActive="active">Aufgaben &Uuml;bersicht</a>
     <a class="nav-item nav-link" routerLink="/trainingView" routerLinkActive="active">Training &Uuml;bersicht</a>
     <a class="nav-item nav-link" routerLink="/evaluation" routerLinkActive="active">Auswertung</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    <a class="nav-item nav-link nav-right" (click)="logout()">
+      <fa-icon [icon]="logoutIcon" class="fa-lg"></fa-icon>
+    </a>
   </div>
 </nav>
 

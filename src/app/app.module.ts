@@ -15,6 +15,8 @@ import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+
 
 
 
@@ -28,7 +30,7 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
     BrowserAnimationsModule,
     MatSelectModule,
     NgxChartsModule,
-
+    FontAwesomeModule
   ],
   declarations: [
     AppComponent,
