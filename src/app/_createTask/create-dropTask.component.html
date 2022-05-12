@@ -31,6 +31,7 @@
   <textarea name="textarea" rows="15" cols="30">
 
   </textarea>
+  <h2>Hier können sie ein Bild zur erklärung hinzufuegen</h2>
   <ng-container *ngIf="isImageSaved;">
     <img [src]="cardImageBase64" style="width: 150px;" />
   </ng-container>
@@ -43,7 +44,9 @@
 
     </div>
   </fieldset>
-
+  <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>
+  <label>L&ouml;sungshinweiß</label>
+  <input type="Text">
 
 </div>
   <div style="width: 60%" class="rechts">
@@ -60,9 +63,11 @@
 <button (click)="lueckeadd(loesungen.length)">Luecke hinzufuegen</button>
 
   </div>
-
-  <button *ngIf="isAddMode" >Speichern</button>
   <button *ngIf="isAddMode" >Abbrechen</button>
+  <button *ngIf="isAddMode" >Speichern</button>
+
+  <button *ngIf="!isAddMode" >Abbrechen</button>
+  <button *ngIf="!isAddMode" >Speichern</button>
 
 
 </form>
