@@ -9,7 +9,7 @@
 
   <label>Aufgabenname</label> <input type="text" min="1" max="50">
   <br>
-  <select name="schwieriugkeit">
+  <select name="schwierigkeit">
     <option  value="einfach">einfach</option>
     <option value="mittel">mittel</option>
     <option  value="schwer">schwer</option>
@@ -18,7 +18,7 @@
 
   <select name="trainingtype">
     <option  value="grammatik">Grammatik</option>
-    <option  value="lueckentext">l&uuml;ckentext</option>
+    <option  value="lueckentext">L&uuml;ckentext</option>
     <option  value="zeichensetzung">Zeichensetzung</option>
     <option  value="groß/kleinschreibung">groß/klein Schreibung</option>
   </select>
@@ -38,10 +38,10 @@
 
     <div *ngFor="let antwort of loesung; let indexOfelement2=index;">
       <input type="checkbox"[checked]="antwort[0]"><input type="text" [value]="antwort[1]">
-      <button (click)="optiondrop(indexOfelement,indexOfelement2)">X</button>
+      <button class="btn btn-sm btn-danger"(click)="optiondrop(indexOfelement,indexOfelement2)"><fa-icon icon="trash"></fa-icon></button>
     </div>
-  <button (click)="optionadd(indexOfelement)">option hinzufuegen</button>
-  <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button>
+  <button class="btn btn-sm btn-circle btn-success mb-2"(click)="optionadd(indexOfelement)"><fa-icon icon="plus"></fa-icon></button>
+  <!--- <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button> --->
 
 </div>
 <button (click)="lueckeadd(loesungen.length)">Luecke hinzufuegen</button>
