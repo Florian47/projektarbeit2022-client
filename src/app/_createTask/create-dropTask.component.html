@@ -1,75 +1,63 @@
+<form class="container" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <header>
 
-<form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
-<header>
+    <h1 *ngIf="isAddMode">Aufgabe erstellen</h1>
+    <h1 *ngIf="!isAddMode">Aufgabe &Auml;ndern</h1>
 
-  <h1 *ngIf="isAddMode">Aufgabe erstellen</h1>
-  <h1 *ngIf="!isAddMode">Aufgabe &Auml;ndern</h1>
+    <div>
 
-<div >
-
-  <label>Aufgabenname</label> <input type="text" min="1" max="50">
-  <br>
-  <select name="schwierigkeit">
-    <option  value="einfach">einfach</option>
-    <option value="mittel">mittel</option>
-    <option  value="schwer">schwer</option>
-  </select>
+      <label>Aufgabenname</label> <input ng-model="name" type="text" min="1" max="50">
+      <br>
+      <select name="schwierigkeit">
+        <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
+      </select>
 
 
-  <select name="trainingtype">
-    <option  value="grammatik">Grammatik</option>
-    <option  value="lueckentext">L&uuml;ckentext</option>
-    <option  value="zeichensetzung">Zeichensetzung</option>
-    <option  value="groß/kleinschreibung">groß/klein Schreibung</option>
-  </select>
-  <br>
-</div>
+      <select name="taskType">
+        <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
+      </select>
+      <br>
+    </div>
 
-</header>
+  </header>
 
-<div >
+  <div>
   <textarea name="textarea" rows="15" cols="30">
 
   </textarea>
-  <h2>Hier können sie ein Bild zur erklärung hinzufuegen</h2>
-  <ng-container *ngIf="isImageSaved;">
-    <img [src]="cardImageBase64" style="width: 150px;" />
-  </ng-container>
-  <fieldset class="form-group">
 
-    <div class="custom-file fileInputProfileWrap">
+    <h2>Hier können sie ein Bild zur erklärung hinzufuegen</h2>
+    <ng-container *ngIf="isImageSaved;">
+      <img [src]="cardImageBase64" style="width: 150px;"/>
+    </ng-container>
+    <fieldset class="form-group">
+
+      <div class="custom-file fileInputProfileWrap">
 
         <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
-
-
-    </div>
-  </fieldset>
-  <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>
-  <label>L&ouml;sungshinweiß</label>
-  <input type="Text">
-
-</div>
-  <div style="width: 60%" class="rechts">
-<div *ngFor="let loesung of loesungen; let indexOfelement=index;">
-
-    <div *ngFor="let antwort of loesung; let indexOfelement2=index;">
-      <input type="checkbox"[checked]="antwort[0]"><input type="text" [value]="antwort[1]">
-      <button class="btn btn-sm btn-danger"(click)="optiondrop(indexOfelement,indexOfelement2)"><fa-icon icon="trash"></fa-icon></button>
-    </div>
-  <button class="btn btn-sm btn-circle btn-success mb-2"(click)="optionadd(indexOfelement)"><fa-icon icon="plus"></fa-icon></button>
-  <!--- <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button> --->
-
-</div>
-<button (click)="lueckeadd(loesungen.length)">Luecke hinzufuegen</button>
-
+      </div>
+    </fieldset>
+    <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>
+    <label>L&ouml;sungshinweiß</label>
+    <input type="Text">
   </div>
-  <button *ngIf="isAddMode" >Abbrechen</button>
-  <button *ngIf="isAddMode" >Speichern</button>
-
-  <button *ngIf="!isAddMode" >Abbrechen</button>
-  <button *ngIf="!isAddMode" >Speichern</button>
-
-
+  <div style="width: 60%" class="rechts">
+    <div *ngFor="let loesung of loesungen; let indexOfelement=index;">
+      <div *ngFor="let antwort of loesung; let indexOfelement2=index;">
+        <input type="checkbox" [checked]="antwort[0]"><input type="text" [value]="antwort[1]">
+        <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(indexOfelement,indexOfelement2)">
+          <fa-icon icon="trash"></fa-icon>
+        </button>
+      </div>
+      <button type="button" class="btn btn-sm btn-circle btn-success mb-2" (click)="optionadd(indexOfelement)">
+        <fa-icon icon="plus"></fa-icon>
+      </button>
+      <!--- <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button> --->
+    </div>
+    <button (click)="lueckeadd(loesungen.length)">Luecke hinzufuegen</button>
+  </div>
+  <button type="button">Abbrechen</button>
+  <button>Speichern</button>
 </form>
 
 

@@ -1,10 +1,9 @@
-import {User} from "../_models";
 import {environment} from "../../environments/environment";
 
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
 import {Injectable} from "@angular/core";
+import {Task} from "../_models/task";
 
 
 @Injectable({ providedIn: 'root' })
@@ -27,5 +26,8 @@ export class TaskService {
 
     return this.http.post(`${environment.apiUrl}/task/create`, task);
 
+  }
+  getAll() {
+    return this.http.get<Task[]>(`${environment.apiUrl}/task`);
   }
 }

@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreateTrainingComponent} from "./createTraining.component";
 
 import {CreateTrainingRoutingModule} from "./createTraining-routing.module";
@@ -9,13 +9,14 @@ import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CreateTrainingRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ],
+    imports: [
+        CommonModule,
+        CreateTrainingRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule
+    ],
   declarations: [
     CreateTrainingComponent
   ]

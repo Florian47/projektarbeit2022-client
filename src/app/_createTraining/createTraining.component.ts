@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AccountService, AlertService} from "../_services";
 import {first} from "rxjs/operators";
 import {TaskService} from "../_services/task.service";
-;
+import {TaskDifficulty} from "../_models/task.difficulty";
+import {TaskCategory} from "../_models/task.category";
+import {Training} from "../_models/training";
+import {TrainingService} from "../_services/training.service";
+import {User} from "../_models";
+import {Task} from "../_models/task";
+
 
 
 @Component({
@@ -18,40 +24,87 @@ export class CreateTrainingComponent implements OnInit {
   id: string | undefined;
   loading = false;
   submitted = false;
-  tasks:any;
-  benutzer:any;
-  benutzerliste: string[];
-  constructor( private formBuilder: FormBuilder,
-               private route: ActivatedRoute,
-               private router: Router,
-               private taskService: TaskService,
-               private alertService: AlertService) {
-    this.form = this.formBuilder.group({} );
-    this.benutzer = new FormControl();
-    this.benutzerliste= ['Chris', 'Linus', 'Arne', 'Flow', 'Jonas', 'Tobi'];
+  tasks: Task[] = [];
+  benutzer: any;
+  benutzerliste: User[] = [];
+  difficultyOptions: TaskDifficulty[];
+  taskTypeOptions: TaskCategory[];
+  model: Training = new Training();
 
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private trainingService: TrainingService,
+              private alertService: AlertService,
+              private userService: AccountService,
+              private taskService: TaskService,
+  ) {
+    this.form = this.formBuilder.group({});
+    this.benutzer = new FormControl();
+    userService.getAll().subscribe(event => this.benutzerliste = event);
+    taskService.getAll().subscribe(event2 => this.tasks = event2);
+    this.difficultyOptions = [TaskDifficulty.EASY, TaskDifficulty.MEDIUM, TaskDifficulty.HARD];
+    this.taskTypeOptions = [TaskCategory.GRAMMATIK, TaskCategory.LUECKENTEXT, TaskCategory.ZEICHENSETZUNG, TaskCategory.GROSS_KLEIN_SCHREIBUNG];
+    this.model.individual = true;
   }
- deleteTraining(id:number){
-    this.tasks.splice(id,1);
- }
+
+  deleteTraining(id: number) {
+    this.tasks.splice(id, 1);
+  }
 
   ngOnInit(): void {
-    this.tasks= [['Aufgabe1','mittel'],['Aufgabe2','leicht'],['Aufgabe3','schwer'],['Aufgabe4','leicht']];
+
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
   }
 
 
-
-
-
-
   onSubmit() {
+    this.submitted = true;
+
+    // reset alerts on submit
+    this.alertService.clear();
+
+    // stop here if form is invalid
 
 
-
+    this.loading = true;
+    if (this.isAddMode) {
+      this.createTraining();
+    } else {
+      this.updateTraining();
+    }
   }
 
+  private createTraining() {
+    this.trainingService.create(this.model)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.alertService.success('Task create successfully', {keepAfterRouteChange: true});
+          this.router.navigate(['../'], {relativeTo: this.route});
+        },
+        error: (error: any) => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      });
+  }
+
+  private updateTraining() {
+    this.trainingService.update(this.id, this.model)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.alertService.success('Update successful', {keepAfterRouteChange: true});
+          this.router.navigate(['../../'], {relativeTo: this.route});
+        },
+        error: (error: any) => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      });
+  }
 
 }
