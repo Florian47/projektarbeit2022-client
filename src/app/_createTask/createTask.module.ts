@@ -5,7 +5,7 @@ import {CommonModule} from "@angular/common";
 import {CreateTaskRoutingModule} from "./createTask-routing.module";
 import {CreateTaskComponent} from "./createTask.component";
 
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
@@ -14,7 +14,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
         CommonModule,
         CreateTaskRoutingModule,
         ReactiveFormsModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        FormsModule
     ],
   declarations: [
     CreateTaskComponent
