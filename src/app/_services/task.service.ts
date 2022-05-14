@@ -15,7 +15,7 @@ export class TaskService {
     private router: Router,
     private http: HttpClient
   ) {}
-  getById(id: string) {
+  getById(id: number) {
   return this.http.get<Task>(`${environment.apiUrl}/task/${id}`);
 }
   update(id: any, params: any) {
@@ -24,7 +24,7 @@ export class TaskService {
   }
   create(task: Task) {
 
-    return this.http.post(`${environment.apiUrl}/task/create`, task);
+    return this.http.post(`${environment.apiUrl}/task/add`, task);
 
   }
   getAll() {

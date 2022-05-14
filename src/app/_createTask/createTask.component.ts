@@ -7,6 +7,8 @@ import {TaskService} from "../_services/task.service";
 import {TaskDifficulty} from "../_models/task.difficulty";
 import {TaskCategory} from "../_models/task.category";
 import {Task} from "../_models/task";
+import {SolutionOptions} from "../_models/solution.options";
+import {SolutionGaps} from "../_models/solution.gaps";
 
 ;
 
@@ -18,16 +20,15 @@ import {Task} from "../_models/task";
 })
 export class CreateTaskComponent implements OnInit {
   taskForm: FormGroup;
-  id: string | undefined;
+  id: number | undefined;
   isAddMode: boolean | undefined;
-  loesungen: any;
   loading = false;
   submitted = false;
   isImageSaved: boolean = false;
   cardImageBase64: string = '';
   difficultyOptions: TaskDifficulty[];
   taskTypeOptions: TaskCategory[];
-  model : Task | undefined;
+  model : Task = new Task();
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -37,7 +38,7 @@ export class CreateTaskComponent implements OnInit {
     this.taskForm = this.formBuilder.group({});
     this.difficultyOptions = [TaskDifficulty.EASY, TaskDifficulty.MEDIUM, TaskDifficulty.HARD];
     this.taskTypeOptions = [TaskCategory.GRAMMATIK, TaskCategory.LUECKENTEXT, TaskCategory.ZEICHENSETZUNG, TaskCategory.GROSS_KLEIN_SCHREIBUNG];
-    //this.model = undefined;
+
   }
 
   CreateBase64String(fileInput: any) {
@@ -58,21 +59,17 @@ export class CreateTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.id = +this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-    this.loesungen = [[[true, 'option1'], [false, 'option2']], [[true, 'option3'], [false, 'option4']]]
+    if(!this.isAddMode) this.taskService.getById(this.id).subscribe(e => this.model = e);
     this.difficultyOptions = [TaskDifficulty.EASY, TaskDifficulty.MEDIUM, TaskDifficulty.HARD];
     this.taskTypeOptions = [TaskCategory.GRAMMATIK, TaskCategory.LUECKENTEXT, TaskCategory.ZEICHENSETZUNG, TaskCategory.GROSS_KLEIN_SCHREIBUNG];
-    /*if (!this.isAddMode) {
-      this.taskService.getById(<string>this.id)
-        .pipe(first())
-        .subscribe((x: { [key: string]: any; }) => this.form.patchValue(x));
-    }*/
-    //this.form.patchValue({title:'TestTitle',schwierigkeitsgrad:'schwierig',loesung:[[true,'option1'],[false,'option2']]})
+
   }
 
   optionadd(zeile: number) {
-    this.loesungen[zeile].push([false, '']);
+    this.model.solution.solutionGaps[zeile].solutionOptions.push(new SolutionOptions())
+
   }
 
   optiondrop(zeile: number, option: number) {
@@ -80,22 +77,20 @@ export class CreateTaskComponent implements OnInit {
       if (option == 0) {
         this.lueckedrop(zeile);
       } else {
-        this.loesungen[zeile].splice(option, 1);
+        this.model.solution.solutionGaps[zeile].solutionOptions.splice(option, 1);
       }
-
     }
-
-    delete this.loesungen[zeile][option];
+//    delete this.model.solution.solutionGaps[zeile][option];
   }
 
   lueckeadd(maxziele: number) {
-    this.loesungen.push([]);
+    this.model.solution.solutionGaps.push(new SolutionGaps());
     this.optionadd(maxziele)
 
   }
 
   lueckedrop(maxziele: number) {
-    this.loesungen.splice(maxziele - 1, 1)
+    this.model.solution.solutionGaps.splice(maxziele - 1, 1)
 
 
   }
@@ -120,7 +115,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   private createTask() {
-    this.taskService.create(this.taskForm.value)
+    this.taskService.create(this.model)
       .pipe(first())
       .subscribe({
         next: () => {
@@ -135,7 +130,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   private updateTask() {
-    this.taskService.update(this.id, this.taskForm.value)
+    this.taskService.update(this.id, this.model)
       .pipe(first())
       .subscribe({
         next: () => {

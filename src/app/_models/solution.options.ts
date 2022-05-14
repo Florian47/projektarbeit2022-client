@@ -1,7 +1,7 @@
 export class SolutionOptions {
-  constructor(id: number,
-              optionName: string,
-              rightAnswer: boolean,
+  constructor(public id: number=0,
+              public optionName: string='',
+              public rightAnswer: boolean=false,
   ) {
   }
 }

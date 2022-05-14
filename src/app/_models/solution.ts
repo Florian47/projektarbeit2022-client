@@ -1,10 +1,10 @@
 import {SolutionGaps} from "./solution.gaps";
+import {Task} from "./task";
 
 export class Solution {
-  constructor(id: number,
-              hint: string,
-              relatedTask: Task,
-              solutionGaps: SolutionGaps[],
+  constructor(public id: number = 0,
+              public hint: string = '',
+              public solutionGaps: SolutionGaps[] = [],
   ) {
 
   }

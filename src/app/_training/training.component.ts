@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from "@angular/forms";
+import {Training} from "../_models/training";
+import {TrainingService} from "../_services/training.service";
 
 @Component({
   selector: 'app-task-table',
@@ -9,22 +11,20 @@ import {FormControl} from "@angular/forms";
 export class TrainingComponent implements OnInit {
   isAddMode: boolean | undefined;
   isCreateMode: boolean | undefined;
-  tasks:any;
+  trainings:Training[] = [];
   benutzer:any;
   benutzerliste: string[];
 
-  constructor() {
+  constructor(private trainingService: TrainingService) {
     this.benutzer = new FormControl();
     this.benutzerliste= ['Chris', 'Linus', 'Arne', 'Flow', 'Jonas', 'Tobi'];
-
   }
 
   ngOnInit(): void {
-    this.tasks= [['Training1','mittel'],['Training2','leicht'],['Training3','schwer'],['Training4','leicht']];
-
+    this.trainingService.getAll().subscribe(e => this.trainings = e);
   }
   deleteTask(pos:number){
-    this.tasks.splice(pos,1)
+    this.trainings.splice(pos,1)
   }
 
 }

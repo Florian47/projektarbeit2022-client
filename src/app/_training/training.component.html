@@ -2,7 +2,7 @@
 
   <h1>Trainings &Uuml;bersicht</h1>
 
-    <h2>In dieser &Uuml;bersicht k&ouml;nnen sie alle Trainings einsehen </h2>
+  <h2>In dieser &Uuml;bersicht k&ouml;nnen sie alle Trainings einsehen </h2>
   <h3>Mit Hilfe des ADD Buttons k&ouml;nnen sie ein neues training hinzufuegen </h3>
 
   <a routerLink="add" class="btn btn-sm btn-success mb-2">ADD</a>
@@ -12,25 +12,21 @@
     <thead>
     <tr>
       <th style="width: 30%">Trainingsname</th>
-      <th style="width: 30%">Schwierigkeitsgrad</th>
       <th style="width: 30%">Handlungsm&ouml;glichkeit</th>
-
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasks; let indexOfelement=index;">
-        <td style="width: 30%">{{task[0]}}</td>
-        <td style="width: 30%">{{task[1]}}</td>
-        <td style="white-space: nowrap">
-          <a  routerLink="edit/456" class="btn btn-sm btn-primary mr-1">Edit</a>
-          <button  (click)="deleteTask(indexOfelement)" class="btn btn-sm btn-danger btn-delete-user" >delete</button>
+    <tr *ngFor="let training of trainings; let indexOfelement=index;">
+      <td style="width: 30%">{{training.name}}</td>
+      <td style="white-space: nowrap">
+        <a routerLink="edit/456" class="btn btn-sm btn-primary mr-1">Edit</a>
+        <button (click)="deleteTask(indexOfelement)" class="btn btn-sm btn-danger btn-delete-user">delete</button>
 
-        </td>
-      </tr>
+      </td>
+    </tr>
 
     </tbody>
   </table>
-
 
 
 </form>

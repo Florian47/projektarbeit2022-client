@@ -1,8 +1,8 @@
 import {SolutionOptions} from "./solution.options";
 
 export class SolutionGaps {
-  constructor(id: number,
-              solutionOptions: SolutionOptions[],
+  constructor(public id: number = 0,
+              public solutionOptions: SolutionOptions[] = [],
   ) {
   }
 }

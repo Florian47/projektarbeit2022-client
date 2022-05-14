@@ -1,4 +1,4 @@
-<form class="container" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+<form class="container" (ngSubmit)="onSubmit()">
   <header>
 
     <h1 *ngIf="isAddMode">Aufgabe erstellen</h1>
@@ -6,14 +6,14 @@
 
     <div>
 
-      <label>Aufgabenname</label> <input ng-model="name" type="text" min="1" max="50">
+      <label>Aufgabenname</label> <input [(ngModel)] = "model.name" name="name" type="text" min="1" max="50">
       <br>
-      <select name="schwierigkeit">
+      <select name="schwierigkeit" [(ngModel)] = "model.difficulty" name="difficulty">
         <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
       </select>
 
 
-      <select name="taskType">
+      <select name="taskType" [(ngModel)] = "model.category" name="category">
         <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
       </select>
       <br>
@@ -34,7 +34,7 @@
 
       <div class="custom-file fileInputProfileWrap">
 
-        <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
+        <input type="file" [(ngModel)] = "model.picture" name="picture" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
       </div>
     </fieldset>
     <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>
@@ -42,9 +42,9 @@
     <input type="Text">
   </div>
   <div style="width: 60%" class="rechts">
-    <div *ngFor="let loesung of loesungen; let indexOfelement=index;">
-      <div *ngFor="let antwort of loesung; let indexOfelement2=index;">
-        <input type="checkbox" [checked]="antwort[0]"><input type="text" [value]="antwort[1]">
+    <div *ngFor="let loesung of model.solution.solutionGaps; let indexOfelement=index;">
+      <div *ngFor="let antwort of loesung.solutionOptions; let indexOfelement2=index;">
+        <input type="checkbox" [(ngModel)] = "antwort.rightAnswer" name="rightAnswer" [checked]="antwort.rightAnswer"><input type="text" [(ngModel)] = "antwort.optionName" name="optionName" [value]="antwort.optionName">
         <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(indexOfelement,indexOfelement2)">
           <fa-icon icon="trash"></fa-icon>
         </button>
@@ -54,7 +54,7 @@
       </button>
       <!--- <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button> --->
     </div>
-    <button (click)="lueckeadd(loesungen.length)">Luecke hinzufuegen</button>
+    <button (click)="lueckeadd(model.solution.solutionGaps.length)">Luecke hinzufuegen</button>
   </div>
   <button type="button">Abbrechen</button>
   <button>Speichern</button>

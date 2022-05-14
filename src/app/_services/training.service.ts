@@ -26,7 +26,7 @@ export class TrainingService {
   }
   create(training: Training) {
 
-    return this.http.post(`${environment.apiUrl}/training/create`, training);
+    return this.http.post(`${environment.apiUrl}/training/add`, training);
 
   }
   getAll() {
