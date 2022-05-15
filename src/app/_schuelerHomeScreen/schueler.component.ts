@@ -14,5 +14,8 @@ export class SchuelerComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onSubmit(){
+
+  }
 
 }

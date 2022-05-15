@@ -30,6 +30,7 @@ export class CreateTaskComponent implements OnInit {
   taskTypeOptions: TaskCategory[];
   model : Task = new Task();
 
+
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,

@@ -39,7 +39,7 @@
     </fieldset>
     <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>
     <label>L&ouml;sungshinweiß</label>
-    <input type="Text">
+    <input [(ngModel)] = "model.solution.hint" name="hint"type="Text">
   </div>
   <div style="width: 60%" class="rechts">
     <div *ngFor="let loesung of model.solution.solutionGaps; let indexOfelement=index;">

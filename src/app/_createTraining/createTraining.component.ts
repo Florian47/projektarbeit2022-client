@@ -25,6 +25,7 @@ export class CreateTrainingComponent implements OnInit {
   loading = false;
   submitted = false;
   tasks: Task[] = [];
+  hint:string='';
   benutzer: any;
   benutzerliste: User[] = [];
   difficultyOptions: TaskDifficulty[];

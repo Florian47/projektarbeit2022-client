@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Training} from "../_models/training";
 import {TrainingService} from "../_services/training.service";
+import {Task} from "../_models/task";
 
 @Component({
   selector: 'app-task-table',
@@ -14,10 +15,11 @@ export class TrainingComponent implements OnInit {
   trainings:Training[] = [];
   benutzer:any;
   benutzerliste: string[];
-
+  model: Task = new Task();
   constructor(private trainingService: TrainingService) {
     this.benutzer = new FormControl();
     this.benutzerliste= ['Chris', 'Linus', 'Arne', 'Flow', 'Jonas', 'Tobi'];
+
   }
 
   ngOnInit(): void {
