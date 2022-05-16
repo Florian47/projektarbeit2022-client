@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { environment } from 'src/environments/environment';
-import { User } from 'src/app/_models';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {environment} from 'src/environments/environment';
+import {User} from 'src/app/_models';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -25,13 +24,18 @@ export class AccountService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
-      .pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-        return user;
-      }));
+    //a.subscribe((resp : HttpResponse<User>) => console.log(resp));
+    let observable = this.http.post<HttpResponse<User>>(`${environment.apiUrl}/users/authenticate`, { username, password }, { observe: 'response' });
+    observable.subscribe(response => {
+      let user = response.body as unknown as User;
+      user.token = response.headers.get('Authorization') as string;
+      //console.log(resp.headers.get('Authorization'));
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.setItem('user', JSON.stringify(user))
+      this.userSubject.next(user)
+      return user;
+    });
+    return observable;
   }
 
   logout() {
@@ -78,5 +82,17 @@ export class AccountService {
         }
         return x;
       }));
+  }
+  // Error
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
   }
 }
