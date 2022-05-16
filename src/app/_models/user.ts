@@ -7,7 +7,7 @@ export class User {
               public username: string ='',
               public firstName: string ='',
               public lastName: string='',
-              public role: RoleType= RoleType.Administrator,
+              public role: RoleType[] =[],
               public token: string='',
               public isDeleting: boolean= false) {
   }
