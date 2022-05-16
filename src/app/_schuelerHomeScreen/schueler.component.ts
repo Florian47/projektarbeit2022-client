@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./schueler.component.css']
 })
 export class SchuelerComponent implements OnInit {
-  trainingsliste: string[];
+  trainingsliste: Training[]=[];
   difficultyOptions: TaskDifficulty[];
   taskTypeOptions: TaskCategory[];
   model: StudentGeneratedTraining= new StudentGeneratedTraining();
@@ -22,7 +22,7 @@ export class SchuelerComponent implements OnInit {
 
   constructor(private trainingsService:TrainingService, private router : Router) {
 
-    this.trainingsliste=['Training Brinkhoff Grammatik','Training Brinkhoff groß/klein Schreibung']
+     trainingsService.getAll().subscribe((training:Training[]) =>{this.trainingsliste= training} )
     this.difficultyOptions = [TaskDifficulty.EASY, TaskDifficulty.MEDIUM, TaskDifficulty.HARD];
     this.taskTypeOptions = [TaskCategory.GRAMMATIK, TaskCategory.LUECKENTEXT, TaskCategory.ZEICHENSETZUNG, TaskCategory.GROSS_KLEIN_SCHREIBUNG];
   }
@@ -38,5 +38,7 @@ export class SchuelerComponent implements OnInit {
       this.router.navigate(['/doTraining/'+training.id]);
     });
   }
+
+
 
 }

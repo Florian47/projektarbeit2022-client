@@ -34,11 +34,11 @@
 
     <tr style="width: 50%" *ngFor="let training of trainingsliste">
       <td>
-        {{training}}
+        {{training.name}}
 
       </td>
       <td>
-        <button><a routerLink="/doTraining">Start</a></button>
+        <button><a routerLink="/doTraining/{{training.id}}">Start</a></button>
 
       </td>
 
