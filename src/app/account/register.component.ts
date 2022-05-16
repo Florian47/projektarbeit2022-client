@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import * as bcrypt from 'bcryptjs';
 
 import { AccountService, AlertService } from 'src/app/_services';
 
@@ -48,6 +49,8 @@ export class RegisterComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    const salt = bcrypt.genSaltSync(12);
+    this.form.value.password = bcrypt.hashSync(this.form.value.password, salt);
 
     this.loading = true;
     this.accountService.register(this.form.value)
