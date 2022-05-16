@@ -17,17 +17,20 @@ export class DoTrainingComponent implements OnInit {
   form: FormGroup;
   id: string | undefined;
   isAddMode: boolean | undefined;
-  loesungen: any;
+  bild: string | undefined
   loading = false;
   submitted = false;
   taskText:String | undefined
   aufgaben: any;
+  displayStyle: any;
   constructor( private formBuilder: FormBuilder,
                private route: ActivatedRoute,
                private router: Router,
                private taskService: TaskService,
                private alertService: AlertService) {
     this.form = this.formBuilder.group({} );
+    let displayStyle = "none";
+
 
 
   }
@@ -44,6 +47,8 @@ export class DoTrainingComponent implements OnInit {
       loesungen: [[false,'option1'],[false,'option2'],[false,'option3'],[false,'option4']]};
     this.aufgaben = [aufgabe1, aufgabe2, aufgabe3, aufgabe4];
 
+
+this.bild='/9j/4AAQSkZJRgABAQEAYABgAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gODIK/9sAQwAGBAQFBAQGBQUFBgYGBwkOCQkICAkSDQ0KDhUSFhYVEhQUFxohHBcYHxkUFB0nHR8iIyUlJRYcKSwoJCshJCUk/9sAQwEGBgYJCAkRCQkRJBgUGCQkJCQkJCQkJCQkJCQkJCQ...';
   }
 
   onSubmit() {
@@ -53,4 +58,11 @@ export class DoTrainingComponent implements OnInit {
   }
 
 
+  openPopup() {
+    this.displayStyle = "block";
+  }
+
+  closePopup() {
+    this.displayStyle = "none";
+  }
 }

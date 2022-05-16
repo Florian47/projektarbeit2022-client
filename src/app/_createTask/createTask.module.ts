@@ -6,14 +6,16 @@ import {CreateTaskRoutingModule} from "./createTask-routing.module";
 import {CreateTaskComponent} from "./createTask.component";
 
 import {ReactiveFormsModule} from "@angular/forms";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CreateTaskRoutingModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        CreateTaskRoutingModule,
+        ReactiveFormsModule,
+        FontAwesomeModule
+    ],
   declarations: [
     CreateTaskComponent
   ]

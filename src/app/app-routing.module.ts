@@ -21,10 +21,10 @@ const routes: Routes = [
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'schueler', loadChildren: schuelerModule, canActivate: [AuthGuard] },
   { path: 'dozent', loadChildren: dozentModule, canActivate: [AuthGuard] },
-  { path: 'task', loadChildren: createTaskModule, canActivate: [AuthGuard] },
-  { path: 'taskView', loadChildren: taskModule, canActivate: [AuthGuard] },
-  { path: 'training', loadChildren: createTrainingModule, canActivate: [AuthGuard] },
-  { path: 'trainingView', loadChildren: trainingModule, canActivate: [AuthGuard] },
+
+  { path: 'task', loadChildren: taskModule, canActivate: [AuthGuard] },
+
+  { path: 'training', loadChildren: trainingModule, canActivate: [AuthGuard] },
   { path: 'evaluation', loadChildren: evaluationModule, canActivate: [AuthGuard] },
   { path: 'doTraining', loadChildren: doTrainingModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },

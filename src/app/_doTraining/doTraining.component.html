@@ -8,6 +8,7 @@
 
   <cdk-accordion class="example-accordion">
     <cdk-accordion-item
+
       *ngFor="let aufgabe of aufgaben; let index = index;"
       #accordionItem="cdkAccordionItem"
       class="example-accordion-item"
@@ -34,10 +35,47 @@
           <input type="checkbox" [checked]="luecke[0]">
           <label>{{luecke[1]}}</label>
         </div>
+
+        <img src='UG9seWZvbiB6d2l0c2NoZXJuZCBhw59lbiBNw6R4Y2hlbnMgVsO2Z2VsIFLDvGJlbiwgSm9naHVydCB1bmQgUXVhcms='/>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="openPopup()">Lösungshinweiß
+        </button>
+        <div
+          class="modal"
+          tabindex="-1"
+          role="dialog"
+          [ngStyle]="{'display':displayStyle}">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-body">
+                <p>hier der Lösungshinweiß</p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger"
+                        (click)="closePopup()">Close
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
       </div>
+      </div>
+
+
+
+
     </cdk-accordion-item>
   </cdk-accordion>
 
+  <button><a routerLink="/schueler">Abbrechen</a></button>
+  <button><a routerLink="/schueler">Speichern</a></button>
 </form>
 
 
