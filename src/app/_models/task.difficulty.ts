@@ -1,5 +1,5 @@
 export enum TaskDifficulty {
-  EASY ="einfach",
-  MEDIUM = "mittel",
-  HARD = "schwer"
+  EASY ="EINFACH",
+  MEDIUM = "MITTEL",
+  HARD = "SCHWER"
 }

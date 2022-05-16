@@ -30,4 +30,8 @@ export class TaskService {
   getAll() {
     return this.http.get<Task[]>(`${environment.apiUrl}/task`);
   }
+  delete(id:number){
+    return this.http.delete(`${environment.apiUrl}/task/${id}`);
+  }
+
 }

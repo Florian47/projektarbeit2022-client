@@ -21,7 +21,7 @@ import {Task} from "../_models/task";
 export class CreateTrainingComponent implements OnInit {
   form: FormGroup;
   isAddMode: boolean | undefined;
-  id: string | undefined;
+  id: number =0;
   loading = false;
   submitted = false;
   tasks: Task[] = [];
@@ -49,15 +49,11 @@ export class CreateTrainingComponent implements OnInit {
     this.model.individual = true;
   }
 
-  deleteTraining(id: number) {
-    this.tasks.splice(id, 1);
-  }
-
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-
+    if(!this.isAddMode) this.trainingService.getById(this.id).subscribe(e => this.model = e);
   }
 
 

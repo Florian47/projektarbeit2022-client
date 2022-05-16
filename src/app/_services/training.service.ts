@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {Injectable} from "@angular/core";
 import {Training} from "../_models/training";
+import {StudentGeneratedTraining} from "../_models/student.generated.training";
 
 
 @Injectable({ providedIn: 'root' })
@@ -17,8 +18,8 @@ export class TrainingService {
     private router: Router,
     private http: HttpClient
   ) {}
-  getById(id: string) {
-  return this.http.get<Task>(`${environment.apiUrl}/training/${id}`);
+  getById(id: number) {
+  return this.http.get<Training>(`${environment.apiUrl}/training/${id}`);
 }
   update(id: any, params: Training) {
     return this.http.put(`${environment.apiUrl}/training/edit/${id}`, params);
@@ -29,7 +30,15 @@ export class TrainingService {
     return this.http.post(`${environment.apiUrl}/training/add`, training);
 
   }
+  createStudentTraining(studentGeneratedTraining: StudentGeneratedTraining) {
+
+    return this.http.post<Training>(`${environment.apiUrl}/studentGeneratedTraining/add`, studentGeneratedTraining);
+
+  }
   getAll() {
     return this.http.get<Training[]>(`${environment.apiUrl}/training`);
+  }
+  delete(id:number){
+    return this.http.delete(`${environment.apiUrl}/training/${id}`);
   }
 }

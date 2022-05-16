@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+
 
   <div class="trainingsauswahl"  [(ngModel)] = "model" >
 
@@ -6,45 +6,25 @@
     <div>
 
 
-      <select name="schwierigkeit" [(ngModel)] = "model.d" name="difficulty">
+      <select name="schwierigkeit" [(ngModel)] = "model.trainingDifficulty" name="difficulty">
         <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
       </select>
 
 
-      <select name="taskType" [(ngModel)] = "model.category" name="category">
+      <select name="taskType" [(ngModel)] = "model.trainingCategory" name="category">
         <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
       </select>
       <br>
     </div>
-<!--    <p>Trainingsauswahl! Bitte w&auml;hlen sie ihre Gew&uuml;nschte Kategorie aus  </p><br>-->
 
 
-<!--    <input type="radio" name="trainingType" value="1"> Grammatik <br>-->
-<!--    <input type="radio" name="trainingType" value="2"> L&uuml;ckentext <br>-->
-<!--    <input type="radio" name="trainingType" value="3"> Zeichensetzung <br>-->
-<!--    <input type="radio" name="trainingType" value="4"> groß/klein Schreibung <br>-->
-
-
-
-<!--  </div>-->
-
-<!--  <div class="Schwierigkeitskategorie" [(ngModel)] = "model.difficulty" name='difficulty'>-->
-<!--    <p>Bitte W&auml;hlen sie die gew&uuml;nschte Schwierigkeit aus</p><br>-->
-
-<!--    <input type="radio" name="schwierigkeit" value="1"> einfach <br>-->
-<!--    <input type="radio" name="schwierigkeit" value="2"> mittel <br>-->
-<!--    <input type="radio" name="schwierigkeit" value="3"> schwer <br>-->
-
-
-<!--  </div>-->
-
-  <div class="anzFragen" [(ngModel)] = "model.anzahl" name='anzahl'>
+  <div class="anzFragen" >
     <p>Anzahl Fragen</p>
-    <input type="number" min="1" max="10" step="1" value="1">
+    <input type="number" [(ngModel)] = "model.taskAmount" name='taskAmount' min="1" max="10" step="1" value="1">
 
   </div>
 
-  <button type="submit"><a routerLink="/doTraining">Start</a></button>
+  <button type="button" (click)="createTraining()" ></button>
   <div class="individualTraining">
     <p>Individuelle Aufgaben/Training von der Lehrkraft </p>
 
@@ -74,4 +54,4 @@
 
   </div>
 
-</form>
+
