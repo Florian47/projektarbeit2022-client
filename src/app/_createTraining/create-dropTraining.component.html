@@ -1,4 +1,3 @@
-<form (ngSubmit)="onSubmit()">
   <div *ngIf="isAddMode">
     <h1 >Training erstellen</h1>
     <h2>In dieser &Uuml;bersicht k&ouml;nnen sie trainings Hinzufuegen </h2>
@@ -13,7 +12,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Benutzer</mat-label>
-    <mat-select [formControl]="benutzer" multiple [(ngModel)] = "model.students" name="students">
+    <mat-select [formControl]="benutzer" multiple [(ngModel)] = "model.students" name="students" [compareWith]="compareUser">
       <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser.firstName}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -42,9 +41,7 @@
         <td style="width: 30%">{{task.name}}</td>
         <td style="width: 30%">{{task.difficulty}}</td>
         <td style="white-space: nowrap">
-         <input  type="checkbox" name="selected" [(ngModel)]="model.selected">
-
-
+         <input (click)="clickTask(task)" type="checkbox" [checked]="hasTask(task)" > <!-- [] stehen fürs hinzufuegen eines attributes -->
         </td>
       </tr>
 
@@ -59,10 +56,8 @@
 
 
   <button type="button">Abbrechen</button>
-  <button type="submit">Speichern</button>
+  <button type="button" (click)="onSubmit()">Speichern</button>
 </footer>
-
-</form>
 <!--<form (ngSubmit)="onSubmit()">-->
 <!--  <div class = "form-group">-->
 

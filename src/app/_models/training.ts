@@ -6,7 +6,6 @@ export class Training {
               public name:String='',
               public students: User[] = [],
               public individual: boolean= false,
-              public selected: boolean= false,
               public tasks: Task[]=[]) {
   }
 }

@@ -12,7 +12,6 @@ import {User} from "../_models";
 import {Task} from "../_models/task";
 
 
-
 @Component({
 
   templateUrl: './create-dropTraining.component.html',
@@ -21,7 +20,7 @@ import {Task} from "../_models/task";
 export class CreateTrainingComponent implements OnInit {
   form: FormGroup;
   isAddMode: boolean | undefined;
-  id: number =0;
+  id: number = 0;
   loading = false;
   submitted = false;
   tasks: Task[] = [];
@@ -53,7 +52,7 @@ export class CreateTrainingComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-    if(!this.isAddMode) this.trainingService.getById(this.id).subscribe(e => this.model = e);
+    if (!this.isAddMode) this.trainingService.getById(this.id).subscribe(e => this.model = e);
   }
 
 
@@ -75,7 +74,6 @@ export class CreateTrainingComponent implements OnInit {
   }
 
   private createTraining() {
-    this.model.tasks=this.tasks;
     this.trainingService.create(this.model)
       .pipe(first())
       .subscribe({
@@ -91,7 +89,7 @@ export class CreateTrainingComponent implements OnInit {
   }
 
   //get selected(){
-    //return this.tasks.filter(this.model=>this.model.selected=true)
+  //return this.tasks.filter(this.model=>this.model.selected=true)
   //}
   private updateTraining() {
     this.trainingService.update(this.id, this.model)
@@ -106,6 +104,25 @@ export class CreateTrainingComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  clickTask(task: Task) {
+
+    if (this.hasTask(task)) { //Autor by Flow
+      this.model.tasks = this.model.tasks.filter(e => e !== task)//Name von dem parameter kann auch anders gennant werden
+    } else {
+      this.model.tasks.push(task);
+    }
+
+
+  }
+
+  hasTask(task: Task) {
+    return this.model.tasks.filter(e => e.id === task.id).length > 0;
+  }
+
+  compareUser(user1: User, user2: User){
+    return user1.id === user2.id;
   }
 
 }

@@ -45,7 +45,7 @@
   <div style="width: 60%" class="rechts">
     <div *ngFor="let loesung of model.solution.solutionGaps; let indexOfelement=index;">
       <div *ngFor="let antwort of loesung.solutionOptions; let indexOfelement2=index;">
-        <input type="checkbox" [(ngModel)] = "antwort.rightAnswer" name="rightAnswer" [checked]="antwort.rightAnswer"><input type="text" [(ngModel)] = "antwort.optionName" name="optionName" [value]="antwort.optionName">
+        <input type="checkbox" [(ngModel)] = "antwort.rightAnswer" name="rightAnswer" [checked]="antwort.rightAnswer"><input type="text" [(ngModel)] = "antwort.optionName" name="optionName"  value="{{antwort.optionName}}">
         <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(indexOfelement,indexOfelement2)">
           <fa-icon icon="trash"></fa-icon>
         </button>

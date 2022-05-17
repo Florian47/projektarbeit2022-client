@@ -26,10 +26,9 @@ export class DoTrainingComponent implements OnInit {
                private route: ActivatedRoute,
                private router: Router,
                private trainingService: TrainingService,
-               private alertService: AlertService,) {
+               public alertService: AlertService,) {
     this.model = new Training();
     this.form = this.formBuilder.group({} );
-    this.closePopup();
   }
 
 
@@ -45,11 +44,4 @@ export class DoTrainingComponent implements OnInit {
   onSubmit() {
   }
 
-  openPopup() {
-    this.displayStyle = "block";
-  }
-
-  closePopup() {
-    this.displayStyle = "none";
-  }
 }
