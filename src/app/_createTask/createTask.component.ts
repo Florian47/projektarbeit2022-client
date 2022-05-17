@@ -51,6 +51,7 @@ export class CreateTaskComponent implements OnInit {
         image.onload = rs => {
           const imgBase64Path = e.target.result;
           this.cardImageBase64 = imgBase64Path;
+          this.model.picture=this.cardImageBase64;
           this.isImageSaved = true;
           console.log(imgBase64Path);
         };

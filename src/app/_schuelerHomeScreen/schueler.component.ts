@@ -53,14 +53,14 @@ export class SchuelerComponent implements OnInit {
     });
 
    }
-   //startTraining(){
-    // this.trainingsService.createStudentTraining(this.model).pipe(first()).subscribe((training: Training) => {
-    //   this.router.navigate(['/doTraining/'+id]);
+   startTraining(id:number){
 
-  //}
+       this.router.navigate(['/doTraining/'+id]);
+
   }
 
 
+}
 
 
 

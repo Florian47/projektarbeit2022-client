@@ -27,20 +27,20 @@
   </textarea>
 
     <h2>Hier können sie ein Bild zur erklärung hinzufuegen</h2>
-    <ng-container *ngIf="isImageSaved;">
+    <ng-container  *ngIf="isImageSaved;">
       <img  [src]="cardImageBase64" style="width: 150px;"/>
 
     </ng-container>
     <fieldset class="form-group">
 
-      <div class="custom-file fileInputProfileWrap">
-
-        <input type="file"  (change)="CreateBase64String($event)"[(ngModel)] = "model.picture" name="picture" class="fileInputProfile form-control">
+      <div   class="custom-file fileInputProfileWrap">
+        <textarea style="visibility: unset"  [(ngModel)] = "model.picture" name="picture">{{cardImageBase64}}</textarea>
+        <input type="file"  (change)="CreateBase64String($event)" class="fileInputProfile form-control">
       </div>
     </fieldset>
     <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>
-    <label>L&ouml;sungshinweiß</label>
-    <input [(ngModel)] = "model.solution.hint" name="hint"type="Text">
+    <label>L&ouml;sungshinweiß:</label>
+    <input [(ngModel)] = "model.solution.hint" name="hint" type="Text" >
   </div>
   <div style="width: 60%" class="rechts">
     <div *ngFor="let loesung of model.solution.solutionGaps; let indexOfelement=index;">
