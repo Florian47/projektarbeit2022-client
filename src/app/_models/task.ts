@@ -8,6 +8,7 @@ export class Task {
               public text: string = '',
               public picture: string = '',
               public score: number = 0,
+
               public difficulty: TaskDifficulty = TaskDifficulty.EASY,
               public category: TaskCategory = TaskCategory.LUECKENTEXT,
               public solution:Solution = new Solution()

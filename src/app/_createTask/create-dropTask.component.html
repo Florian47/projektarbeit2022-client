@@ -22,19 +22,20 @@
   </header>
 
   <div>
-  <textarea name="textarea" rows="15" cols="30">
+  <textarea  [(ngModel)] = "model.text" name="text" name="textarea" rows="15" cols="30">
 
   </textarea>
 
     <h2>Hier können sie ein Bild zur erklärung hinzufuegen</h2>
     <ng-container *ngIf="isImageSaved;">
-      <img [src]="cardImageBase64" style="width: 150px;"/>
+      <img  [src]="cardImageBase64" style="width: 150px;"/>
+
     </ng-container>
     <fieldset class="form-group">
 
       <div class="custom-file fileInputProfileWrap">
 
-        <input type="file" [(ngModel)] = "model.picture" name="picture" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
+        <input type="file"  (change)="CreateBase64String($event)"[(ngModel)] = "model.picture" name="picture" class="fileInputProfile form-control">
       </div>
     </fieldset>
     <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>

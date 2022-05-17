@@ -75,6 +75,7 @@ export class CreateTrainingComponent implements OnInit {
   }
 
   private createTraining() {
+    this.model.tasks=this.tasks;
     this.trainingService.create(this.model)
       .pipe(first())
       .subscribe({
@@ -89,6 +90,9 @@ export class CreateTrainingComponent implements OnInit {
       });
   }
 
+  //get selected(){
+    //return this.tasks.filter(this.model=>this.model.selected=true)
+  //}
   private updateTraining() {
     this.trainingService.update(this.id, this.model)
       .pipe(first())

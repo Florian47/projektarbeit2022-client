@@ -6,6 +6,9 @@ import {TrainingService} from "../_services/training.service";
 import {Training} from "../_models/training";
 import {first} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {AccountService} from "../_services";
+import {User} from "../_models";
+import {BehaviorSubject, Observable} from "rxjs";
 
 
 @Component({
@@ -18,13 +21,23 @@ export class SchuelerComponent implements OnInit {
   difficultyOptions: TaskDifficulty[];
   taskTypeOptions: TaskCategory[];
   model: StudentGeneratedTraining= new StudentGeneratedTraining();
+  private userSubject: BehaviorSubject<User | null>;
+  public user: Observable<User>;
 
 
-  constructor(private trainingsService:TrainingService, private router : Router) {
+  constructor(private accountService:AccountService, private trainingsService:TrainingService, private router : Router) {
+    this.userSubject = new BehaviorSubject<User | null>(JSON.parse(<string>localStorage.getItem('user')));
+    this.user = <Observable<User>> this.userSubject.asObservable();
 
-     trainingsService.getAll().subscribe((training:Training[]) =>{this.trainingsliste= training} )
+
+
+    trainingsService.getAllTrainingsForStudent(this.userValue.id).subscribe((training:Training[]) =>{this.trainingsliste= training} )
     this.difficultyOptions = [TaskDifficulty.EASY, TaskDifficulty.MEDIUM, TaskDifficulty.HARD];
     this.taskTypeOptions = [TaskCategory.GRAMMATIK, TaskCategory.LUECKENTEXT, TaskCategory.ZEICHENSETZUNG, TaskCategory.GROSS_KLEIN_SCHREIBUNG];
+
+  }
+  public get userValue(): User {
+    return <User>this.userSubject.value;
   }
 
   ngOnInit(): void {
@@ -33,12 +46,23 @@ export class SchuelerComponent implements OnInit {
 
   }
 
+
   createTraining(){
     this.trainingsService.createStudentTraining(this.model).pipe(first()).subscribe((training: Training) => {
       this.router.navigate(['/doTraining/'+training.id]);
     });
+
+   }
+   //startTraining(){
+    // this.trainingsService.createStudentTraining(this.model).pipe(first()).subscribe((training: Training) => {
+    //   this.router.navigate(['/doTraining/'+id]);
+
+  //}
   }
 
 
 
-}
+
+
+
+

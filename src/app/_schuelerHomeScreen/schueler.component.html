@@ -24,7 +24,7 @@
 
   </div>
 
-  <button type="button" (click)="createTraining()" ></button>
+  <button type="button" (click)="createTraining()" >Starte Training </button>
   <div class="individualTraining">
     <p>Individuelle Aufgaben/Training von der Lehrkraft </p>
 
@@ -38,7 +38,7 @@
 
       </td>
       <td>
-        <button><a routerLink="/doTraining/{{training.id}}">Start</a></button>
+        <button><a routerLink="/doTraining/schueler/{{training.id}}">Start Individual</a></button>
 
       </td>
 

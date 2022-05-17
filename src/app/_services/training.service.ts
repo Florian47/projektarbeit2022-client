@@ -38,7 +38,16 @@ export class TrainingService {
   getAll() {
     return this.http.get<Training[]>(`${environment.apiUrl}/training`);
   }
+  getAllTrainingsForStudent(id:number) {
+    return this.http.get<Training[]>(`${environment.apiUrl}/training/schueler/${id}`);
+  }
   delete(id:number){
     return this.http.delete(`${environment.apiUrl}/training/${id}`);
   }
+
+
+  //getById(id: string) {
+  //  return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+  //}
+
 }
