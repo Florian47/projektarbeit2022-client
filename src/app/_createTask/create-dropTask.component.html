@@ -26,7 +26,7 @@
 
   </textarea>
 
-    <h2>Hier können sie ein Bild zur erklärung hinzufuegen</h2>
+    <h2>Hier können sie ein Bild zur Erkl&auml;rung hinzufuegen</h2>
     <ng-container  *ngIf="isImageSaved;">
       <img  [src]="cardImageBase64" style="width: 150px;"/>
 
@@ -38,8 +38,8 @@
         <input type="file"  (change)="CreateBase64String($event)" class="fileInputProfile form-control">
       </div>
     </fieldset>
-    <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweiß einpflegen falls es einen gibt.</h2>
-    <label>L&ouml;sungshinweiß:</label>
+    <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweis einpflegen falls es einen gibt.</h2>
+    <label>L&ouml;sungshinweis:</label>
     <input [(ngModel)] = "model.solution.hint" name="hint" type="Text" >
   </div>
   <div style="width: 60%" class="rechts">
