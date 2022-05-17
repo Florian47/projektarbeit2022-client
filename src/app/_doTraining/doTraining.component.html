@@ -30,7 +30,9 @@
         [style.display]="accordionItem.expanded ? '' : 'none'"
         [attr.id]="'accordion-body-' + index"
         [attr.aria-labelledby]="'accordion-header-' + index">
+        <img src="{{aufgabe.picture}}">
         {{aufgabe.text}}
+
         <div *ngFor="let luecke of aufgabe.solution.solutionGaps">
           <div *ngFor="let option of luecke.solutionOptions">
             <input type="checkbox" [checked]="option.rightAnswer">
