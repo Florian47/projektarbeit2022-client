@@ -4,8 +4,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AccountService, AlertService} from "../_services";
 import {first} from "rxjs/operators";
 import {TaskService} from "../_services/task.service";
+import {TrainingService} from "../_services/training.service";
+import {Training} from "../_models/training";
+import {Task} from "../_models/task";
 
-;
 
 
 @Component({
@@ -15,54 +17,31 @@ import {TaskService} from "../_services/task.service";
 })
 export class DoTrainingComponent implements OnInit {
   form: FormGroup;
-  id: string | undefined;
-  isAddMode: boolean | undefined;
-  bild: string | undefined
+  model: Training;
   loading = false;
   submitted = false;
-  taskText:String | undefined
-  aufgaben: any;
-  displayStyle: any;
+  displayStyle: string | undefined;
+
   constructor( private formBuilder: FormBuilder,
                private route: ActivatedRoute,
                private router: Router,
-               private taskService: TaskService,
-               private alertService: AlertService) {
+               private trainingService: TrainingService,
+               public alertService: AlertService,) {
+    this.model = new Training();
     this.form = this.formBuilder.group({} );
-    let displayStyle = "none";
-
-
-
   }
 
 
   ngOnInit(): void {
-    var aufgabe1 = {id: 1, name: 'Aufgabe 1', taskText:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ',
-      loesungen: [[false,'option1'],[false,'option2'],[false,'option3'],[false,'option4']]};
-    var aufgabe2 = {id: 2, name: 'Aufgabe 2', taskText:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ',
-      loesungen: [[false,'option1'],[false,'option2'],[false,'option3'],[false,'option4']]};
-    var aufgabe3 = {id: 3, name: 'Aufgabe 3', taskText:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ',
-      loesungen: [[false,'option1'],[false,'option2'],[false,'option3'],[false,'option4']]};
-    var aufgabe4 = {id: 4, name: 'Aufgabe 4', taskText:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ',
-      loesungen: [[false,'option1'],[false,'option2'],[false,'option3'],[false,'option4']]};
-    this.aufgaben = [aufgabe1, aufgabe2, aufgabe3, aufgabe4];
+    let id = this.route.snapshot.params['id'];
+    this.trainingService.getById(id).pipe(first()).subscribe(training => {
+      this.model= training;
+      console.log(this.model.tasks);
+    });
 
-
-this.bild='/9j/4AAQSkZJRgABAQEAYABgAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gODIK/9sAQwAGBAQFBAQGBQUFBgYGBwkOCQkICAkSDQ0KDhUSFhYVEhQUFxohHBcYHxkUFB0nHR8iIyUlJRYcKSwoJCshJCUk/9sAQwEGBgYJCAkRCQkRJBgUGCQkJCQkJCQkJCQkJCQkJCQ...';
-  }
+}
 
   onSubmit() {
-
-
-
   }
 
-
-  openPopup() {
-    this.displayStyle = "block";
-  }
-
-  closePopup() {
-    this.displayStyle = "none";
-  }
 }

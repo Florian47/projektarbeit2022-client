@@ -1,11 +1,11 @@
 export class User {
-  constructor(public id: string,
-              public username: string,
-              public firstName: string,
-              public lastName: string,
-              public role: RoleType,
-              public token: string,
-              public isDeleting: boolean) {
+  constructor(public id: number = 0,
+              public username: string ='',
+              public firstName: string ='',
+              public lastName: string='',
+              public role: RoleType= RoleType.Administrator,
+              public token: string='',
+              public isDeleting: boolean= false) {
   }
 }
 

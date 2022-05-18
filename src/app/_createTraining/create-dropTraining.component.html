@@ -1,4 +1,3 @@
-<form>
   <div *ngIf="isAddMode">
     <h1 >Training erstellen</h1>
     <h2>In dieser &Uuml;bersicht k&ouml;nnen sie trainings Hinzufuegen </h2>
@@ -13,34 +12,20 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Benutzer</mat-label>
-    <mat-select [formControl]="benutzer" multiple>
-      <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser}}</mat-option>
+    <mat-select [formControl]="benutzer" multiple [(ngModel)] = "model.students" name="students" [compareWith]="compareUser">
+      <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser.firstName}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <h2>Bitte geben sie den Trainingsnamen ein</h2>
-  <label>Trainingsname:&nbsp;</label>
-  <input type="text" min="1" max="50">
+  <label >Trainingsname:&nbsp;</label>
+  <input  [(ngModel)] = "model.name" name="name" type="text" min="1" max="50">
 
-  <div class="trainingsauswahl">
-    <p>Trainingsauswahl! Bitte w&auml;hlen sie ihre Gew&uuml;nschte Kategorie aus  </p>
-    <input type="radio" name="trainingType" value="1"> Grammatik <br>
-    <input type="radio" name="trainingType" value="2"> L&uuml;ckentext <br>
-    <input type="radio" name="trainingType" value="3"> Zeichensetzung <br>
-    <input type="radio" name="trainingType" value="4"> groß/klein Schreibung <br>
-    <br>
-  </div>
 
-  <div class="Schwierigkeitskategorie">
-    <p>Bitte W&auml;hlen sie die gew&uuml;nschte Schwierigkeit aus</p>
-    <input type="radio" name="schwierigkeit" value="1"> einfach <br>
-    <input type="radio" name="schwierigkeit" value="2"> mittel <br>
-    <input type="radio" name="schwierigkeit" value="3"> schwer <br>
-  </div>
 
   <table class="table table-striped">
     <thead>
-    <tr>
+    <tr  name="name">
       <th style="width: 30%">Aufgabenname</th>
       <th style="width: 30%">Schwierigkeitsgrad</th>
       <th style="width: 30%">Auswahl</th>
@@ -50,20 +35,17 @@
     </thead>
     <tbody>
 
-    <div *ngFor="let task of tasks; let indexOfelement=index;">
 
-      <tr>
+      <tr *ngFor="let task of tasks; let indexOfelement=index;">
 
-        <td style="width: 30%">{{task[0]}}</td>
-        <td style="width: 30%">{{task[1]}}</td>
+        <td style="width: 30%">{{task.name}}</td>
+        <td style="width: 30%">{{task.difficulty}}</td>
         <td style="white-space: nowrap">
-         <input type="checkbox">
-
-
+         <input (click)="clickTask(task)" type="checkbox" [checked]="hasTask(task)" > <!-- [] stehen fürs hinzufuegen eines attributes -->
         </td>
       </tr>
 
-    </div >
+
 
 
     </tbody>
@@ -72,11 +54,23 @@
 
 <footer>
 
-  <button>Abbrechen</button>
-  <button>Speichern</button>
+
+  <button type="button">Abbrechen</button>
+  <button type="button" (click)="onSubmit()">Speichern</button>
 </footer>
+<!--<form (ngSubmit)="onSubmit()">-->
+<!--  <div class = "form-group">-->
 
-</form>
+<!--    <input type = "text" class = "form-control"  required-->
+<!--           [(ngModel)] = "model.id" name="id">-->
+<!--  </div>-->
 
+<!--  <div class = "form-group">-->
+
+<!--    <input type = "checkbox" class = "form-control"-->
+<!--           [(ngModel)] = "model.individual" >-->
+<!--  </div>-->
+<!-- <button type="submit">Speichern</button> -->
+<!--</form>-->
 
 
