@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {first, map} from 'rxjs/operators';
-import { AccountService, AlertService } from 'src/app/_services';
-import {RoleType} from "../_models";
+import {first} from 'rxjs/operators';
+import {AccountService, AlertService} from 'src/app/_services';
+import {Role, RoleType, User} from "../_models";
 import * as bcrypt from "bcryptjs";
 
 
-
-
-@Component({ templateUrl: 'add-edit.component.html' })
+@Component({templateUrl: 'add-edit.component.html'})
 export class AddEditComponent implements OnInit {
-  form: FormGroup;
-  id: string | undefined;
+  model: User;
+  id: number | undefined;
   isAddMode: boolean | undefined;
   loading = false;
   submitted = false;
-  roles: any;
-  rolelist: any;
+  rolelist: Role[] = [];
 
 
   constructor(
@@ -27,61 +24,29 @@ export class AddEditComponent implements OnInit {
     private accountService: AccountService,
     private alertService: AlertService
   ) {
-    this.roles = new FormControl();
-    this.rolelist= Object.values(RoleType);
-
-
-    // password not required in edit mode
-    const passwordValidators = [Validators.minLength(6)];
-    if (this.isAddMode) {
-      passwordValidators.push(Validators.required);
-    }
-    this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', passwordValidators],
-      roles:['', Validators.required]
-    });
+    this.model = new User();
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    this.id = +this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
-    // password not required in edit mode
-    const passwordValidators = [Validators.minLength(6)];
-    if (this.isAddMode) {
-      passwordValidators.push(Validators.required);
-    }
-
-    this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', passwordValidators],
-      // roles:['', Validators.required]
-    });
+    this.accountService.getRoles()
+      .pipe(first())
+      .subscribe(roles => this.rolelist = roles);
 
     if (!this.isAddMode) {
-      this.accountService.getById(<string>this.id)
+      this.accountService.getById(this.id)
         .pipe(first())
-        .subscribe((x: { [key: string]: any; }) => this.form.patchValue(x));
+        .subscribe(user => this.model = user);
     }
   }
-
-  get f() { return this.form.controls; }
 
   onSubmit() {
     this.submitted = true;
 
     // reset alerts on submit
     this.alertService.clear();
-
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    }
 
     this.loading = true;
     if (this.isAddMode) {
@@ -91,16 +56,19 @@ export class AddEditComponent implements OnInit {
     }
   }
 
+  compareRole(role1: Role, role2: Role) {
+    return role1.id === role2.id;
+  }
 
   private createUser() {
     const salt = bcrypt.genSaltSync(12);
-    this.form.value.password = bcrypt.hashSync(this.form.value.password, salt);
-    this.accountService.register(this.form.value)
+    this.model.password = bcrypt.hashSync(this.model.password, salt);
+    this.accountService.register(this.model)
       .pipe(first())
       .subscribe({
         next: () => {
-          this.alertService.success('User added successfully', { keepAfterRouteChange: true });
-          this.router.navigate(['../'], { relativeTo: this.route });
+          this.alertService.success('User added successfully', {keepAfterRouteChange: true});
+          this.router.navigate(['../'], {relativeTo: this.route});
         },
         error: (error: any) => {
           this.alertService.error(error);
@@ -111,13 +79,13 @@ export class AddEditComponent implements OnInit {
 
   private updateUser() {
     const salt = bcrypt.genSaltSync(12);
-    this.form.value.password = bcrypt.hashSync(this.form.value.password, salt);
-    this.accountService.update(this.id, this.form.value)
+    this.model.password = bcrypt.hashSync(this.model.password, salt);
+    this.accountService.update(this.id, this.model)
       .pipe(first())
       .subscribe({
         next: () => {
-          this.alertService.success('Update successful', { keepAfterRouteChange: true });
-          this.router.navigate(['../../'], { relativeTo: this.route });
+          this.alertService.success('Update successful', {keepAfterRouteChange: true});
+          this.router.navigate(['../../'], {relativeTo: this.route});
         },
         error: (error: any) => {
           this.alertService.error(error);

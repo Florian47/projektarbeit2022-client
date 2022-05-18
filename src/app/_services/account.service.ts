@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http'
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
-import {User} from 'src/app/_models';
+import {Role, User} from 'src/app/_models';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -53,8 +53,12 @@ export class AccountService {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
-  getById(id: string) {
+  getById(id: number) {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+  }
+
+  getRoles() {
+    return this.http.get<Role[]>(`${environment.apiUrl}/roles`);
   }
 
   update(id: any, params: any) {

@@ -4,16 +4,20 @@ export class User {
               public username: string ='',
               public firstName: string ='',
               public lastName: string='',
-              public role: RoleType[] =[],
+              public password: string='',
+              public roles: Role[]=[],
               public token: string='',
-              public isDeleting: boolean= false) {
+              public isDeleting: boolean=false) {
   }
 }
-
+export class Role {
+  constructor(public id: number, public name: RoleType) {
+  }
+}
 export enum RoleType {
-  Student,
-  Teacher,
-  Administrator
+  STUDENT = "STUDENT",
+  TEACHER = "TEACHER",
+  ADMINISTRATOR= "ADMINISTRATOR"
 }
 
 

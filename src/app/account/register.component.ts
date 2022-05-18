@@ -13,9 +13,6 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   role = new FormControl();
 
-
-
-
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -27,8 +24,7 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -37,8 +33,7 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 

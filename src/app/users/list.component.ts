@@ -21,6 +21,6 @@ export class ListComponent implements OnInit {
     user!.isDeleting = true;
     this.accountService.delete(id)
       .pipe(first())
-      .subscribe(() => this.users = this.users.filter((x: User) => x.id !== +id));
+      .subscribe(() => this.users = this.users.filter((x: User) => x.id !== id));
   }
 }

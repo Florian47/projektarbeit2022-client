@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
@@ -10,14 +10,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    UsersRoutingModule,
-    FontAwesomeModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        UsersRoutingModule,
+        FontAwesomeModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule
+    ],
   declarations: [
     ListComponent,
     AddEditComponent
