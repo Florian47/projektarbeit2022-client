@@ -3,10 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import * as bcrypt from 'bcryptjs';
-import { RoleType } from 'src/app/_models';
-
 import { AccountService, AlertService } from 'src/app/_services';
-import {Observable} from "rxjs";
+
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
@@ -14,7 +12,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   role = new FormControl();
-  roleList: any;
+
 
 
 
@@ -75,4 +73,4 @@ export class RegisterComponent implements OnInit {
       });
   }
 }
-let roleList = RoleType[RoleType.Student, RoleType.Teacher, RoleType.Administrator];
+

@@ -6,14 +6,18 @@ import { UsersRoutingModule } from './users-routing.module';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        UsersRoutingModule,
-        FontAwesomeModule
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    UsersRoutingModule,
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatSelectModule
+  ],
   declarations: [
     ListComponent,
     AddEditComponent

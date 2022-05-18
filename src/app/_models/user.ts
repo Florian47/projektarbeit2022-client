@@ -1,6 +1,3 @@
-import {
-  RouterLinkEmptyExprVisitor
-} from "@angular/core/schematics/migrations/router-link-empty-expression/angular/html_routerlink_empty_expr_visitor";
 
 export class User {
   constructor(public id: number = 0,
@@ -19,4 +16,5 @@ export enum RoleType {
   Administrator
 }
 
-let roleList = RoleType[RoleType.Student, RoleType.Teacher, RoleType.Administrator];
+
+

@@ -37,6 +37,16 @@
       </div>
     </div>
   </div>
+  <div class="form-row">
+  <div class="form-group col">
+  <mat-form-field appearance="fill">
+    <mat-label>Wähle die Benutzerrollen aus</mat-label>
+    <mat-select [formControl]="selectedRoles" multiple>
+      <mat-option *ngFor="let singleRole of rolelist" [value]="singleRole">{{singleRole}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  </div>
   <div class="form-group">
     <button [disabled]="loading" class="btn btn-success">
       <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
