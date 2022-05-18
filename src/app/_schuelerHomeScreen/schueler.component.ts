@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TaskDifficulty} from "../_models/task.difficulty";
 import {TaskCategory} from "../_models/task.category";
 import {StudentGeneratedTraining} from "../_models/student.generated.training";
@@ -14,7 +14,7 @@ import {AccountService} from "../_services";
   templateUrl: './schueler.component.html',
   styleUrls: ['./schueler.component.css']
 })
-export class SchuelerComponent implements OnInit {
+export class SchuelerComponent {
   trainingsliste: Training[] = [];
   difficultyOptions: TaskDifficulty[];
   taskTypeOptions: TaskCategory[];
@@ -30,13 +30,6 @@ export class SchuelerComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
-
-  onSubmit() {
-
-  }
-
 
   createTraining() {
     this.trainingsService.createStudentTraining(this.model).pipe(first()).subscribe((training: Training) => {
@@ -46,12 +39,9 @@ export class SchuelerComponent implements OnInit {
   }
 
   startTraining(id: number) {
-
     this.router.navigate(['/doTraining/' + id]);
 
   }
-
-
 }
 
 

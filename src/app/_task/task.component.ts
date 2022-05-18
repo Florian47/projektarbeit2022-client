@@ -10,8 +10,7 @@ import {first} from "rxjs/operators";
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  tasks: any | undefined;
-  model: Task = new Task();
+  tasks: Task[] =[];
 
 
   constructor(private taskService: TaskService) {

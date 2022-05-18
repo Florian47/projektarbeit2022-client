@@ -21,9 +21,9 @@
   <!--
   use hidden keyword
    -->
-  <tr *ngFor="let task of tasks let indexOfelement=index;">
+  <tr *ngFor="let task of tasks; let indexOfelement=index;">
     <td style="width: 30%">{{task.name}}</td>
-    <td style="width: 30%">{{task.difficultyOptions}}</td>
+    <td style="width: 30%">{{task.difficulty}}</td>
     <td style="white-space: nowrap">
       <a routerLink="edit/{{task.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
       <button type="button" (click)="deleteTask(task.id)" class="btn btn-sm btn-danger ">delete</button>

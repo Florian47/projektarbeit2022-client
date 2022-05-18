@@ -6,12 +6,12 @@
     <div>
 
 
-      <select name="schwierigkeit" [(ngModel)] = "model.trainingDifficulty" name="difficulty">
+      <select [(ngModel)] = "model.trainingDifficulty" name="difficulty">
         <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
       </select>
 
 
-      <select name="taskType" [(ngModel)] = "model.trainingCategory" name="category">
+      <select [(ngModel)] = "model.trainingCategory" name="category">
         <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
       </select>
       <br>
