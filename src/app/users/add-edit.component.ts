@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {first, map} from 'rxjs/operators';
 import { AccountService, AlertService } from 'src/app/_services';
 import {RoleType} from "../_models";
+import * as bcrypt from "bcryptjs";
+
 
 
 
@@ -14,7 +16,7 @@ export class AddEditComponent implements OnInit {
   isAddMode: boolean | undefined;
   loading = false;
   submitted = false;
-  selectedRoles: any;
+  roles: any;
   rolelist: any;
 
 
@@ -25,8 +27,8 @@ export class AddEditComponent implements OnInit {
     private accountService: AccountService,
     private alertService: AlertService
   ) {
-    this.selectedRoles = new FormControl();
-    this.rolelist= Object.values(RoleType.Student);
+    this.roles = new FormControl();
+    this.rolelist= Object.values(RoleType);
 
 
     // password not required in edit mode
@@ -39,7 +41,7 @@ export class AddEditComponent implements OnInit {
       lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', passwordValidators],
-      selectedRoles:['', Validators.required]
+      roles:['', Validators.required]
     });
   }
 
@@ -58,7 +60,7 @@ export class AddEditComponent implements OnInit {
       lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', passwordValidators],
-      selectedRoles:['', Validators.required]
+      // roles:['', Validators.required]
     });
 
     if (!this.isAddMode) {
@@ -89,7 +91,10 @@ export class AddEditComponent implements OnInit {
     }
   }
 
+
   private createUser() {
+    const salt = bcrypt.genSaltSync(12);
+    this.form.value.password = bcrypt.hashSync(this.form.value.password, salt);
     this.accountService.register(this.form.value)
       .pipe(first())
       .subscribe({
@@ -105,6 +110,8 @@ export class AddEditComponent implements OnInit {
   }
 
   private updateUser() {
+    const salt = bcrypt.genSaltSync(12);
+    this.form.value.password = bcrypt.hashSync(this.form.value.password, salt);
     this.accountService.update(this.id, this.form.value)
       .pipe(first())
       .subscribe({

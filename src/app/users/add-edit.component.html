@@ -41,7 +41,7 @@
   <div class="form-group col">
   <mat-form-field appearance="fill">
     <mat-label>Wähle die Benutzerrollen aus</mat-label>
-    <mat-select [formControl]="selectedRoles" multiple>
+    <mat-select [formControl]="roles" multiple>
       <mat-option *ngFor="let singleRole of rolelist" [value]="singleRole">{{singleRole}}</mat-option>
     </mat-select>
   </mat-form-field>
