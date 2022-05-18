@@ -76,7 +76,7 @@ export class CreateTaskComponent implements OnInit {
 
   optiondrop(zeile: number, option: number) {
     {
-      if (option == 0) {
+      if (this.model.solution.solutionGaps[zeile].solutionOptions.length === 1) {
         this.lueckedrop(zeile);
       } else {
         this.model.solution.solutionGaps[zeile].solutionOptions.splice(option, 1);
@@ -92,9 +92,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   lueckedrop(maxziele: number) {
-    this.model.solution.solutionGaps.splice(maxziele - 1, 1)
-
-
+    this.model.solution.solutionGaps.splice(maxziele, 1)
   }
 
   onSubmit() {

@@ -43,14 +43,14 @@
     <input [(ngModel)] = "model.solution.hint" name="hint" type="Text" >
   </div>
   <div style="width: 60%" class="rechts">
-    <div *ngFor="let loesung of model.solution.solutionGaps; let indexOfelement=index;">
-      <div *ngFor="let antwort of loesung.solutionOptions; let indexOfelement2=index;">
+    <div *ngFor="let loesung of model.solution.solutionGaps; let lueckeIndex=index;">
+      <div *ngFor="let antwort of loesung.solutionOptions; let optionIndex=index;">
         <input type="checkbox" [(ngModel)] = "antwort.rightAnswer" name="rightAnswer" [checked]="antwort.rightAnswer"><input type="text" [(ngModel)] = "antwort.optionName" name="optionName"  value="{{antwort.optionName}}">
-        <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(indexOfelement,indexOfelement2)">
+        <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(lueckeIndex,optionIndex)">
           <fa-icon icon="trash"></fa-icon>
         </button>
       </div>
-      <button type="button" class="btn btn-sm btn-circle btn-success mb-2" (click)="optionadd(indexOfelement)">
+      <button type="button" class="btn btn-sm btn-circle btn-success mb-2" (click)="optionadd(lueckeIndex)">
         <fa-icon icon="plus"></fa-icon>
       </button>
       <!--- <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button> --->
