@@ -19,7 +19,6 @@ import {SolutionGaps} from "../_models/solution.gaps";
   styleUrls: ['./create-dropTask.component.css']
 })
 export class CreateTaskComponent implements OnInit {
-  taskForm: FormGroup;
   id: number | undefined;
   isAddMode: boolean | undefined;
   loading = false;
@@ -36,7 +35,6 @@ export class CreateTaskComponent implements OnInit {
               private router: Router,
               private taskService: TaskService,
               private alertService: AlertService) {
-    this.taskForm = this.formBuilder.group({});
     this.difficultyOptions = [TaskDifficulty.EASY, TaskDifficulty.MEDIUM, TaskDifficulty.HARD];
     this.taskTypeOptions = [TaskCategory.GRAMMATIK, TaskCategory.LUECKENTEXT, TaskCategory.ZEICHENSETZUNG, TaskCategory.GROSS_KLEIN_SCHREIBUNG];
 
@@ -88,7 +86,6 @@ export class CreateTaskComponent implements OnInit {
   lueckeadd(maxziele: number) {
     this.model.solution.solutionGaps.push(new SolutionGaps());
     this.optionadd(maxziele)
-
   }
 
   lueckedrop(maxziele: number) {
@@ -96,17 +93,6 @@ export class CreateTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
-
-    // reset alerts on submit
-    this.alertService.clear();
-
-    // stop here if form is invalid
-    if (this.taskForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
     if (this.isAddMode) {
       this.createTask();
     } else {
@@ -143,5 +129,7 @@ export class CreateTaskComponent implements OnInit {
         }
       });
   }
-
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
 }

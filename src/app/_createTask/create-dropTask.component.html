@@ -1,4 +1,4 @@
-<form class="container" (ngSubmit)="onSubmit()">
+
   <header>
 
     <h1 *ngIf="isAddMode">Aufgabe erstellen</h1>
@@ -8,12 +8,12 @@
 
       <label>Aufgabenname</label> <input [(ngModel)] = "model.name" name="name" type="text" min="1" max="50">
       <br>
-      <select name="schwierigkeit" [(ngModel)] = "model.difficulty" name="difficulty">
+      <select [(ngModel)] = "model.difficulty" name="difficulty">
         <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
       </select>
 
 
-      <select name="taskType" [(ngModel)] = "model.category" name="category">
+      <select [(ngModel)] = "model.category" name="category">
         <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
       </select>
       <br>
@@ -22,7 +22,7 @@
   </header>
 
   <div>
-  <textarea  [(ngModel)] = "model.text" name="text" name="textarea" rows="15" cols="30">
+  <textarea  [(ngModel)] = "model.text" name="text" rows="15" cols="30">
 
   </textarea>
 
@@ -43,9 +43,10 @@
     <input [(ngModel)] = "model.solution.hint" name="hint" type="Text" >
   </div>
   <div style="width: 60%" class="rechts">
-    <div *ngFor="let loesung of model.solution.solutionGaps; let lueckeIndex=index;">
-      <div *ngFor="let antwort of loesung.solutionOptions; let optionIndex=index;">
-        <input type="checkbox" [(ngModel)] = "antwort.rightAnswer" name="rightAnswer" [checked]="antwort.rightAnswer"><input type="text" [(ngModel)] = "antwort.optionName" name="optionName"  value="{{antwort.optionName}}">
+    <div *ngFor="let loesung of model.solution.solutionGaps; let lueckeIndex=index;trackBy:trackByIndex;">
+      <div *ngFor="let antwort of model.solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
+        <input type="checkbox" [(ngModel)] = "model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer" name="rightAnswer{{lueckeIndex + ''+ optionIndex}}" [checked]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer">
+        <input type="text" [(ngModel)] = "model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName" name="optionName{{lueckeIndex + ''+ optionIndex}}">
         <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(lueckeIndex,optionIndex)">
           <fa-icon icon="trash"></fa-icon>
         </button>
@@ -53,12 +54,10 @@
       <button type="button" class="btn btn-sm btn-circle btn-success mb-2" (click)="optionadd(lueckeIndex)">
         <fa-icon icon="plus"></fa-icon>
       </button>
-      <!--- <button (click)="lueckedrop(indexOfelement)">luecke entfernen</button> --->
     </div>
     <button type="button" (click)="lueckeadd(model.solution.solutionGaps.length)">Luecke hinzufuegen</button>
   </div>
   <button type="button">Abbrechen</button>
-  <button>Speichern</button>
-</form>
+  <button type="button" (click)="onSubmit()">Speichern</button>
 
 
