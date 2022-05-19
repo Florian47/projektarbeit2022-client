@@ -1,12 +1,11 @@
-.container{
-  width: 100%;
+.input-group {
+  margin-right: 10px;
 }
 
-  .left{
-    width: 40%;
-    display: flex;
-    color: red;
-  }
-  .rechts{
-    width: 60%;
-  }
+/*.input-group.input-group-prepend,*/
+/*.input-group.input-group-prepend.input-group-text*/
+
+/*.input-group.form-control {*/
+/*  width: auto !important;*/
+/*  min-width: 50px;*/
+/*}*/

@@ -1,63 +1,71 @@
+<h1 *ngIf="isAddMode">Aufgabe erstellen</h1>
+<h1 *ngIf="!isAddMode">Aufgabe &Auml;ndern</h1>
+<label>Aufgabenname</label> <input class="form-control form-control-sm" [(ngModel)]="model.name" name="name" type="text"
+                                   min="1" max="50">
+<label for="difficulty">Schwierigkeit</label>
+<select class="form-control form-control-sm" [(ngModel)]="model.difficulty" name="difficulty" id="difficulty">
+  <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
+</select>
+<label for="category">Kategorie</label>
+<select class="form-control form-control-sm" [(ngModel)]="model.category" name="category" id="category">
+  <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
+</select>
+<br>
 
-  <header>
-
-    <h1 *ngIf="isAddMode">Aufgabe erstellen</h1>
-    <h1 *ngIf="!isAddMode">Aufgabe &Auml;ndern</h1>
-
-    <div>
-
-      <label>Aufgabenname</label> <input [(ngModel)] = "model.name" name="name" type="text" min="1" max="50">
-      <br>
-      <select [(ngModel)] = "model.difficulty" name="difficulty">
-        <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
-      </select>
-
-
-      <select [(ngModel)] = "model.category" name="category">
-        <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
-      </select>
-      <br>
-    </div>
-
-  </header>
-
-  <div>
-  <textarea  [(ngModel)] = "model.text" name="text" rows="15" cols="30">
+<textarea class="form-control form-control-sm" [(ngModel)]="model.text" name="text" rows="4" cols="30"
+          placeholder="Aufgabentext">
 
   </textarea>
 
-    <h2>Hier können sie ein Bild zur Erkl&auml;rung hinzufuegen</h2>
-    <ng-container  *ngIf="isImageSaved;">
-      <img  [src]="cardImageBase64" style="width: 150px;"/>
+<h2>Hier können sie ein Bild zur Erkl&auml;rung hinzufuegen</h2>
+<ng-container *ngIf="isImageSaved;">
+  <img [src]="cardImageBase64" style="width: 150px;"/>
 
-    </ng-container>
-    <fieldset class="form-group">
-
-      <div   class="custom-file fileInputProfileWrap">
-        <textarea style="visibility: unset"  [(ngModel)] = "model.picture" name="picture">{{cardImageBase64}}</textarea>
-        <input type="file"  (change)="CreateBase64String($event)" class="fileInputProfile form-control">
-      </div>
-    </fieldset>
-    <h2>Hier k&ouml;nnen sie den L&ouml;sungshinweis einpflegen falls es einen gibt.</h2>
-    <label>L&ouml;sungshinweis:</label>
-    <input [(ngModel)] = "model.solution.hint" name="hint" type="Text" >
+</ng-container>
+<fieldset class="form-group">
+  <div class="custom-file fileInputProfileWrap">
+    <textarea class="form-control form-control-sm" style="display: none" [(ngModel)]="model.picture" name="picture">{{cardImageBase64}}</textarea>
+    <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
   </div>
-  <div style="width: 60%" class="rechts">
-    <div *ngFor="let loesung of model.solution.solutionGaps; let lueckeIndex=index;trackBy:trackByIndex;">
-      <div *ngFor="let antwort of model.solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
-        <input type="checkbox" [(ngModel)] = "model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer" name="rightAnswer{{lueckeIndex + ''+ optionIndex}}" [checked]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer">
-        <input type="text" [(ngModel)] = "model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName" name="optionName{{lueckeIndex + ''+ optionIndex}}">
-        <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(lueckeIndex,optionIndex)">
-          <fa-icon icon="trash"></fa-icon>
-        </button>
+</fieldset>
+<label for="hint">L&ouml;sungshinweis</label>
+<input class="form-control form-control-sm" [(ngModel)]="model.solution.hint" name="hint" type="Text" id="hint">
+<br>
+<div *ngFor="let loesung of model.solution.solutionGaps; let lueckeIndex=index;trackBy:trackByIndex;">
+  <span
+    *ngFor="let antwort of model.solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
+
+    <div class="input-group d-inline-flex w-auto">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox"
+                 [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer"
+                 name="rightAnswer{{lueckeIndex + ''+ optionIndex}}"
+                 [checked]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer">
+        </div>
       </div>
-      <button type="button" class="btn btn-sm btn-circle btn-success mb-2" (click)="optionadd(lueckeIndex)">
-        <fa-icon icon="plus"></fa-icon>
+      <input class="form-control form-control-sm" type="text" [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName"
+             name="optionName{{lueckeIndex + ''+ optionIndex}}">
+      <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(lueckeIndex,optionIndex)">
+        <fa-icon icon="trash"></fa-icon>
       </button>
     </div>
-    <button type="button" (click)="lueckeadd(model.solution.solutionGaps.length)">Luecke hinzufuegen</button>
-  </div>
-  <button type="button">Abbrechen</button>
-  <button type="button" (click)="onSubmit()">Speichern</button>
+  </span>
+  <button type="button" class="btn btn-sm btn-circle btn-success mb-2" (click)="optionadd(lueckeIndex)">
+    <fa-icon icon="plus"></fa-icon>
+  </button>
+</div>
+<br>
+<button type="button" class="btn btn-success" (click)="lueckeadd(model.solution.solutionGaps.length)">Lücke
+  hinzufügen
+</button>
+<br>
+<br>
+<button type="button" (click)="onSubmit()" class="btn btn-success">
+  <fa-icon icon="floppy-disk"></fa-icon>
+</button>
+<button routerLink="/task" type="button" class="btn btn-danger">
+  <fa-icon icon="xmark"></fa-icon>
+</button>
 
 

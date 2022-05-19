@@ -1,9 +1,4 @@
- <h1>Trainings &Uuml;bersicht</h1>
-
-  <h2>In dieser &Uuml;bersicht k&ouml;nnen sie alle Trainings einsehen </h2>
-  <h3>Mit Hilfe des ADD Buttons k&ouml;nnen sie ein neues training hinzufuegen </h3>
-
-  <a routerLink="add" class="btn btn-sm btn-success mb-2">ADD</a>
+<a routerLink="add" class="btn btn-sm btn-circle btn-success mb-2"><fa-icon icon="plus"></fa-icon></a>
   <p></p>
 
   <table class="table table-striped">
@@ -17,8 +12,8 @@
     <tr *ngFor="let training of trainings; let indexOfelement=index;">
       <td style="width: 30%">{{training.name}}</td>
       <td style="white-space: nowrap">
-        <a routerLink="edit/{{training.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-        <button type="button" (click)="deleteTraining(training.id)" class="btn btn-sm btn-danger">delete</button>
+        <a routerLink="edit/{{training.id}}" class="btn btn-sm btn-primary mr-1"><fa-icon icon="pen-to-square"></fa-icon></a>
+        <button type="button" (click)="deleteTraining(training.id)" class="btn btn-sm btn-danger"><fa-icon icon="trash"></fa-icon></button>
 
       </td>
     </tr>
