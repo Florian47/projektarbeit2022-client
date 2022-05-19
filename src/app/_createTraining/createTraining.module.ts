@@ -6,6 +6,7 @@ import {CreateTrainingComponent} from "./createTraining.component";
 import {CreateTrainingRoutingModule} from "./createTraining-routing.module";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatSelectModule} from "@angular/material/select";
         ReactiveFormsModule,
         MatFormFieldModule,
         MatSelectModule,
-        FormsModule
+        FormsModule,
+        FontAwesomeModule
     ],
   declarations: [
     CreateTrainingComponent

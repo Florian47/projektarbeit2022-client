@@ -7,6 +7,7 @@ import {TrainingRoutingModule} from "./training-routing.module";
 import {TrainingComponent} from "./training.component";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 
@@ -14,13 +15,14 @@ import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TrainingRoutingModule,
-    ReactiveFormsModule,
-    MatOptionModule,
-    MatSelectModule
-  ],
+    imports: [
+        CommonModule,
+        TrainingRoutingModule,
+        ReactiveFormsModule,
+        MatOptionModule,
+        MatSelectModule,
+        FontAwesomeModule
+    ],
   declarations: [
     TrainingComponent
   ]

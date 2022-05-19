@@ -1,76 +1,43 @@
   <div *ngIf="isAddMode">
     <h1 >Training erstellen</h1>
-    <h2>In dieser &Uuml;bersicht k&ouml;nnen sie trainings Hinzufuegen </h2>
   </div>
-
   <h1 *ngIf="!isAddMode">Training &Auml;ndern</h1>
 
-
-
-
-  <h2>Hier können sie die Benutzer auswählen die das Training später absolvieren dürfen</h2>
-
-  <mat-form-field appearance="fill">
+<label for="students">Training freigegeben für folgende Benutzer</label>
+  <br>
+  <mat-form-field appearance="fill" id="students">
     <mat-label>Benutzer</mat-label>
     <mat-select [formControl]="benutzer" multiple [(ngModel)] = "model.students" name="students" [compareWith]="compareUser">
       <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser.firstName}}</mat-option>
     </mat-select>
   </mat-form-field>
-
-  <h2>Bitte geben sie den Trainingsnamen ein</h2>
-  <label >Trainingsname:&nbsp;</label>
-  <input  [(ngModel)] = "model.name" name="name" type="text" min="1" max="50">
-
-
-
+  <br>
+  <label for="name">Trainingsname</label>
+  <input  class="form-control form-control-sm" [(ngModel)] = "model.name" name="name" id="name" type="text" min="1" max="50">
+<br>
   <table class="table table-striped">
     <thead>
     <tr  name="name">
       <th style="width: 30%">Aufgabenname</th>
       <th style="width: 30%">Schwierigkeitsgrad</th>
       <th style="width: 30%">Auswahl</th>
-
-
     </tr>
     </thead>
     <tbody>
-
-
       <tr *ngFor="let task of tasks; let indexOfelement=index;">
-
         <td style="width: 30%">{{task.name}}</td>
         <td style="width: 30%">{{task.difficulty}}</td>
         <td style="white-space: nowrap">
          <input (click)="clickTask(task)" type="checkbox" [checked]="hasTask(task)" > <!-- [] stehen fürs hinzufuegen eines attributes -->
         </td>
       </tr>
-
-
-
-
     </tbody>
   </table>
-
-
-<footer>
-
-
-  <button type="button">Abbrechen</button>
-  <button type="button" (click)="onSubmit()">Speichern</button>
-</footer>
-<!--<form (ngSubmit)="onSubmit()">-->
-<!--  <div class = "form-group">-->
-
-<!--    <input type = "text" class = "form-control"  required-->
-<!--           [(ngModel)] = "model.id" name="id">-->
-<!--  </div>-->
-
-<!--  <div class = "form-group">-->
-
-<!--    <input type = "checkbox" class = "form-control"-->
-<!--           [(ngModel)] = "model.individual" >-->
-<!--  </div>-->
-<!-- <button type="submit">Speichern</button> -->
-<!--</form>-->
-
+  <br>
+  <button type="button" (click)="onSubmit()" class="btn btn-success">
+    <fa-icon icon="floppy-disk"></fa-icon>
+  </button>
+  <button routerLink="/training" type="button" class="btn btn-danger">
+    <fa-icon icon="xmark"></fa-icon>
+  </button>
 

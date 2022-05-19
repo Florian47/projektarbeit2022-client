@@ -6,7 +6,7 @@ import {TrainingService} from "../_services/training.service";
 import {Training} from "../_models/training";
 import {first} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {AccountService} from "../_services";
+import {AccountService, AlertService} from "../_services";
 
 
 @Component({
@@ -21,7 +21,7 @@ export class SchuelerComponent {
   model: StudentGeneratedTraining = new StudentGeneratedTraining();
 
 
-  constructor(private accountService: AccountService, private trainingsService: TrainingService, private router: Router) {
+  constructor(private accountService: AccountService, private trainingsService: TrainingService, private alertService: AlertService, private router: Router) {
     trainingsService.getAllTrainingsForStudent(accountService.userValue.id).subscribe((training: Training[]) => {
       this.trainingsliste = training
     })
@@ -32,6 +32,10 @@ export class SchuelerComponent {
 
 
   createTraining() {
+    if (this.model.taskAmount < 1) {
+      this.alertService.error("Anzahl Fragen muss größer 0 sein.")
+      return;
+    }
     this.trainingsService.createStudentTraining(this.model).pipe(first()).subscribe((training: Training) => {
       this.router.navigate(['/doTraining/' + training.id]);
     });

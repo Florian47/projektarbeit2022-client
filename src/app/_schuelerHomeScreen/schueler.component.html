@@ -1,57 +1,57 @@
-
-
-  <div class="trainingsauswahl"  [(ngModel)] = "model" >
-
-
-    <div>
-
-
-      <select [(ngModel)] = "model.trainingDifficulty" name="difficulty">
-        <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
-      </select>
-
-
-      <select [(ngModel)] = "model.trainingCategory" name="category">
-        <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
-      </select>
-      <br>
-    </div>
-
-
-  <div class="anzFragen" >
-    <p>Anzahl Fragen</p>
-    <input type="number" [(ngModel)] = "model.taskAmount" name='taskAmount' min="1" max="10" step="1" value="1">
-
-  </div>
-
-  <button type="button" (click)="createTraining()" >Starte Training </button>
-  <div class="individualTraining">
-    <p>Individuelle Aufgaben/Training von der Lehrkraft </p>
-
-    <tbody>
-    <tr>Trainingsname</tr>
-
-
-    <tr style="width: 50%" *ngFor="let training of trainingsliste">
-      <td>
-        {{training.name}}
-
-      </td>
-      <td>
-        <button (click)="startTraining(training.id)"> Start Individual </button>
-
-      </td>
-
-
-
-
+<div class="trainingsauswahl" [(ngModel)]="model">
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th></th>
     </tr>
-
+    </thead>
+    <tbody>
+    <tr>
+      <td><label for="difficulty">Schwierigkeit</label></td>
+      <td><select class="form-control form-control-sm" [(ngModel)]="model.trainingDifficulty" name="difficulty" id="difficulty">
+        <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td><label for="category">Kategorie</label></td>
+      <td><select class="form-control form-control-sm" [(ngModel)]="model.trainingCategory" name="category" id="category">
+        <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td><label for="taskAmount">Anzahl Fragen</label></td>
+      <td><input class="form-control form-control-sm" type="number" [(ngModel)]="model.taskAmount" id="taskAmount" name='taskAmount' min="1" max="10"
+                 step="1"
+                 value="1"></td>
+    </tr>
     </tbody>
-
+  </table>
+  <button type="button" (click)="createTraining()" class="btn btn-sm btn-primary mr-1">Start</button>
+  <br>
+  <br>
+  <div class="individualTraining" *ngIf="trainingsliste.length > 0">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th style="width: 30%">Trainingsname</th>
+        <th style="width: 10%">Handlungsmöglichkeit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="width: 50%" *ngFor="let training of trainingsliste">
+        <td>
+          {{training.name}}
+        </td>
+        <td>
+          <button class="btn btn-sm btn-primary mr-1" (click)="startTraining(training.id)">Start</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
   </div>
 
-  </div>
+</div>
 
 
