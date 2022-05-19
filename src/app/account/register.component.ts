@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import * as bcrypt from 'bcryptjs';
-
 import { AccountService, AlertService } from 'src/app/_services';
+
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
+  role = new FormControl();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,3 +68,4 @@ export class RegisterComponent implements OnInit {
       });
   }
 }
+
