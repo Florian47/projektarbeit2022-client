@@ -14,8 +14,7 @@ import {Task} from "../_models/task";
 
 @Component({
 
-  templateUrl: './create-dropTraining.component.html',
-  styleUrls: ['./create-dropTraining.component.css']
+  templateUrl: './create-dropTraining.component.html'
 })
 export class CreateTrainingComponent implements OnInit {
   form: FormGroup;

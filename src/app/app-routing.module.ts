@@ -7,14 +7,11 @@ import {LayoutModule} from "./_components/layout.module";
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
-const schuelerModule = () => import('./_schuelerHomeScreen/schueler.module').then(x => x.SchuelerModule);
-
-const createTaskModule = () => import('./_createTask/createTask.module').then(x => x.CreateTaskModule);
-const taskModule = () => import('./_task/task.module').then(x => x.TaskModule);
-const trainingModule = () => import('./_training/training.module').then(x => x.TrainingModule);
-const createTrainingModule = () => import('./_createTraining/createTraining.module').then(x => x.CreateTrainingModule);
+const schuelerModule = () => import('./schuelerHome/schueler.module').then(x => x.SchuelerModule);
+const taskModule = () => import('./task/task.module').then(x => x.TaskModule);
+const trainingModule = () => import('./training/training.module').then(x => x.TrainingModule);
 const evaluationModule = () => import('./evaluation/evaluation.module').then(x => x.EvaluationModule);
-const doTrainingModule = () => import('./_doTraining/doTraining.module').then(x => x.DoTrainingModule);
+const doTrainingModule = () => import('./processTraining/doTraining.module').then(x => x.DoTrainingModule);
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },

@@ -11,8 +11,7 @@ import {AccountService, AlertService} from "../_services";
 
 @Component({
   selector: 'app-html',
-  templateUrl: './schueler.component.html',
-  styleUrls: ['./schueler.component.css']
+  templateUrl: './schueler.component.html'
 })
 export class SchuelerComponent {
   trainingsliste: Training[] = [];

@@ -12,8 +12,7 @@ import {Task} from "../_models/task";
 
 @Component({
 
-  templateUrl: './doTraining.component.html',
-  styleUrls: ['./doTraining.component.css']
+  templateUrl: './doTraining.component.html'
 })
 export class DoTrainingComponent implements OnInit {
   form: FormGroup;
