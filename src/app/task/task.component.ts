@@ -6,8 +6,7 @@ import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-task-table',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  templateUrl: './task.component.html'
 })
 export class TaskComponent implements OnInit {
   tasks: Task[] =[];
