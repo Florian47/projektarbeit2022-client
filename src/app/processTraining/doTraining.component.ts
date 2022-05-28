@@ -1,13 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AccountService, AlertService} from "../_services";
+import {AlertService, ProcessedTrainingService} from "../_services";
 import {first} from "rxjs/operators";
-import {TaskService} from "../_services/task.service";
-import {TrainingService} from "../_services/training.service";
-import {Training} from "../_models/training";
-import {Task} from "../_models/task";
-
+import {ProcessedTraining} from "../_models/processed.training";
 
 
 @Component({
@@ -16,31 +12,29 @@ import {Task} from "../_models/task";
 })
 export class DoTrainingComponent implements OnInit {
   form: FormGroup;
-  model: Training;
-  loading = false;
-  submitted = false;
+  model: ProcessedTraining;
   displayStyle: string | undefined;
 
-  constructor( private formBuilder: FormBuilder,
-               private route: ActivatedRoute,
-               private router: Router,
-               private trainingService: TrainingService,
-               public alertService: AlertService,) {
-    this.model = new Training();
-    this.form = this.formBuilder.group({} );
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private processedTrainingService: ProcessedTrainingService,
+              public alertService: AlertService,) {
+    this.model = new ProcessedTraining();
+    this.form = this.formBuilder.group({});
   }
 
 
   ngOnInit(): void {
     let id = this.route.snapshot.params['id'];
-    this.trainingService.getById(id).pipe(first()).subscribe(training => {
-      this.model= training;
-      console.log(this.model.tasks);
+    this.processedTrainingService.createProcessableTraining(id).pipe(first()).subscribe(training => {
+      this.model = training;
+      console.log(this.model);
     });
-
-}
+  }
 
   onSubmit() {
+    this.processedTrainingService.update(this.model.id, this.model).subscribe(msg => this.router.navigate(['/schueler']));
   }
 
 }
