@@ -4,7 +4,7 @@
   <cdk-accordion class="accordion">
     <cdk-accordion-item
 
-      *ngFor="let aufgabe of model.tasks; let index = index;"
+      *ngFor="let aufgabe of model.processedSolutionTasks; let index = index;"
       #accordionItem="cdkAccordionItem"
       class="accordion-item"
       role="button"
@@ -30,7 +30,7 @@
 
         <div *ngFor="let luecke of aufgabe.solution.solutionGaps">
           <div *ngFor="let option of luecke.solutionOptions">
-            <input type="checkbox" [checked]="option.rightAnswer">
+            <input type="checkbox" [checked]="option.rightAnswer" [(ngModel)]="option.rightAnswer">
             <label>{{option.optionName}}</label>
           </div>
 
@@ -47,7 +47,7 @@
     </cdk-accordion-item>
   </cdk-accordion>
 
-<a routerLink="/schueler" class="btn btn-success"><fa-icon icon="floppy-disk"></fa-icon></a>
+<button (click)="onSubmit()" class="btn btn-success"><fa-icon icon="floppy-disk"></fa-icon></button>
   <a routerLink="/schueler" class="btn btn-danger"><fa-icon icon="xmark"></fa-icon></a>
 
 

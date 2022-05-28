@@ -7,6 +7,7 @@ export class Task {
               public name: string = '',
               public text: string = '',
               public picture: string = '',
+              public notUniqueId: string = '',
               public score: number = 0,
               public difficulty: TaskDifficulty = TaskDifficulty.EASY,
               public category: TaskCategory = TaskCategory.LUECKENTEXT,

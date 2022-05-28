@@ -17,7 +17,6 @@ import {Task} from "../_models/task";
   templateUrl: './create-dropTraining.component.html'
 })
 export class CreateTrainingComponent implements OnInit {
-  form: FormGroup;
   isAddMode: boolean | undefined;
   id: number = 0;
   loading = false;
@@ -38,7 +37,6 @@ export class CreateTrainingComponent implements OnInit {
               private userService: AccountService,
               private taskService: TaskService,
   ) {
-    this.form = this.formBuilder.group({});
     this.benutzer = new FormControl();
     userService.getAll().subscribe(event => this.benutzerliste = event);
     taskService.getAll().subscribe(event2 => this.tasks = event2);
