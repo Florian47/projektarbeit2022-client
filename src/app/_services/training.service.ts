@@ -38,8 +38,8 @@ export class TrainingService {
     return this.http.post<Training>(`${environment.apiUrl}/studentGeneratedTraining/add`, studentGeneratedTraining);
   }
 
-  getAll() {
-    return this.http.get<Training[]>(`${environment.apiUrl}/training`);
+  getAllIndividuell() {
+    return this.http.get<Training[]>(`${environment.apiUrl}/training/individuell`);
   }
 
   getAllTrainingsForStudent(id: number) {
