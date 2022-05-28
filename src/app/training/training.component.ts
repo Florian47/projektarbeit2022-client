@@ -15,7 +15,7 @@ export class TrainingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.trainingService.getAll().subscribe(e => this.trainings = e);
+    this.trainingService.getAllIndividuell().subscribe(e => this.trainings = e);
   }
   deleteTraining(id:number){
     this.trainingService.delete(id).pipe(first()).subscribe(() => this.trainings = this.trainings.filter((x: Training) => x.id !== id));
