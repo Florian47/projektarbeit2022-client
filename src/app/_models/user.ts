@@ -11,13 +11,23 @@ export class User {
   }
 }
 export class Role {
-  constructor(public id: number, public name: RoleType) {
+
+  public id : number | undefined;
+  public name : RoleType | undefined;
+  // constructor(public id: number, public name: RoleType) {
+  // }
+
+  public get Name(){
+    return this.name;
+  }
+  public get Id(){
+    return this.id;
   }
 }
 export enum RoleType {
-  STUDENT = "STUDENT",
-  TEACHER = "TEACHER",
-  ADMINISTRATOR= "ADMINISTRATOR"
+  ROLE_STUDENT = "ROLE_STUDENT",
+  ROLE_TEACHER = "ROLE_TEACHER",
+  ROLE_ADMINISTRATOR= "ROLE_ADMINISTRATOR"
 }
 
 
