@@ -25,11 +25,11 @@ const routes: Routes = [
           }
   },
 
-  { path: 'training', loadChildren: trainingModule, canActivate: [AuthGuard],
+  { path: 'training', loadChildren: trainingModule, canActivate: [AdminGuard],
     data: {
       expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
     }},
-  { path: 'evaluation', loadChildren: evaluationModule, canActivate: [AuthGuard],
+  { path: 'evaluation', loadChildren: evaluationModule, canActivate: [AdminGuard],
     data: {
       expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
     }},
