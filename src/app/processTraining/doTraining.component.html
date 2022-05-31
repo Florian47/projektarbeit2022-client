@@ -30,8 +30,12 @@
 
         <div *ngFor="let luecke of aufgabe.solution.solutionGaps">
           <div *ngFor="let option of luecke.solutionOptions">
-            <input type="checkbox" [checked]="option.rightAnswer" [(ngModel)]="option.rightAnswer">
-            <label>{{option.optionName}}</label>
+            <div class="output-group">
+              <input type="checkbox" [checked]="option.rightAnswer" [(ngModel)]="option.rightAnswer">
+              <label>{{option.optionName}}</label>
+            </div>
+
+
           </div>
 
         </div>
