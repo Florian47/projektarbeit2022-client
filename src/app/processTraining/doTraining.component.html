@@ -1,58 +1,121 @@
-
 <h1>Training </h1>
 
-  <cdk-accordion class="accordion">
-    <cdk-accordion-item
+<cdk-accordion class="accordion">
+  <cdk-accordion-item
 
-      *ngFor="let aufgabe of model.processedSolutionTasks; let index = index;"
-      #accordionItem="cdkAccordionItem"
-      class="accordion-item"
-      role="button"
-      tabindex="0"
-      [attr.id]="'accordion-header-' + index"
-      [attr.aria-expanded]="accordionItem.expanded"
-      [attr.aria-controls]="'accordion-body-' + index">
-      <div class="accordion-item-header" (click)="accordionItem.toggle()">
-        {{ aufgabe.name }}
-        <span class="accordion-item-description">
+    *ngFor="let aufgabe of model.processedSolutionTasks; let index = index;"
+    #accordionItem="cdkAccordionItem"
+    class="accordion-item"
+    role="button"
+    tabindex="0"
+    [attr.id]="'accordion-header-' + index"
+    [attr.aria-expanded]="accordionItem.expanded"
+    [attr.aria-controls]="'accordion-body-' + index">
+    <div class="accordion-item-header" (click)="accordionItem.toggle()">
+      {{ aufgabe.name }}
+      <span class="accordion-item-description">
         Click to {{ accordionItem.expanded ? 'close' : 'open' }}
       </span>
-      </div>
-      <div
+    </div>
+    <div
 
-        class="accordion-item-body"
-        role="region"
-        [style.display]="accordionItem.expanded ? '' : 'none'"
-        [attr.id]="'accordion-body-' + index"
-        [attr.aria-labelledby]="'accordion-header-' + index">
+      class="accordion-item-body"
+      role="region"
+      [style.display]="accordionItem.expanded ? '' : 'none'"
+      [attr.id]="'accordion-body-' + index"
+      [attr.aria-labelledby]="'accordion-header-' + index">
+      <div>
         <img src="{{aufgabe.picture}}">
-        {{aufgabe.text}}
-        <div class="input-group d-inline-flex w-auto">
-        <div *ngFor="let luecke of aufgabe.solution.solutionGaps">
-          <div *ngFor="let option of luecke.solutionOptions">
-            <div class="output-group">
-              <input type="checkbox" [checked]="option.rightAnswer" [(ngModel)]="option.rightAnswer">
-              <label>{{option.optionName}}</label>
-            </div>
-
-
-          </div>
-
-        </div>
-        </div>
+        {{aufgabe.text}}</div>
 <br>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="alertService.info(aufgabe.solution.hint)">Lösungshinweiß
-        </button>
+      <div
+        *ngFor="let loesung of model.processedSolutionTasks[index].solution.solutionGaps; let lueckeIndex=index;trackBy:trackByIndex;">
+  <span
+    *ngFor="let antwort of model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
+
+    <div class="input-group d-inline-flex w-auto">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox"
+                 [(ngModel)]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer"
+                 name="rightAnswer{{lueckeIndex + ''+ optionIndex}}"
+                 [checked]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer">
+        </div>
       </div>
+      <input class="form-control form-control-sm" type="text"
+             [(ngModel)]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName"
+             name="optionName{{lueckeIndex + ''+ optionIndex}}" disabled>
+    </div>
+  </span>
+      </div>
+      <br>
+
+      <!--          <div   *ngFor="let luecke of aufgabe.solution.solutionGaps; let lueckeIndex=index ;trackBy:trackByIndex;">-->
+      <!--           <p> Luecke {{lueckeIndex+1}}</p>-->
+      <!--          <span  *ngFor="let option of luecke.solutionOptions ;trackBy:trackByIndex;">-->
+
+      <!-- <div class="input-group d-inline-flex w-auto">-->
+      <!--            <div class="input-group-prepend ">-->
+      <!--        <div class="input-group-text ">-->
+
+      <!--               <input type="checkbox" [checked]="option.rightAnswer" [(ngModel)]="option.rightAnswer">-->
+      <!--        </div>-->
+      <!--              <label>{{option.optionName}}</label>-->
+      <!--        </div>-->
 
 
-    </cdk-accordion-item>
-  </cdk-accordion>
+      <!--      </span>-->
 
-<button (click)="onSubmit()" class="btn btn-success"><fa-icon icon="floppy-disk"></fa-icon></button>
-  <a routerLink="/schueler" class="btn btn-danger"><fa-icon icon="xmark"></fa-icon></a>
+      <!--          </div>-->
+      <!--          <button-->
+      <!--            type="button"-->
+      <!--            class="btn btn-sm btn-primary mr-1"-->
+      <!--            (click)="alertService.info(aufgabe.solution.hint)">Lösungshinweiß-->
+      <!--          </button>-->
+
+
+    </div>
+
+
+  </cdk-accordion-item>
+</cdk-accordion>
+
+
+
+
+<div *ngFor="let aufgabe of model.processedSolutionTasks; let index = index;">
+  <div
+    *ngFor="let loesung of model.processedSolutionTasks[index].solution.solutionGaps; let lueckeIndex=index;trackBy:trackByIndex;">
+  <span
+    *ngFor="let antwort of model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
+
+    <div class="input-group d-inline-flex w-auto">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox"
+                 [(ngModel)]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer"
+                 name="rightAnswer{{lueckeIndex + ''+ optionIndex}}"
+                 [checked]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer">
+        </div>
+      </div>
+      <input class="form-control form-control-sm" type="text"
+             [(ngModel)]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName"
+             name="optionName{{lueckeIndex + ''+ optionIndex}}" disabled>
+    </div>
+  </span>
+  </div>
+  <br>
+</div>
+
+
+
+
+<button (click)="onSubmit()" class="btn btn-success ">
+  <fa-icon icon="floppy-disk"></fa-icon>
+</button>
+&nbsp;
+<a routerLink="/schueler" class="btn btn-danger ">
+  <fa-icon icon="xmark"></fa-icon>
+</a>
 
 
