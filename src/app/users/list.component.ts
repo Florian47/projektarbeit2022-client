@@ -23,4 +23,33 @@ export class ListComponent implements OnInit {
       .pipe(first())
       .subscribe(() => this.users = this.users.filter((x: User) => x.id !== id));
   }
+
+  isTeacher(){
+    const expectedRole = ["ROLE_TEACHER"];
+    const user1 = this.accountService.userValue;
+    const realRole = [];
+    for(var i = 0; i < user1.roles.length; i++){
+
+      realRole.push(user1.roles[i].name);
+    }
+    if(expectedRole.toString() != realRole.toString()){
+      return true
+    }
+    return false;
+  }
+  isAdmin(){
+    const expectedRole = ["ROLE_STUDENT"];
+    const expectedRole2=["ROLE_TEACHER"];
+    const user1 = this.accountService.userValue;
+    const realRole = [];
+    for(var i = 0; i < user1.roles.length; i++){
+
+      realRole.push(user1.roles[i].name);
+    }
+    if(expectedRole.toString() != realRole.toString() && expectedRole2.toString() != realRole.toString()){
+
+      return true
+    }
+    return false;
+  }
 }
