@@ -8,7 +8,7 @@ import {ProcessedTraining} from "../_models/processed.training";
 
 @Component({
 
-  templateUrl: './doTraining.component.html'
+  templateUrl: './doTraining.component.html', styleUrls: ['./doTraining.component.css']
 })
 export class DoTrainingComponent implements OnInit {
   form: FormGroup;
@@ -35,6 +35,9 @@ export class DoTrainingComponent implements OnInit {
 
   onSubmit() {
     this.processedTrainingService.update(this.model.id, this.model).subscribe(msg => this.router.navigate(['/schueler']));
+  }
+  trackByIndex(index: number, obj: any): any {
+    return index;
   }
 
 }
