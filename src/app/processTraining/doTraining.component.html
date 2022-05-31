@@ -27,7 +27,7 @@
         [attr.aria-labelledby]="'accordion-header-' + index">
         <img src="{{aufgabe.picture}}">
         {{aufgabe.text}}
-
+        <div class="input-group d-inline-flex w-auto">
         <div *ngFor="let luecke of aufgabe.solution.solutionGaps">
           <div *ngFor="let option of luecke.solutionOptions">
             <div class="output-group">
@@ -39,7 +39,8 @@
           </div>
 
         </div>
-
+        </div>
+<br>
         <button
           type="button"
           class="btn btn-primary"
