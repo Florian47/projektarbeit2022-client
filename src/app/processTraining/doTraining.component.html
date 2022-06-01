@@ -35,7 +35,7 @@
         </div>
         <div
           *ngFor="let loesung of model.processedSolutionTasks[index].solution.solutionGaps; let lueckeIndex=index;trackBy:trackByIndex;">
-          L&uuml;cke {{lueckeIndex}}
+          L&uuml;cke {{lueckeIndex+1}}
           <span
             *ngFor="let antwort of model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
 
