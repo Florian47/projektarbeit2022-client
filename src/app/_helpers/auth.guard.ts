@@ -16,8 +16,9 @@ export class AuthGuard implements CanActivate {
   }
 
   /**
-   * An jeder Roue kann eine Rolle definiert sein, welche erwartet wird. Wenn der Nutzer diese Rolle hat,
-   * darf auf die Route zugegriffen werden
+   * An jeder Route kann eine Rolle definiert sein, welche erwartet wird. Wenn der Nutzer diese Rolle hat,
+   * darf auf die Route zugegriffen werden. Wenn eine Route keine Rollen zugewiesen bekommt, darf
+   * jeder Nutzer zu der Route navigieren.
    * @param route
    * @param state
    */
