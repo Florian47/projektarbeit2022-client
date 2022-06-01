@@ -49,9 +49,9 @@
 }
 
 .accordion-item-header,
-.accordion-item-body {
-  padding: 16px;
-}
+/*.accordion-item-body {*/
+/*  padding: 16px;*/
+/*}*/
 
 .accordion-item-body {
   display: flex;
