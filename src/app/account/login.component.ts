@@ -5,12 +5,18 @@ import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from 'src/app/_services';
 
+/**
+ * Stellt die Login-Komponente bereit. Sowohl die Oberfläche als auch die Logik ist in dieser komponente verankert.
+ * @author Florian Weinert
+ */
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
-
+  /**
+   * Wird beim Erzeugen der Komponente aufgerufen. Setzt Validatoren für Nutzername und Passwort.
+   */
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -22,9 +28,11 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
   }
 
+  /**
+   * Wird beim Erstellen der Komponente aufgerufen. Setzt Validatoren für Nutzername und Passwort.
+   */
   ngOnInit() {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
@@ -32,7 +40,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
+  /**
+   * Macht den Zugriff auf die Form-Controls einfacher. Wird im HTML verwendet.
+   */
   get f() { return this.form.controls; }
 
   onSubmit() {

@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountService } from 'src/app/_services';
 
+/**
+ * Wird bei jedem Http-Call aufgerufen und fügt den Anmeldetoken in den Request/Http-Call hinzu.
+ */
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private accountService: AccountService) { }

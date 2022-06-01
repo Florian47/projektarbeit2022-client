@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
 import { AuthGuard } from './_helpers';
 import {LayoutModule} from "./_components/layout.module";
-import {AdminGuard} from "./_helpers/AdminGuard";
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
@@ -19,17 +18,17 @@ const routes: Routes = [
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'schueler', loadChildren: schuelerModule, canActivate: [AuthGuard] },
 
-  { path: 'task', loadChildren: taskModule, canActivate: [AdminGuard],
+  { path: 'task', loadChildren: taskModule, canActivate: [AuthGuard],
     data: {
     expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
           }
   },
 
-  { path: 'training', loadChildren: trainingModule, canActivate: [AdminGuard],
+  { path: 'training', loadChildren: trainingModule, canActivate: [AuthGuard],
     data: {
       expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
     }},
-  { path: 'evaluation', loadChildren: evaluationModule, canActivate: [AdminGuard],
+  { path: 'evaluation', loadChildren: evaluationModule, canActivate: [AuthGuard],
     data: {
       expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
     }},
