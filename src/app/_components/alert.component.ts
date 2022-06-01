@@ -5,6 +5,11 @@ import { Subscription } from 'rxjs';
 import { Alert, AlertType } from 'src/app/_models';
 import { AlertService } from 'src/app/_services';
 
+/**
+ * Diese Klasse ermöglicht das Anzeigen einzelner Nachrichten als Pop-Ups
+ * auf der Oberfläche. Die Schnittstelle wird über den AlertService angesprochen.
+ * @author Florian Weinert
+ */
 @Component({ selector: 'alert', templateUrl: 'alert.component.html' })
 export class AlertComponent implements OnInit, OnDestroy {
   @Input() id = 'default-alert';
@@ -16,6 +21,9 @@ export class AlertComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private alertService: AlertService) { }
 
+  /**
+   * Lauscht auf Änderungen über den AlertService und der Urls. Wird beim Erstellen der Klasse ausgeführt.
+   */
   ngOnInit() {
     // subscribe to new alert notifications
     this.alertSubscription = this.alertService.onAlert(this.id)
@@ -49,12 +57,19 @@ export class AlertComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Entfernt das Abhören des AlertService und der Url-Änderungen. Wird beim Löschen der Klasse ausgeführt.
+   */
   ngOnDestroy() {
     // unsubscribe to avoid memory leaks
     this.alertSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
   }
 
+  /**
+   * Entfernt ein einzelnes Pop-Up/Nachricht.
+   * @param alert Die Nachricht die entfernt werden soll.
+   */
   removeAlert(alert: Alert) {
     // check if already removed to prevent error on auto close
     if (!this.alerts.includes(alert)) return;
@@ -73,6 +88,10 @@ export class AlertComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Setzt für ein Alert auf Basis des Alerttypens die dazugehören CSS-Werte. Wird im HTML verwendet um die Css-Klasen zu setzen.
+   * @param alert Der Alert dessen Css-Werte angepasst werden soll.
+   */
   cssClass(alert: Alert) {
     if (!alert) return;
 

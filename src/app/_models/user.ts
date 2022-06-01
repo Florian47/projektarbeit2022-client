@@ -11,11 +11,8 @@ export class User {
   }
 }
 export class Role {
-
-  public id : number | undefined;
-  public name : RoleType | undefined;
-  // constructor(public id: number, public name: RoleType) {
-  // }
+  constructor(public id: number = 0, public name: RoleType = RoleType.ROLE_STUDENT) {
+  }
 
   public get Name(){
     return this.name;

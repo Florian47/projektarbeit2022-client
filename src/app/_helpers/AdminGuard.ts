@@ -1,8 +1,12 @@
+/*
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate} from "@angular/router";
 import {AccountService} from "../_services";
-import {Role, RoleType, User} from "../_models";
 
+/!**
+ * Validiert ob auf eine Route zugegriffen werden darf.
+ * @author David Wiebe
+ *!/
 @Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate{
   constructor(
@@ -24,3 +28,4 @@ export class AdminGuard implements CanActivate{
   }
 
 }
+*/
