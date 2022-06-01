@@ -25,31 +25,13 @@ export class ListComponent implements OnInit {
   }
 
   isNotStudent(){
-    const expectedRole = ["ROLE_STUDENT"];
-    const user1 = this.accountService.userValue;
-    const realRole = [];
-    for(var i = 0; i < user1.roles.length; i++){
-
-      realRole.push(user1.roles[i].name);
-    }
-    if(expectedRole.toString() != realRole.toString()){
-      return true
-    }
-    return false;
+    const user = this.accountService.userValue;
+    const expectedRole = ["ROLE_TEACHER", "ROLE_ADMINISTRATOR"];
+    return expectedRole.some(expRole => user.roles.map(role => role.name.toString()).includes(expRole));
   }
   isAdmin(){
-    const expectedRole = ["ROLE_STUDENT"];
-    const expectedRole2=["ROLE_TEACHER"];
-    const user1 = this.accountService.userValue;
-    const realRole = [];
-    for(var i = 0; i < user1.roles.length; i++){
-
-      realRole.push(user1.roles[i].name);
-    }
-    if(expectedRole.toString() != realRole.toString() && expectedRole2.toString() != realRole.toString()){
-
-      return true
-    }
-    return false;
+    const expectedRole = ["ROLE_ADMINISTRATOR"];
+    const user = this.accountService.userValue;
+    return expectedRole.some(expRole => user.roles.map(role => role.name.toString()).includes(expRole));
   }
 }
