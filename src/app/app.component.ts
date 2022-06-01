@@ -12,15 +12,15 @@ export class AppComponent {
   }
 
 
-  isTeacher(){
-    const expectedRole = ["ROLE_ADMINISTRATOR", "ROLE_TEACHER"];
+  isNotStudent(){
+    const expectedRole = ["ROLE_STUDENT"];
     const user1 = this.accountService.userValue;
     const realRole = [];
     for(var i = 0; i < user1.roles.length; i++){
 
         realRole.push(user1.roles[i].name);
     }
-    if(expectedRole.toString().indexOf(realRole.toString()) !=-1){
+    if(expectedRole.toString() != realRole.toString()){
       return true
     }
     return false;

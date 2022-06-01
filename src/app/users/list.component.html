@@ -1,4 +1,4 @@
-<a routerLink="add" class="btn btn-sm btn-circle btn-success mb-2"><fa-icon icon="plus"></fa-icon></a>
+<a *ngIf="isNotStudent()" routerLink="add" class="btn btn-sm btn-circle btn-success mb-2"><fa-icon icon="plus"></fa-icon></a>
 <table class="table table-striped">
   <thead>
   <tr>
