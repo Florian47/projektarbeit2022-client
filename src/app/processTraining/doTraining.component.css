@@ -6,3 +6,9 @@
 .input-group {
   margin-right: 10px;
 }
+.h2{
+  margin: 0px;
+}
+.mat-h2, .mat-title, .mat-typography .mat-h2, .mat-typography .mat-title, .mat-typography h2{
+  margin: 0px;
+}
