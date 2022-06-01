@@ -78,8 +78,10 @@ export class AddEditComponent implements OnInit {
   }
 
   private updateUser() {
-    const salt = bcrypt.genSaltSync(12);
-    this.model.password = bcrypt.hashSync(this.model.password, salt);
+    if(this.model.password.indexOf("$2a$12$") == -1) {
+      const salt = bcrypt.genSaltSync(12);
+      this.model.password = bcrypt.hashSync(this.model.password, salt);
+    }
     this.accountService.update(this.id, this.model)
       .pipe(first())
       .subscribe({
