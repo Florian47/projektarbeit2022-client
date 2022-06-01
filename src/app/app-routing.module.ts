@@ -16,24 +16,27 @@ const doTrainingModule = () => import('./processTraining/doTraining.module').the
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
-  { path: 'schueler', loadChildren: schuelerModule, canActivate: [AuthGuard] },
+  { path: 'schueler', loadChildren: schuelerModule, canActivate: [AuthGuard],
+    data: {
+      expectedRole: [ 'ROLE_STUDENT']
+    }},
 
   { path: 'task', loadChildren: taskModule, canActivate: [AuthGuard],
     data: {
-    expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
+    expectedRole: [ 'ROLE_TEACHER']
           }
   },
 
   { path: 'training', loadChildren: trainingModule, canActivate: [AuthGuard],
     data: {
-      expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
+      expectedRole: [ 'ROLE_TEACHER']
     }},
   { path: 'evaluation', loadChildren: evaluationModule, canActivate: [AuthGuard],
     data: {
-      expectedRole: ['ROLE_ADMINISTRATOR', 'ROLE_TEACHER']
+      expectedRole: [ 'ROLE_TEACHER']
     }},
   { path: 'doTraining', loadChildren: doTrainingModule, canActivate: [AuthGuard]},
-  { path: 'account', loadChildren: accountModule },
+  { path: 'account', loadChildren: accountModule},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
