@@ -87,4 +87,11 @@ export class TrainingService {
   delete(id: number) {
     return this.http.delete(`${environment.apiUrl}/training/${id}`);
   }
+
+  /**
+   * Macht einen Http-Call um alle Trainings zu erhalten, welche mindestens von einem Schüler bearbeitet wurden.
+   */
+  getAllTrainingsWhichAreProcessed() {
+    return this.http.get<Training[]>(`${environment.apiUrl}/training/processed`);
+  }
 }

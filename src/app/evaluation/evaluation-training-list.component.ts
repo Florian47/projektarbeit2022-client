@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {first} from "rxjs/operators";
+import {Training} from "../_models/training";
+import {TrainingService} from "../_services";
 
 @Component({
   selector: 'app-evaluation.training-list',
@@ -11,16 +13,14 @@ import {first} from "rxjs/operators";
  * möchte.
  * @author Florian Weinert
  */
-export class EvaluationTrainingListComponent implements OnInit {
-  trainings: any;
-  constructor() {
-    this.trainings = [{name:"Training 1", id:1}, {name:"Training 2", id:2}, {name:"Training 3", id:3},{name:"Training 4", id:4}]
+export class EvaluationTrainingListComponent {
+  model: Training[]=[];
+  /**
+   * Wird beim Erstellen cer Komponente aufgerufen. Holt sich über den TrainingsService alle Trainings welche
+   * mindestens von einem Schüler bearbeitet wurden.
+   * @param trainingsService wird verwendet um alle mindestens einmal bearbeiteten Trainings zu erhalten.
+   */
+  constructor(private trainingsService: TrainingService) {
+    this.trainingsService.getAllTrainingsWhichAreProcessed().subscribe(trainings => this.model =trainings);
   }
-
-  ngOnInit(): void {
-    // this.accountService.getAll()
-    //   .pipe(first())
-    //   .subscribe((users) => this.users = users);
-  }
-
 }
