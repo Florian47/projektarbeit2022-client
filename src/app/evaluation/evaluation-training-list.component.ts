@@ -5,6 +5,12 @@ import {first} from "rxjs/operators";
   selector: 'app-evaluation.training-list',
   templateUrl: './evaluation-training-list.component.html'
 })
+/**
+ * Stellt die Auswertungs-Trainings-Listen-Komponente bereit. Sowohl die Oberfläche als auch die Logik ist in dieser
+ * Komponente verankert. Über diese Komponente soll ein Lehrer ein Training auswählen, welches er Auswerten lassen
+ * möchte.
+ * @author Florian Weinert
+ */
 export class EvaluationTrainingListComponent implements OnInit {
   trainings: any;
   constructor() {

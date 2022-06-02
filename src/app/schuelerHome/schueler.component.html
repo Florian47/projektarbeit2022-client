@@ -9,19 +9,22 @@
     <tbody>
     <tr>
       <td><label for="difficulty">Schwierigkeit</label></td>
-      <td><select class="form-control form-control-sm" [(ngModel)]="model.trainingDifficulty" name="difficulty" id="difficulty">
+      <td><select class="form-control form-control-sm" [(ngModel)]="model.trainingDifficulty" name="difficulty"
+                  id="difficulty">
         <option [value]="difficulty" *ngFor="let difficulty of difficultyOptions">{{difficulty}}</option>
       </select></td>
     </tr>
     <tr>
       <td><label for="category">Kategorie</label></td>
-      <td><select class="form-control form-control-sm" [(ngModel)]="model.trainingCategory" name="category" id="category">
+      <td><select class="form-control form-control-sm" [(ngModel)]="model.trainingCategory" name="category"
+                  id="category">
         <option [value]="taskType" *ngFor="let taskType of taskTypeOptions">{{taskType}}</option>
       </select></td>
     </tr>
     <tr>
       <td><label for="taskAmount">Anzahl Fragen</label></td>
-      <td><input class="form-control form-control-sm" type="number" [(ngModel)]="model.taskAmount" id="taskAmount" name='taskAmount' min="1" max="10"
+      <td><input class="form-control form-control-sm" type="number" [(ngModel)]="model.taskAmount" id="taskAmount"
+                 name='taskAmount' min="1" max="10"
                  step="1"
                  value="1"></td>
     </tr>

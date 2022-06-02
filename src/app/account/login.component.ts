@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {first} from 'rxjs/operators';
 
-import { AccountService, AlertService } from 'src/app/_services';
+import {AccountService, AlertService} from 'src/app/_services';
 
 /**
- * Stellt die Login-Komponente bereit. Sowohl die Oberfläche als auch die Logik ist in dieser komponente verankert.
+ * Stellt die Login-Komponente bereit. Sowohl die Oberfläche als auch die Logik ist in dieser Komponente verankert.
  * @author Florian Weinert
  */
-@Component({ templateUrl: 'login.component.html' })
+@Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
+
   /**
    * Wird beim Erzeugen der Komponente aufgerufen. Setzt Validatoren für Nutzername und Passwort.
    */
@@ -43,8 +44,15 @@ export class LoginComponent implements OnInit {
   /**
    * Macht den Zugriff auf die Form-Controls einfacher. Wird im HTML verwendet.
    */
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
 
+  /**
+   * Wir beim Klicken auf den Anmelden-Button ausgelöst. Erstellt ein Objekt mit Benutzername und Passwort und verwendet
+   * den AccountService um damit einen Http-Call an den Server zu schicken. Sollte in der Url 'returnUrl' definiert
+   * sein, wird nach dem Login diese Route angesprochen.
+   */
   onSubmit() {
     this.submitted = true;
 
