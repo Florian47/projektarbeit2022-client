@@ -16,8 +16,10 @@ export class ProcessedTrainingService {
     private http: HttpClient
   ) {
   }
+
   /**
    * Hier wird genau ein Training vom Server mit der Übergebenen Id angerufen
+   * @param id id des trainings
    */
   createProcessableTraining(id: number) {
     return this.http.get<ProcessedTraining>(`${environment.apiUrl}/generateProcessedTraining/${id}`);
@@ -25,6 +27,8 @@ export class ProcessedTrainingService {
 
   /**
    * Hier wird ein Absolwirtes Training dem Server Übergeben
+   * @param id gibt die Id des trainings welches upgedated wird an
+   * @param processedTraining Übergbe des bearbeiteten trainings
    */
 
   update(id: number, processedTraining: ProcessedTraining) {

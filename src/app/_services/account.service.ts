@@ -35,9 +35,12 @@ export class AccountService {
   public get userValue(): User {
     return <User>this.userSubject.value;
   }
+
   /**
    * diese realisiert den Login auf der webseite
    * Es wird beim mit Hilfe eines HTTP cals angefragt ob der Benutzername mit dem Passwort zugriff gewährt werden darf
+   * @param username Username des users der sich anmeldet
+   * @param password passwort des users der sich anmeldet
    */
   login(username: string, password: string) {
     //a.subscribe((resp : HttpResponse<User>) => console.log(resp));
@@ -65,10 +68,11 @@ export class AccountService {
     this.userSubject.next(null);
     this.router.navigate(['/account/login']);
   }
+
   /**
    * diese Methode dient dazu ein Benutzer zu geestrieren und dem Server den User zu übergen den dieser dann speichern Muss
+   * @param user Der User wird hier übergeben
    */
-
   register(user: User) {
     return this.http.post(`${environment.apiUrl}/users/register`, user);
   }
@@ -79,8 +83,10 @@ export class AccountService {
   getAll() {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
+
   /**
-   * diese Methode liefert den User mit der übergebenen ID
+   * iese Methode liefert den User mit der übergebenen ID
+   * @param id gibt an welcher user gegeben werden soll
    */
   getById(id: number) {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
@@ -93,8 +99,11 @@ export class AccountService {
     return this.http.get<Role[]>(`${environment.apiUrl}/roles`);
   }
 
+
   /**
    * diese Methode kann man einen Benutzer Updaten Übergeben werden die Id und die Paramter die verändert werden
+   * @param id  Id des Users der Geupdated wird
+   * @param params Parameter die aktualisiert werden
    */
   update(id: any, params: any) {
     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
@@ -111,8 +120,10 @@ export class AccountService {
         return x;
       }));
   }
+
   /**
    * diese Methode löscht den Benutzer mit der Übergebenen Id
+   * @param id die Id des Users der gelöscht werden soll
    */
 
   delete(id: number) {

@@ -24,21 +24,28 @@ export class TaskService {
     private router: Router,
     private http: HttpClient
   ) {}
+
   /**
    * Es wird eine Aufgabe mit der Übergebenen ID  vom Server abgerufen
+   * @param id Id der Task die benötigt wird
    */
   getById(id: number) {
   return this.http.get<Task>(`${environment.apiUrl}/task/${id}`);
 }
+
   /**
    * es wird ein Update eines Task dem Server mitgeteilt
+   * @param id id des task das geupdatet wird
+   * @param params parameter die geöndert werden werden übergeben
    */
   update(id: any, params: any) {
     return this.http.put(`${environment.apiUrl}/task/edit/${id}`, params);
 
   }
+
   /**
    * Es wird dem Server ein eine neue task übergeben
+   * @param task task der erstellt werden soll
    */
   create(task: Task) {
 
@@ -51,9 +58,11 @@ export class TaskService {
   getAll() {
     return this.http.get<Task[]>(`${environment.apiUrl}/task`);
   }
+
   /**
    * Es wird ein Task mit der Übergebenen Id gelöscht
-   * */
+   * @param id id des Trainings welches gelöscht wird
+   */
   delete(id:number){
     return this.http.delete(`${environment.apiUrl}/task/${id}`);
   }
