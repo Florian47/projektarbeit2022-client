@@ -4,6 +4,12 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-evaluation-training',
   templateUrl: './evaluation-training.component.html'
 })
+/**
+ * Stellt die Auswertungs-Komponente bereit. Sowohl die Oberfläche als auch die Logik ist in dieser Komponente
+ * verankert. Über die Auswertungs-Komponente kann der Lehrer ein Training auswählen und sich visualiseren lassen,
+ * wie häufig eine Aufgabe richtig bzw. falsch beantwortet wurde.
+ * @author Florian Weinert
+ */
 export class EvaluationTrainingComponent implements OnInit {
   saleData = [
     { name: "Frage 1", value: 7 },

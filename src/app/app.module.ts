@@ -50,6 +50,8 @@ import {fas} from "@fortawesome/free-solid-svg-icons";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  //fügt die FontAwesome library hinzu. Dadurch muss nicht jedes Modul als ein Import ein eigenes FontAwesome-Icon
+  // importieren
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas)
   }
