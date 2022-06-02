@@ -39,9 +39,9 @@
       <div class="input-group-prepend">
         <div class="input-group-text">
           <input type="checkbox"
-                 [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer"
+                 [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer"
                  name="rightAnswer{{lueckeIndex + ''+ optionIndex}}"
-                 [checked]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer">
+                 [checked]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer">
         </div>
       </div>
       <input class="form-control form-control-sm" type="text" [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName"
