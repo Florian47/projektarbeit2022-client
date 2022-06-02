@@ -16,6 +16,11 @@ import {Task} from "../_models/task";
 
   templateUrl: './create-dropTraining.component.html'
 })
+/**
+ * Stellt die create Training Ansicht bereit.Hier wird die Oberfläche mit der benötigten Logik bereitgestellt.
+ * Der Leherer kann hier Trainings für Schueler erstellen.
+ * @author Chris Leon Brinkhoff
+ */
 export class CreateTrainingComponent implements OnInit {
   isAddMode: boolean | undefined;
   id: number = 0;
@@ -29,6 +34,17 @@ export class CreateTrainingComponent implements OnInit {
   taskTypeOptions: TaskCategory[];
   model: Training = new Training();
 
+  /**
+   * Wird beim Erzeugen der Komponente aufgerufen. Füllt die Selektoren für  den
+   * Benutzer, Schwierigkeit, Kategorie und die wahrheitswert der angibt das es sich hierbei immer um ein Individualtraining handelt
+   * @param formBuilder wird verwendet die Steuerelemente zu Generieren
+   * @param route wird verwendet um in der Url Zeile immer die aktuelle Url anzuzeigen
+   * @param router wird verwendet um nach erstellen eines Trainings wieder in den Startbereich zu gelangen
+   * @param trainingService stellt funktionen bereit diese werden in _Services -> training.service.ts erläutert
+   * @param alertService stellt funktionen bereit diese werden in _Services -> alert.service.ts erläutert
+   * @param userServicestellt funktionen bereit diese werden in _Services -> user.service.ts erläutert
+   * @param taskService stellt funktionen bereit diese werden in _Services -> task.service.ts erläutert
+   */
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
@@ -45,6 +61,12 @@ export class CreateTrainingComponent implements OnInit {
     this.model.individual = true;
   }
 
+  /**
+   * Wird beim Start der Komponente aufgerufen und setzt die id
+   * is AddMode wird = !=isaddMode gesetzt da wir jetzt die Aufgabe nicht mehr hinzufuegen sondern ändern wollen. Dies hat zufolge, das in der HTML Komponente andere If statements greifen.
+   *
+   * Des Weiteren wird das Training in das Model geladen
+   */
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
@@ -52,6 +74,11 @@ export class CreateTrainingComponent implements OnInit {
     if (!this.isAddMode) this.trainingService.getById(this.id).subscribe(e => this.model = e);
   }
 
+  /**
+   * hier wird das verhalten definiert welches geschieht wenn ein Submit button getätigt wird
+   * Falls man sich im addMode befindet wird eine Aufgabe erstellt
+   * Falls man sich im !addMode befindet wird die bearbeitete task geupdated
+   */
 
   onSubmit() {
     this.submitted = true;
@@ -69,6 +96,10 @@ export class CreateTrainingComponent implements OnInit {
       this.updateTraining();
     }
   }
+  /**
+   * Hier wird eine neues Training erstellt Falls ein Fehler ensteht wird dieser mit hilfe des Alert-Services ausgegeben
+   *
+   */
 
   private createTraining() {
     this.trainingService.create(this.model)
@@ -85,9 +116,12 @@ export class CreateTrainingComponent implements OnInit {
       });
   }
 
-  //get selected(){
-  //return this.tasks.filter(this.model=>this.model.selected=true)
-  //}
+
+
+  /**
+   * Hier wird eine bestehendes Training verändert, ensteht wird dieser mit hilfe des Alert-Services ausgegeben
+   *
+   */
   private updateTraining() {
     this.trainingService.update(this.id, this.model)
       .pipe(first())
@@ -103,6 +137,10 @@ export class CreateTrainingComponent implements OnInit {
       });
   }
 
+  /**
+   * Hier wird geprüft ob
+   * @param task
+   */
   clickTask(task: Task) {
 
     if (this.hasTask(task)) { //Autor by Flow
@@ -114,9 +152,17 @@ export class CreateTrainingComponent implements OnInit {
 
   }
 
-  hasTask(task: Task) {
+
+
+  hasTask(task: Task) {//Autor by Flow
     return this.model.tasks.filter(e => e.id === task.id).length > 0;
   }
+
+  /**
+   * Hier werden 2 benutzer auf gleichheit inklusive des typs geprüft
+   * @param user1 erster user
+   * @param user2 zweiter user
+   */
 
   compareUser(user1: User, user2: User){
     return user1.id === user2.id;

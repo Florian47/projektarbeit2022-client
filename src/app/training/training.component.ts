@@ -8,15 +8,34 @@ import {first} from "rxjs/operators";
   selector: 'app-task-table',
   templateUrl: './training.component.html'
 })
+/**
+ * Stellt die Training Übersicht bereit.Hier wird die Oberfläche mit der benötigten Logik bereitgestellt.
+ * Der Leherer kann hier alle Trainings die erstellt wurden einsehen
+ * @author Chris Leon Brinkhoff
+ */
 export class TrainingComponent implements OnInit {
   trainings:Training[] = [];
   model: Task = new Task();
+
+  /**
+   * Wird beim Erzeugen der Komponente aufgerufen.
+   * @param trainingService stellt funktionen bereit diese werden in _Services -> training.service.ts erläutert
+   */
   constructor(private trainingService: TrainingService) {
   }
+  /**
+   * Wird beim Start der Komponente aufgerufen und lädt sich alle Trainings von Server und zeigt
+   * diese dann auf der Oberfläche an
+   */
 
   ngOnInit(): void {
     this.trainingService.getAllIndividuell().subscribe(e => this.trainings = e);
   }
+
+  /**
+   * das Löschen von Trainings wird hier realisiert
+   * @param id gibt an welches Training gelöscht werden soll
+   */
   deleteTraining(id:number){
     this.trainingService.delete(id).pipe(first()).subscribe(() => this.trainings = this.trainings.filter((x: Training) => x.id !== id));
   }

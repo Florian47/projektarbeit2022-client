@@ -3,7 +3,13 @@ import {NgModule} from "@angular/core";
 import {TrainingComponent} from "./training.component";
 import {CreateTrainingComponent} from "./createTraining.component";
 import {LayoutComponent} from "../_components/layout.component";
-
+/**
+ * Hier werden die verschieden pfade die über die Komponente aufgerufen werden können definiert hier
+ * Add  dient dazu eine Training hinzuzufuegen
+ * edit/id dienzt dazu eine spezielles Training zu ändern
+ * create dient dazu eine training hinzuzufuegen
+ * @author Chris Leon Brinkhoff
+ */
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
