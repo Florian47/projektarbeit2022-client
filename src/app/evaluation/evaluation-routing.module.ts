@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {EvaluationTrainingComponent} from "./evaluation-training.component";
 import {EvaluationTrainingListComponent} from "./evaluation-training-list.component";
-import {LayoutComponent} from "../_components/layout.component";
+import {LayoutComponent} from "../_components";
 
 
 const routes: Routes = [
