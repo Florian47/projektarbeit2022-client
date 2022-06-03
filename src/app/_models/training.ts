@@ -15,8 +15,9 @@ import {Task} from "./task";
 
 export class Training {
   constructor(public id: number=0,
-              public name:String='',
+              public name:string='',
               public students: User[] = [],
+              public score: number = 0,
               public individual: boolean= false,
               public tasks: Task[]=[]) {
   }

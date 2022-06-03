@@ -5,6 +5,7 @@ import {EvaluationTrainingComponent} from "./evaluation-training.component";
 import {EvaluationRoutingModule} from "./evaluation-routing.module";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import {CdkAccordionModule} from "@angular/cdk/accordion";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 
@@ -13,11 +14,12 @@ import {CdkAccordionModule} from "@angular/cdk/accordion";
     EvaluationTrainingListComponent,
     EvaluationTrainingComponent
   ],
-  imports: [
-    CommonModule,
-    EvaluationRoutingModule,
-    NgxChartsModule,
-    CdkAccordionModule
-  ]
+    imports: [
+        CommonModule,
+        EvaluationRoutingModule,
+        NgxChartsModule,
+        CdkAccordionModule,
+        MatExpansionModule
+    ]
 })
 export class EvaluationModule { }

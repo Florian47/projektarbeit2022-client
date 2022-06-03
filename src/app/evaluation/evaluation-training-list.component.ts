@@ -15,12 +15,15 @@ import {TrainingService} from "../_services";
  */
 export class EvaluationTrainingListComponent {
   model: Training[]=[];
+  loading: boolean=false;
   /**
    * Wird beim Erstellen cer Komponente aufgerufen. Holt sich über den TrainingsService alle Trainings welche
    * mindestens von einem Schüler bearbeitet wurden.
    * @param trainingsService wird verwendet um alle mindestens einmal bearbeiteten Trainings zu erhalten.
    */
   constructor(private trainingsService: TrainingService) {
-    this.trainingsService.getAllTrainingsWhichAreProcessed().subscribe(trainings => this.model =trainings);
+    this.loading=true;
+    this.trainingsService.getAllTrainingsWhichAreProcessed().subscribe(trainings => {this.model =trainings;
+    if(this.model.length==0) this.loading=false});
   }
 }

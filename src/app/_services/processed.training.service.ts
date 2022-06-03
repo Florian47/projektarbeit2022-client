@@ -34,4 +34,13 @@ export class ProcessedTrainingService {
   update(id: number, processedTraining: ProcessedTraining) {
     return this.http.put(`${environment.apiUrl}/processedTraining/${id}`, processedTraining);
   }
+
+  /**
+   * Macht einen Http-Call um über eine Trainings-Identifier deren zugehörigen bearbeiteten und ausgewerteteten
+   * Trainings zu erhalten.
+   * @param trainingId ist die Id des Trainings auf dessen Basis die bearbeiteten Trainings gesucht werden sollen.
+   */
+  retrieveAllProcessedForTrainingId(trainingId: number) {
+    return this.http.get<ProcessedTraining[]>(`${environment.apiUrl}/evaluate/Training/${trainingId}`);
+  }
 }
