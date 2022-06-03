@@ -24,17 +24,7 @@ export class UserService {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
-  /**
-   * Nicht in benutzung
-   */
 
-  getById(id: number) {
-    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
-  }
-  getStudentBoard(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/students`, {responseType: 'text'});
-  }
-  getTeacherBoard(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/task`, {responseType: 'text'});
-  }
+
+
 }

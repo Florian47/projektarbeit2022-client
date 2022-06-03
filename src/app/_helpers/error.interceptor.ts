@@ -3,7 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AccountService } from 'src/app/_services';
+import {AccountService, AlertService} from 'src/app/_services';
 
 /**
  * Definiert was beim Erhalten eines HTTP-Errors geschehen soll.
@@ -11,7 +11,7 @@ import { AccountService } from 'src/app/_services';
  */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService,private alertService: AlertService) {}
 
   /**
    * Beim Erhalten eines HTTP-Errors wird über den AlertService eine Fehler-Meldung angezeigt.
@@ -30,6 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
       const error = err.error?.message || err.statusText;
       console.error(err);
+      this.alertService.error(error, {keepAfterRouteChange:true});
       return throwError(error);
     }))
   }

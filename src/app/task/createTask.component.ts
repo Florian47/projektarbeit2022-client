@@ -19,7 +19,7 @@ import {SolutionGaps} from "../_models/solution.gaps";
   styleUrls: ['./create-dropTask.component.css']
 })
 /**
- * Stellt die create Task Ansicht bereit.Hier wird die Oberfläche mit der benötigten Logik bereitgestellt.
+ * Stellt die create Task Ansicht bereit. Hier wird die Oberfläche mit der benötigten Logik bereitgestellt.
  * Der Leherer kann hier die Aufgaben erstellen
  * @author Chris Leon Brinkhoff
  */

@@ -25,7 +25,7 @@ export class AccountService {
     private http: HttpClient
   ) {
     this.userSubject = new BehaviorSubject<User | null>(JSON.parse(<string>localStorage.getItem('user')));
-    this.user = <Observable<User>> this.userSubject.asObservable();
+    this.user = <Observable<User>>this.userSubject.asObservable();
   }
 
   /**
@@ -44,7 +44,10 @@ export class AccountService {
    */
   login(username: string, password: string) {
     //a.subscribe((resp : HttpResponse<User>) => console.log(resp));
-    let observable = this.http.post<HttpResponse<User>>(`${environment.apiUrl}/users/authenticate`, { username, password }, { observe: 'response' });
+    let observable = this.http.post<HttpResponse<User>>(`${environment.apiUrl}/users/authenticate`, {
+      username,
+      password
+    }, {observe: 'response'});
     observable.subscribe(response => {
       let user = response.body as unknown as User;
       user.token = response.headers.get('Authorization') as string;
@@ -58,6 +61,7 @@ export class AccountService {
     });
     return observable;
   }
+
   /**
    * diese Methode loggt den Benutzer aus dem System aus
    */
@@ -76,6 +80,7 @@ export class AccountService {
   register(user: User) {
     return this.http.post(`${environment.apiUrl}/users/register`, user);
   }
+
   /**
    * diese Methode liefert ein Array welche alle Benutzer beinhaltet
    */
@@ -91,6 +96,7 @@ export class AccountService {
   getById(id: number) {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
+
   /**
    * diese Methode liefert ein Array mit allen Rollen
    */
@@ -111,7 +117,7 @@ export class AccountService {
         // update stored user if the logged in user updated their own record
         if (id == this.userValue.id) {
           // update local storage
-          const user = { ...this.userValue, ...params };
+          const user = {...this.userValue, ...params};
           localStorage.setItem('user', JSON.stringify(user));
 
           // publish updated user to subscribers
@@ -135,17 +141,5 @@ export class AccountService {
         }
         return x;
       }));
-  }
-  // Error
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(msg);
   }
 }
