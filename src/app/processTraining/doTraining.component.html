@@ -1,33 +1,14 @@
 <h1>Training </h1>
-<div>
-
-<!--  <div class="accordion" id="accordionExample">-->
-<!--    <div class="card" *ngFor=" let aufgabe of model.processedSolutionTasks; let index = index;" >-->
-<!--      <div class="card-header" id="heading{{index}}">-->
-<!--        <h2 class="mb-0">-->
-<!--          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+index" aria-expanded="true" [attr.aria-controls]="'collapse'+index">-->
-<!--            {{aufgabe.name}}-->
-<!--          </button>-->
-<!--        </h2>-->
-<!--      </div>-->
-
-<!--      <div id="collapse{{index}}" class="collapse show" [attr.aria-labelledby]="'heading'+index" data-parent="#accordionExample">-->
-<!--        <div class="card-body">-->
-
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
 <div class="accordion" id="accordionExample">
   <div class="accordion-item" *ngFor=" let aufgabe of model.processedSolutionTasks; let index = index;">
     <h2 class="accordion-header" id="heading{{index}}">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+index" aria-expanded="true" [attr.aria-controls]="'collapse'+index">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+index"
+              aria-expanded="true" [attr.aria-controls]="'collapse'+index">
         {{aufgabe.name}}
       </button>
     </h2>
-    <div id="collapse{{index}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading'+index" data-bs-parent="#accordionExample" >
+    <div id="collapse{{index}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading'+index"
+         data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <p>{{aufgabe.text}}</p>
         <div *ngIf="aufgabe.picture !=''">
@@ -35,7 +16,7 @@
         </div>
         <div
           *ngFor="let loesung of model.processedSolutionTasks[index].solution.solutionGaps; let lueckeIndex=index;trackBy:trackByIndex;">
-          L&uuml;cke {{lueckeIndex+1}}
+          L&uuml;cke {{lueckeIndex + 1}}
           <span
             *ngFor="let antwort of model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
 
@@ -43,9 +24,9 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">
                     <input type="checkbox"
-                           [(ngModel)]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer"
+                           [(ngModel)]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer"
                            name="rightAnswer{{lueckeIndex + ''+ optionIndex}}"
-                           [checked]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].rightAnswer">
+                           [checked]="model.processedSolutionTasks[index].solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer">
                   </div>
                 </div>
                 <input class="form-control form-control-sm" type="text"
@@ -65,11 +46,10 @@
   </div>
 </div>
 
-    <button (click)="onSubmit()" class="btn btn-success ">
-      <fa-icon icon="floppy-disk"></fa-icon>
-    </button>
-    &nbsp;
-    <a routerLink="/schueler" class="btn btn-danger ">
-      <fa-icon icon="xmark"></fa-icon>
-    </a>
-</div>
+<button (click)="onSubmit()" class="btn btn-success ">
+  <fa-icon icon="floppy-disk"></fa-icon>
+</button>
+&nbsp;
+<a routerLink="/schueler" class="btn btn-danger ">
+  <fa-icon icon="xmark"></fa-icon>
+</a>
