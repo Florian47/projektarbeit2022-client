@@ -47,7 +47,7 @@ export class EvaluationTrainingComponent implements OnInit {
     if(!data || data.length == 0) return dataStatistic;
     dataStatistic.push(new StatisticData(data[0].originTraining.name, data[0].originTraining.score));
     data.forEach(proTraining => {
-      dataStatistic.push(new StatisticData(proTraining.studentId.toString(),proTraining.score))
+      dataStatistic.push(new StatisticData(proTraining.student.username,proTraining.score))
     });
     return dataStatistic;
   }
@@ -62,7 +62,7 @@ export class EvaluationTrainingComponent implements OnInit {
     let dataStatistic: StatisticData[] = [];
     if(!data || data.length == 0) return dataStatistic;
     data.forEach(singleProcTraining => {
-      dataStatistic.push(new StatisticData(singleProcTraining.studentId+"", singleProcTraining.processedSolutionTasks.find(procTask => procTask.notUniqueId === task.notUniqueId)!.score));
+      dataStatistic.push(new StatisticData(singleProcTraining.student.username, singleProcTraining.processedSolutionTasks.find(procTask => procTask.notUniqueId === task.notUniqueId)!.score));
     })
     return dataStatistic;
   }
