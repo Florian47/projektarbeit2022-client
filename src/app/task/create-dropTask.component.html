@@ -24,7 +24,8 @@
 </ng-container>
 <fieldset class="form-group">
   <div class="custom-file fileInputProfileWrap">
-    <textarea class="form-control form-control-sm" style="display: none" [(ngModel)]="model.picture" name="picture">{{cardImageBase64}}</textarea>
+    <textarea class="form-control form-control-sm" style="display: none" [(ngModel)]="model.picture"
+              name="picture">{{cardImageBase64}}</textarea>
     <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
   </div>
 </fieldset>
@@ -36,19 +37,22 @@
     *ngFor="let antwort of model.solution.solutionGaps[lueckeIndex].solutionOptions; let optionIndex=index;trackBy:trackByIndex;">
 
     <div class="input-group d-inline-flex w-auto">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <input type="checkbox"
-                 [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer"
-                 name="rightAnswer{{lueckeIndex + ''+ optionIndex}}"
-                 [checked]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer">
+      <div class="input-group">
+    <div class="input-group-text"
+         [id]="'btnGroupAddon'+lueckeIndex+optionIndex"><input
+      type="checkbox"
+      [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer"
+      name="rightAnswer{{lueckeIndex + ''+ optionIndex}}"
+      [checked]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].checkedAnswer">
         </div>
-      </div>
-      <input class="form-control form-control-sm" type="text" [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName"
-             name="optionName{{lueckeIndex + ''+ optionIndex}}">
+        <input [attr.aria-describedby]="'btnGroupAddon'+lueckeIndex+optionIndex" class="form-control form-control-sm"
+               type="text"
+               [(ngModel)]="model.solution.solutionGaps[lueckeIndex].solutionOptions[optionIndex].optionName"
+               name="optionName{{lueckeIndex + ''+ optionIndex}}">
       <button type="button" class="btn btn-sm btn-danger" (click)="optiondrop(lueckeIndex,optionIndex)">
         <fa-icon icon="trash"></fa-icon>
       </button>
+  </div>
     </div>
   </span>
   <button type="button" class="btn btn-sm btn-circle btn-success mb-2" (click)="optionadd(lueckeIndex)">

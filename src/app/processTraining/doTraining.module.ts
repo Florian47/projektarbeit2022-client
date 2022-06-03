@@ -7,8 +7,8 @@ import {DoTrainingRoutingModule} from "./doTraining-routing.module";
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DoTrainingComponent} from "./doTraining.component";
-import {CdkAccordionModule} from "@angular/cdk/accordion";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
@@ -16,9 +16,9 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     CommonModule,
     DoTrainingRoutingModule,
     ReactiveFormsModule,
-    CdkAccordionModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    MatExpansionModule
   ],
   declarations: [
     DoTrainingComponent
