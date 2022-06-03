@@ -11,12 +11,13 @@
  */
 import {Task} from "./task";
 import {Training} from "./training";
+import {User} from "./user";
 
 export class ProcessedTraining{
   constructor(public id: number = 0,
               public score: number = 0,
               public processedSolutionTasks: Task[] = [],
-              public studentId:number = 0,
+              public student:User = new User(),
               public originTraining: Training = new Training()) {
   }
 }
