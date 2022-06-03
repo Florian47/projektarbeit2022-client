@@ -5,9 +5,9 @@ import {CreateTrainingComponent} from "./createTraining.component";
 import {LayoutComponent} from "../_components/layout.component";
 /**
  * Hier werden die verschieden pfade die über die Komponente aufgerufen werden können definiert hier
- * Add  dient dazu eine Training hinzuzufuegen
+ * Add  dient dazu eine Training erstellen
  * edit/id dienzt dazu eine spezielles Training zu ändern
- * create dient dazu eine training hinzuzufuegen
+ * create dient dazu eine training erstellen
  * @author Chris Leon Brinkhoff
  */
 const routes: Routes = [

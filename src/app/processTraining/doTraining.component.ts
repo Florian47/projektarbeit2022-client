@@ -24,7 +24,7 @@ export class DoTrainingComponent implements OnInit {
    * @param formBuilder wird verwendet die Steuerelemente zu Generieren
    * @param router wird verwendet um bei beendigung des Trainings wieder in den Startbereich zu gelangen
    * @param processedTrainingService  stellt funktionen bereit diese werden in _Services -> processed.training.service.ts erläutert
-   @param alertService  stellt die verwendeten alert funktionen bereit diese werden in _Services -> alert.service.ts erläutert
+   * @param alertService  stellt die verwendeten alert funktionen bereit diese werden in _Services -> alert.service.ts erläutert
    */
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
