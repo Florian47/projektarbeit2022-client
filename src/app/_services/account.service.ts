@@ -1,3 +1,11 @@
+
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {environment} from 'src/environments/environment';
+import {Role, User} from 'src/app/_models';
 /**
  * In dem Ordner _services werden alle benötigten services definiert die Benötigt werden,
  * um mit dem Server die Daten auszutauschen
@@ -7,14 +15,6 @@
  * delete = daten werden gelöscht
  * @author Chris Leon Brinkhoff
  */
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {environment} from 'src/environments/environment';
-import {Role, User} from 'src/app/_models';
-
 @Injectable({ providedIn: 'root' })
 export class AccountService {
   private userSubject: BehaviorSubject<User | null>;

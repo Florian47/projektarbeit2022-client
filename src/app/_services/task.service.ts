@@ -1,3 +1,11 @@
+
+import {environment} from "../../environments/environment";
+
+import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {Task} from "../_models/task";
+
 /**
  * In dem Ordner _services werden alle benötigten services definiert die erforderlich sind,
  * um mit dem Server die Daten auszutauschen
@@ -7,14 +15,6 @@
  * delete = daten werden gelöscht
  * @author Chris Leon Brinkhoff
  */
-import {environment} from "../../environments/environment";
-
-import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {Task} from "../_models/task";
-
-
 @Injectable({ providedIn: 'root' })
 export class TaskService {
 

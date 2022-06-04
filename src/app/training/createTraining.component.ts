@@ -127,7 +127,7 @@ export class CreateTrainingComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.alertService.success('Update successful', {keepAfterRouteChange: true});
+          this.alertService.success('Update erfolgreich', {keepAfterRouteChange: true});
           this.router.navigate(['../../'], {relativeTo: this.route});
         },
         error: (error: any) => {

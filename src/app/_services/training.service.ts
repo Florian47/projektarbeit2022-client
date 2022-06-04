@@ -1,12 +1,4 @@
-/**
- * In dem Ordner _services werden alle benötigten services definiert die erforderlich sind,
- * um mit dem Server die Daten auszutauschen
- * post = call zum Speichern auf dem Server
- * get = daten werden vom Server benötigt
- * put = daten werden geändert
- * delete = daten werden gelöscht
- * @author Chris Leon Brinkhoff
- */
+
 import {User} from "../_models";
 import {environment} from "../../environments/environment";
 
@@ -18,7 +10,15 @@ import {Training} from "../_models/training";
 import {StudentGeneratedTraining} from "../_models/student.generated.training";
 import {ProcessedTraining} from "../_models/processed.training";
 
-
+/**
+ * In dem Ordner _services werden alle benötigten services definiert die erforderlich sind,
+ * um mit dem Server die Daten auszutauschen
+ * post = call zum Speichern auf dem Server
+ * get = daten werden vom Server benötigt
+ * put = daten werden geändert
+ * delete = daten werden gelöscht
+ * @author Chris Leon Brinkhoff
+ */
 @Injectable({providedIn: 'root'})
 export class TrainingService {
 

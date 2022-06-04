@@ -1,18 +1,18 @@
+
+import {Task} from "./task";
+import {Training} from "./training";
+import {User} from "./user";
 /**
  * In dem Ordner Models werden alle benötigten Schnittstelen definiert die Benötigt werden,
  * um mit dem Server die Daten auszutauschen.
  * Hier das durchgefprte Training mit allen bestandteielen definiert.
- * id= Id des Trainings
- * Score= Punktzahl
- * ProcessedSolutionTask= hier werden die Aufgaben gespeichert
- * Training= Hier werden die Daten zu dem Training definiert Definition des Trainings siehe training.ts
+ * @param id = Id des Trainings
+ * @param Score = Punktzahl
+ * @param ProcessedSolutionTask = hier werden die Aufgaben gespeichert
+ * @param Training = Hier werden die Daten zu dem Training definiert Definition des Trainings siehe training.ts
  *
  * @author Chris Leon Brinkhoff
  */
-import {Task} from "./task";
-import {Training} from "./training";
-import {User} from "./user";
-
 export class ProcessedTraining{
   constructor(public id: number = 0,
               public score: number = 0,

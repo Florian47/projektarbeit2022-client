@@ -7,6 +7,7 @@
  * @author Chris Leon Brinkhoff
  */
 
+
 export class Alert {
   id: string = "";
   type: AlertType = AlertType.Error;

@@ -1,14 +1,14 @@
-/**
- * In dem Ordner _services werden alle benötigten services definiert die Benötigt werden,
- * hier werden die Verschiedenen Alerts definiert
- * @author Chris Leon Brinkhoff
- */
+
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { Alert, AlertType } from 'src/app/_models';
-
+/**
+ * In dem Ordner _services werden alle benötigten services definiert die Benötigt werden,
+ * hier werden die Verschiedenen Alerts definiert
+ * @author Chris Leon Brinkhoff
+ */
 @Injectable({ providedIn: 'root' })
 export class AlertService {
   private subject = new Subject<Alert>();

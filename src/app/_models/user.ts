@@ -2,14 +2,14 @@
  * In dem Ordner Models werden alle benötigten Schnittstelen definiert die Benötigt werden,
  * um mit dem Server die Daten auszutauschen.
  * Hier wird der User Definiert
- * Id = eindeutiger Identifikator
- * username= name des Users
- * firstname= vorname
- * lastname= nachname
- * password= passwort
- * roles= array Rollen die der User besitzt  Es sehen 3 zur verfuegung siege Zeile 39-42
- * token = token zur verifizierung
- * isDeliting= ...
+ * @param Id = eindeutiger Identifikator
+ * @param username = name des Users
+ * @param firstname = vorname
+ * @param lastname = nachname
+ * @param password = passwort
+ * @param roles = array Rollen die der User besitzt  Es sehen 3 zur verfuegung siege Zeile 39-42
+ * @paramtoken = token zur verifizierung
+ * @param isDeliting= ...
  *
  *
  * @author Chris Leon Brinkhoff
