@@ -72,16 +72,24 @@
   border-bottom-right-radius: 4px;
 }
 
-div.sticky{
+marginbox{
+  margin: 30px;
+}
+
+.sticky{
   position: -webkit-sticky;
   position: sticky;
- top: 0px;
+  top: 0;
+  margin: 5px;
+  opacity: 1;
+  background-color: #eeeeee;
+  padding: 15px;
+
+
 }
 .wrapper{
   display: initial;
 }
-.table-head{
-  position: -webkit-sticky;
-  position: fixed;
-  top: 0px;
+.table{
+  padding: 15px;
 }

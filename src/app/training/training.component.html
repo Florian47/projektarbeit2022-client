@@ -1,13 +1,19 @@
-<a routerLink="add" class="btn btn-sm btn-circle btn-success mb-2"><fa-icon icon="plus"></fa-icon></a>
+<div class="sticky">
+  <a routerLink="add" class="btn btn-sm btn-circle btn-success mb-2"><fa-icon icon="plus"></fa-icon></a>
   <p></p>
 
   <table class="table table-striped">
     <thead>
     <tr>
-      <th style="width: 30%">Trainingsname</th>
+      <th style="width: 10%">Trainingsname</th>
       <th style="width: 30%">Handlungsm&ouml;glichkeit</th>
     </tr>
     </thead>
+  </table>
+</div>
+
+
+<table class="table table-striped">
     <tbody>
     <tr *ngFor="let training of trainings; let indexOfelement=index;">
       <td style="width: 30%">{{training.name}}</td>

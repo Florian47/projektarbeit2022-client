@@ -1,29 +1,42 @@
-  <div *ngIf="isAddMode">
-    <h1 >Training erstellen</h1>
-  </div>
-  <h1 *ngIf="!isAddMode">Training &Auml;ndern</h1>
+ <div style="height: 15% ;width: 100%" class="sticky">
+   <h1  *ngIf="isAddMode" >Training erstellen</h1>
 
-<label for="students">Training freigegeben für folgende Benutzer</label>
+   <h1  *ngIf="!isAddMode">Training &Auml;ndern</h1>
+
+   <label for="students">Training freigegeben für folgende Benutzer</label>
+   <br>
+   <mat-form-field appearance="fill" id="students">
+     <mat-label>Benutzer</mat-label>
+     <mat-select [formControl]="benutzer" multiple [(ngModel)] = "model.students" name="students" [compareWith]="compareUser">
+       <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser.firstName}}</mat-option>
+     </mat-select>
+   </mat-form-field>
+   <br>
+   <label for="name">Trainingsname</label>
+   <input  class="form-control form-control-sm" [(ngModel)] = "model.name" name="name" id="name" type="text" min="1" max="50">
+
+   <button type="button" (click)="onSubmit()" class="btn btn-success">
+     <fa-icon icon="floppy-disk"></fa-icon>
+   </button>
+   <button routerLink="/training" type="button" class="btn btn-danger">
+     <fa-icon icon="xmark"></fa-icon>
+   </button>
+   <table class="table table-striped  " >
+   <thead style="height: 10%" >
+   <tr  name="name">
+     <th style="width: 20%">Aufgabenname</th>
+     <th style="width: 20%">Schwierigkeitsgrad</th>
+     <th style="width: 30%">Auswahl</th>
+   </tr>
+   </thead>
+ </table>
+ </div>
+
+
   <br>
-  <mat-form-field appearance="fill" id="students">
-    <mat-label>Benutzer</mat-label>
-    <mat-select [formControl]="benutzer" multiple [(ngModel)] = "model.students" name="students" [compareWith]="compareUser">
-      <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser.firstName}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <label for="name">Trainingsname</label>
-  <input  class="form-control form-control-sm" [(ngModel)] = "model.name" name="name" id="name" type="text" min="1" max="50">
-<br>
-  <table class="table table-striped">
-    <thead>
-    <tr  name="name">
-      <th style="width: 30%">Aufgabenname</th>
-      <th style="width: 30%">Schwierigkeitsgrad</th>
-      <th style="width: 30%">Auswahl</th>
-    </tr>
-    </thead>
-    <tbody>
+
+ <table class="table table-striped" >
+    <tbody style="overflow: auto" >
       <tr *ngFor="let task of tasks; let indexOfelement=index;">
         <td style="width: 30%">{{task.name}}</td>
         <td style="width: 30%">{{task.difficulty}}</td>
@@ -34,10 +47,6 @@
     </tbody>
   </table>
   <br>
-  <button type="button" (click)="onSubmit()" class="btn btn-success">
-    <fa-icon icon="floppy-disk"></fa-icon>
-  </button>
-  <button routerLink="/training" type="button" class="btn btn-danger">
-    <fa-icon icon="xmark"></fa-icon>
-  </button>
+
+
 
