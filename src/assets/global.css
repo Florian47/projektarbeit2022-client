@@ -95,7 +95,7 @@ marginbox{
   background-color: lightgrey;
 }
 .thead{
-  border-bottom: 0;
+  border-bottom: 10px;
   background: white;
   position: sticky;
   top: 0
