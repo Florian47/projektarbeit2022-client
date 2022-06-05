@@ -1,3 +1,4 @@
+<!--
  <div style="height: 15% ;width: 100%" class="sticky">
    <h1  *ngIf="isAddMode" >Training erstellen</h1>
 
@@ -41,12 +42,151 @@
         <td style="width: 30%">{{task.name}}</td>
         <td style="width: 30%">{{task.difficulty}}</td>
         <td style="white-space: nowrap">
-         <input (click)="clickTask(task)" type="checkbox" [checked]="hasTask(task)" > <!-- [] stehen fürs hinzufuegen eines attributes -->
+         <input (click)="clickTask(task)" type="checkbox" [checked]="hasTask(task)" > &lt;!&ndash; [] stehen fürs hinzufuegen eines attributes &ndash;&gt;
         </td>
       </tr>
     </tbody>
   </table>
   <br>
+-->
 
+
+
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>Document</title>
+
+
+   <link rel="stylesheet" href=
+     "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+         integrity=
+           "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+         crossorigin="anonymous" />
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+           integrity=
+             "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+           crossorigin="anonymous">
+   </script>
+   <script src=
+             "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+           integrity=
+             "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+           crossorigin="anonymous">
+   </script>
+   <script src=
+             "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+           integrity=
+             "sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+           crossorigin="anonymous">
+   </script>
+
+   <style>
+     .header {
+       position: sticky;
+       top:0;
+     }
+     .container {
+       width: 100%;
+       height: 100%;
+       overflow: auto;
+     }
+     h1{
+       color: black;
+     }
+   </style>
+ </head>
+
+ <body>
+
+
+ <table class="table table-borderless " >
+
+
+
+   <thead style="position: sticky;top: 0;border-bottom: 0;background: white;">
+   <tr>
+     <th>
+       <label for="students">Training freigegeben für folgende Benutzer</label>
+
+     </th>
+     <th>
+       <mat-form-field appearance="fill" id="students">
+         <mat-label>Benutzer</mat-label>
+         <mat-select [formControl]="benutzer" multiple [(ngModel)] = "model.students" name="students" [compareWith]="compareUser">
+           <mat-option *ngFor="let singleUser of benutzerliste" [value]="singleUser">{{singleUser.firstName}}</mat-option>
+         </mat-select>
+       </mat-form-field>
+     </th>
+     <th></th>
+
+   </tr>
+
+   <tr>
+     <th>
+       <label for="name">Trainingsname</label>
+     </th>
+
+     <th>
+       <input  class="form-control form-control-sm" [(ngModel)] = "model.name" name="name" id="name" type="text" min="1" max="50">
+
+     </th>
+     <th>
+
+     </th>
+   </tr>
+   <tr>
+     <th>
+       <button type="button" (click)="onSubmit()" class="btn btn-success">
+         <fa-icon icon="floppy-disk"></fa-icon>
+       </button>
+
+     </th>
+     <th>
+       <button routerLink="/training" type="button" class="btn btn-danger">
+         <fa-icon icon="xmark"></fa-icon>
+       </button>
+     </th>
+     <th> </th>
+  <tr>
+
+  </tr>
+
+
+   <tr>
+     <th style="width: 20%">Aufgabenname</th>
+     <th style="width: 20%">Schwierigkeitsgrad</th>
+     <th style="width: 30%">Auswahl</th>
+
+   </tr>
+   </thead>
+
+
+   <tbody style="border-top: 1px solid #dee2e6; " >
+
+   <tr *ngFor="let task of tasks; let indexOfelement=index;">
+     <td style="width: 30%">{{task.name}}</td>
+     <td style="width: 30%">{{task.difficulty}}</td>
+     <td style="white-space: nowrap">
+       <input (click)="clickTask(task)" type="checkbox" [checked]="hasTask(task)" > <!-- [] stehen fürs hinzufuegen eines attributes -->
+     </td>
+   </tr>
+
+
+   </tbody>
+
+
+
+ </table>
+
+ </body>
+
+ </html>
 
 

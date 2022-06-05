@@ -90,6 +90,13 @@ marginbox{
 .wrapper{
   display: initial;
 }
-.table{
-  padding: 15px;
+
+.table tbody tr:nth-child(even){
+  background-color: lightgrey;
+}
+.thead{
+  border-bottom: 0;
+  background: white;
+  position: sticky;
+  top: 0
 }

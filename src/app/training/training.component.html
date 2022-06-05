@@ -1,4 +1,4 @@
-<div class="sticky">
+<!--<div class="sticky">
   <a routerLink="add" class="btn btn-sm btn-circle btn-success mb-2"><fa-icon icon="plus"></fa-icon></a>
   <p></p>
 
@@ -25,5 +25,68 @@
     </tr>
 
     </tbody>
-  </table>
+  </table>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+
+
+
+
+
+</head>
+
+<body>
+
+
+<table class="table table-borderless">
+
+
+
+  <thead style="position: sticky;top: 0;border-bottom: 0;background: white;" >
+  <tr>
+    <th>
+      <a routerLink="add" class="btn btn-sm btn-circle btn-success mb-2"><fa-icon icon="plus"></fa-icon></a>
+    </th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th style="width: 10%">Trainingsname</th>
+    <th style="width: 30%">Handlungsm&ouml;glichkeit</th>
+    <th></th>
+
+  </tr>
+  </thead>
+
+
+  <tbody >
+
+  <tr *ngFor="let training of trainings; let indexOfelement=index;">
+    <td style="width: 30%">{{training.name}}</td>
+    <td style="white-space: nowrap">
+      <a routerLink="edit/{{training.id}}" class="btn btn-sm btn-primary mr-1"><fa-icon icon="pen-to-square"></fa-icon></a>
+      <button type="button" (click)="deleteTraining(training.id)" class="btn btn-sm btn-danger"><fa-icon icon="trash"></fa-icon></button>
+
+    </td>
+  </tr>
+
+
+  </tbody>
+
+
+
+</table>
+
+</body>
+
+</html>
 
