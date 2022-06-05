@@ -6,11 +6,5 @@ a { cursor: pointer; }
   background-color: #eeeeee;
 }
 
-.btn-delete-user {
-  width: 40px;
-  text-align: center;
-  box-sizing: content-box;
-}
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

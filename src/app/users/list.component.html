@@ -15,7 +15,7 @@
     <td>{{user.username}}</td>
     <td style="white-space: nowrap">
       <a *ngIf="isAdmin()" routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1"><fa-icon icon="pen-to-square"></fa-icon></a>
-      <button *ngIf="isAdmin()" (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
+      <button *ngIf="isAdmin()" (click)="deleteUser(user.id)" class="btn btn-sm btn-danger" [disabled]="user.isDeleting">
         <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
         <span *ngIf="!user.isDeleting"><fa-icon icon="trash"></fa-icon></span>
       </button>
