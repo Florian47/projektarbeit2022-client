@@ -131,4 +131,13 @@ export class AddEditComponent implements OnInit {
         }
       });
   }
+  /**
+   * Wird im Html verwendet um zu evaluieren ob der Nutzer-Löschen/Bearbeiten-Button eingeblendet werden soll. Wenn der
+   * angemeldete Nutzer die Rolle 'ROLE_ADMINISTRATOR' hat, wird der Button angezeigt.
+   */
+  public isAdmin(){
+    const expectedRole = ["ROLE_ADMINISTRATOR"];
+    const user = this.accountService.userValue;
+    return expectedRole.some(expRole => user.roles.map(role => role.name.toString()).includes(expRole));
+  }
 }
