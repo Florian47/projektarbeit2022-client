@@ -13,7 +13,7 @@
 </label>
 <input type="password" class="form-control form-control-sm" name="password" id="password" [(ngModel)]="model.password"/>
 <br>
-<mat-form-field appearance="fill">
+<mat-form-field *ngIf="isAdmin()" appearance="fill">
   <mat-label>Wähle die Benutzerrollen aus</mat-label>
   <mat-select multiple [(ngModel)]="model.roles" [compareWith]="compareRole" name="roles">
     <mat-option *ngFor="let singleRole of rolelist" [value]="singleRole">{{singleRole.name}}</mat-option>
