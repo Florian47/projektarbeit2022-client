@@ -101,10 +101,7 @@ export class AddEditComponent implements OnInit {
           this.alertService.success('User hinzufuegen erfolgreich', {keepAfterRouteChange: true});
           this.router.navigate(['../'], {relativeTo: this.route});
         },
-        error: (error: any) => {
-          this.alertService.error(error);
-          this.loading = false;
-        }
+        error: (error: any) =>  this.loading = false
       });
   }
   /**
@@ -126,7 +123,6 @@ export class AddEditComponent implements OnInit {
           this.router.navigate(['../../'], {relativeTo: this.route});
         },
         error: (error: any) => {
-          this.alertService.error(error);
           this.loading = false;
         }
       });

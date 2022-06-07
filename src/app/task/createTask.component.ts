@@ -160,7 +160,6 @@ export class CreateTaskComponent implements OnInit {
           this.router.navigate(['../'], {relativeTo: this.route});
         },
         error: (error: any) => {
-          this.alertService.error(error);
           this.loading = false;
         }
       });
@@ -179,7 +178,6 @@ export class CreateTaskComponent implements OnInit {
           this.router.navigate(['../../'], {relativeTo: this.route});
         },
         error: (error: any) => {
-          this.alertService.error(error);
           this.loading = false;
         }
       });

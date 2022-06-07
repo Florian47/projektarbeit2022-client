@@ -110,7 +110,6 @@ export class CreateTrainingComponent implements OnInit {
           this.router.navigate(['../'], {relativeTo: this.route});
         },
         error: (error: any) => {
-          this.alertService.error(error);
           this.loading = false;
         }
       });
@@ -131,7 +130,6 @@ export class CreateTrainingComponent implements OnInit {
           this.router.navigate(['../../'], {relativeTo: this.route});
         },
         error: (error: any) => {
-          this.alertService.error(error);
           this.loading = false;
         }
       });
