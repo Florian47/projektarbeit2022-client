@@ -3,6 +3,7 @@ import {TaskService} from "../_services/task.service";
 
 import {Task} from "../_models/task";
 import {first} from "rxjs/operators";
+
 /**
  * Stellt die  Task Ansicht bereit.Hier wird die Oberfläche mit der benötigten Logik bereitgestellt.
  * Der Leherer kann hier die erstellten aufgaben ansehen
@@ -13,7 +14,8 @@ import {first} from "rxjs/operators";
   templateUrl: './task.component.html'
 })
 export class TaskComponent implements OnInit {
-  tasks: Task[] =[];
+  tasks: Task[] = [];
+  loading = false;
 
   /**
    *
@@ -21,13 +23,18 @@ export class TaskComponent implements OnInit {
    */
   constructor(private taskService: TaskService) {
   }
+
   /**
    * Wird beim Start der Komponente aufgerufen und holt sich alle task vom Server und listet diese auf
    *
    * **/
 
   ngOnInit(): void {
-    this.taskService.getAll().subscribe(e => this.tasks = e);
+    this.loading = true;
+    this.taskService.getAll().subscribe(e => {
+      this.tasks = e;
+      this.loading = false;
+    });
   }
 
   /**

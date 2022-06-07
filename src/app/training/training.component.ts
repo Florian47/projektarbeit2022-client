@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Training} from "../_models/training";
 import {TrainingService} from "../_services/training.service";
 import {Task} from "../_models/task";
@@ -14,8 +14,8 @@ import {first} from "rxjs/operators";
  * @author Chris Leon Brinkhoff
  */
 export class TrainingComponent implements OnInit {
-  trainings:Training[] = [];
-  model: Task = new Task();
+  trainings: Training[] = [];
+  loading = false;
 
   /**
    * Wird beim Erzeugen der Komponente aufgerufen.
@@ -23,20 +23,25 @@ export class TrainingComponent implements OnInit {
    */
   constructor(private trainingService: TrainingService) {
   }
+
   /**
    * Wird beim Start der Komponente aufgerufen und lädt sich alle Trainings von Server und zeigt
    * diese dann auf der Oberfläche an
    */
 
   ngOnInit(): void {
-    this.trainingService.getAllIndividuell().subscribe(e => this.trainings = e);
+    this.loading = true;
+    this.trainingService.getAllIndividuell().subscribe(e => {
+      this.trainings = e;
+      this.loading = false;
+    });
   }
 
   /**
    * das Löschen von Trainings wird hier realisiert
    * @param id gibt an welches Training gelöscht werden soll
    */
-  deleteTraining(id:number){
+  deleteTraining(id: number) {
     this.trainingService.delete(id).pipe(first()).subscribe(() => this.trainings = this.trainings.filter((x: Training) => x.id !== id));
   }
 
