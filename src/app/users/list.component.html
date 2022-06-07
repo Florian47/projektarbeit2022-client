@@ -2,13 +2,19 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th style="width: 30%">First Name</th>
-    <th style="width: 30%">Last Name</th>
-    <th style="width: 30%">Username</th>
+    <th style="width: 30%">Vorname</th>
+    <th style="width: 30%">Nachname</th>
+    <th style="width: 30%">Benutzername</th>
     <th style="width: 10%"></th>
   </tr>
   </thead>
   <tbody>
+  <tr *ngIf="users.length==0">
+    <td colspan="4" class="text-center">
+      <span *ngIf="loading" class="spinner-border spinner-border-lg align-center"></span>
+      <span *ngIf="!loading">Keine Benutzer gefunden</span>
+    </td>
+  </tr>
   <tr *ngFor="let user of users">
     <td>{{user.firstName}}</td>
     <td>{{user.lastName}}</td>

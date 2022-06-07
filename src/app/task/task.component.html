@@ -91,7 +91,12 @@
 
 
     <tbody >
-
+    <tr *ngIf="tasks.length==0">
+      <td colspan="4" class="text-center">
+        <span *ngIf="loading" class="spinner-border spinner-border-lg align-center"></span>
+        <span *ngIf="!loading">Keine Aufgaben gefunden</span>
+      </td>
+    </tr>
     <tr *ngFor="let task of tasks; let indexOfelement=index;">
       <td style="width: 30%">  {{task.name}}</td>
       <td style="width: 30%">  {{task.difficulty}}</td>
