@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 
 import {AccountService} from 'src/app/_services';
 import {User} from "../_models";
 
 @Component({templateUrl: 'list.component.html'})
+
 /**
  * Stellt die Listen-Ansicht aller Nutzer bereit. Sowohl die Oberfläche als auch die Logik ist in dieser Komponente
  * verankert. Über diese Komponente können Nutzer entfernt werden. Wenn man die Rollen Student
@@ -13,7 +14,6 @@ import {User} from "../_models";
 export class ListComponent implements OnInit {
   users: User[] = [];
   loading = false;
-
   /**
    * Wird beim Erzeugen der Komponente aufgerufen.
    * @param accountService wird verwendet um alle Nutzer zu erhalten und spezielle Nutzer zu löschen.
